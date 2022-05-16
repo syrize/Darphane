@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.bipara.beyazfincan"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 272
+        versionName "2.7"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+
+        renderscriptTargetApi 28 //must match target sdk and build tools
+        renderscriptSupportModeEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions { //apk çıktı hatalarını engellemek için ekledim
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+}
+
+/* IMPORTANT :
+ * Be careful when update dependencies, different version library may caused error */
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+    implementation 'jp.wasabeef:blurry:4.0.0'
+
+    implementation 'com.eightbitlab:supportrenderscriptblur:1.0.2'
+    implementation 'com.eightbitlab:blurview:1.6.6'
+
+
+    //duplicate listenable sorununu çözdü
+    implementation "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava"
+
+    //Uygulama içi satınalma
+    implementation 'com.android.billingclient:billing:3.0.2'
+
+
+
+    //Volley Kütüphanesi
+    implementation 'com.android.volley:volley:1.1.1'
+
+    //picasso kütüphanesi
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Adsense reklamları
+    implementation 'com.google.android.gms:play-services-ads:19.7.0'
+
+    // google support library ---------------------------------------------------------------------
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    //Facebook Login
+    implementation 'com.facebook.android:facebook-login:5.15.3'
+
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+
+    implementation platform('com.google.firebase:firebase-bom:26.4.0')
+    implementation 'com.google.firebase:firebase-analytics'
+
+
+    // google maps library ------------------------------------------------------------------------
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation('com.google.android.libraries.places:places:1.0.0') {
+        exclude module: 'glide'
+    }
+
+    //image nesnesi için load işlemi
+   // implementation 'com.github.bumptech.glide:glide:4.11.0'
+    //annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // google gson --------------------------------------------------------------------------------
+    implementation 'com.google.code.gson:gson:2.8.4'
+
+    // third party dependencies -------------------------------------------------------------------
+    implementation 'com.balysv:material-ripple:1.0.2'                  // ripple effect
+    implementation 'com.github.bumptech.glide:glide:3.7.0'             // image loader
+    implementation 'com.wdullaer:materialdatetimepicker:3.2.0'         // date & time picker
+    implementation 'com.mikhaellopez:circularimageview:3.2.0'          // circle image view
+    implementation 'com.github.pchmn:MaterialChipsInput:1.0.5'         // material chip
+    implementation 'com.hootsuite.android:nachos:1.1.1'                // material chips
+    implementation 'com.google.android:flexbox:0.3.2'                  // google flexible box
+    implementation 'com.crystal:crystalrangeseekbar:1.1.3'             // range seek bar
+}

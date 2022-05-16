@@ -1,0 +1,1522 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="end">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/deep_orange_300"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+<LinearLayout
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9b2c65"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.Material">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#9a2762"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/bt_menu"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@android:color/white"
+                    app:srcCompat="@drawable/ic_menu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+
+                    android:text="Beyaz Fincan"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/yellow_50" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/kredi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/yellow_50" />
+
+                <ImageButton
+                    android:id="@+id/bt_search"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@android:color/white"
+                    app:srcCompat="@drawable/ic_stars" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:scrollingCache="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_medium">
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_500"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_middle"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#b66083"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+
+                            android:padding="@dimen/spacing_medium"
+                            android:visibility="visible">
+
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/card_300"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:layout_weight="1"
+                                app:cardBackgroundColor="@android:color/white"
+                                app:cardCornerRadius="4dp"
+                                app:cardElevation="2dp"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#9b2a64"
+                                    android:orientation="vertical"
+                                    android:layout_centerHorizontal="true"
+                                    android:gravity="center"
+                                    android:paddingTop="@dimen/spacing_medium">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/spacing_medium"
+
+                                        android:text="İstediğin Falı Seç"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                        android:textColor="@color/yellow_50" />
+
+
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:paddingLeft="@dimen/spacing_large"
+                    android:paddingRight="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_medium"
+                    android:visibility="visible">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/kahve_buton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@android:color/transparent"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_local_cafe" />
+
+                            <TextView
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:textSize="18dp"
+                                android:text="Kahve Falı"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/grey_60" />
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarot_buton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@android:color/transparent"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_tarot" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:textSize="18dp"
+                                android:text="Tarot Falı"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/grey_60" />
+
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:paddingLeft="@dimen/spacing_large"
+                    android:paddingRight="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_medium"
+                    android:visibility="visible">
+
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/el_buton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="182dp"
+                            android:layout_height="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/transparent"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_el" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:text="El Falı"
+                                android:textSize="18dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/grey_60" />
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/yuz_buton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@android:color/transparent"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_face" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:text="Yüz Falı"
+                                android:textSize="18dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/grey_60" />
+
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:paddingLeft="@dimen/spacing_large"
+                    android:paddingRight="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_medium"
+                    android:visibility="visible">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/ruya_buton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@android:color/transparent"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_ruya" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:text="Rüya Yorumu"
+                                android:textSize="18dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/grey_60" />
+
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/transparent"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_burc" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:text="Günlük Burçlar"
+                                android:textSize="18dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/grey_60" />
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_100"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_middle"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="#b66083"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_large"
+                        android:visibility="visible">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:layout_weight="1"
+                            android:checkable="true"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@android:color/white"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:background="@android:color/white"
+                                android:orientation="vertical"
+                                android:layout_centerHorizontal="true"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/spacing_large">
+
+                                <ImageView
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@android:color/transparent"
+                                    android:tint="@color/grey_40"
+                                    app:srcCompat="@drawable/ic_shopping_cart" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_medium"
+                                    android:text="Kredi İşlemleri"
+                                    android:textSize="18dp"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                    android:textColor="@color/grey_60" />
+
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:layout_weight="1"
+                            android:checkable="true"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@android:color/white"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/white"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/spacing_large">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@android:color/transparent"
+                                    android:tint="@color/grey_40"
+                                    app:srcCompat="@drawable/ic_attach_money" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_medium"
+                                    android:text="Kredi Kazan"
+                                    android:textSize="18dp"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                    android:textColor="@color/grey_60" />
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_200"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_middle"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="#b66083"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_large"
+                        android:visibility="visible">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:layout_weight="1"
+                            android:checkable="true"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@android:color/white"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/white"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/spacing_large">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@android:color/transparent"
+                                    android:tint="@color/grey_40"
+                                    app:srcCompat="@drawable/ic_reklam_kaldir" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_small"
+                                    android:text="Reklamları Kaldır"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                    android:textColor="@color/grey_60"
+                                    android:textSize="18dp" />
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:layout_weight="1"
+                            android:checkable="true"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@android:color/white"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/white"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/spacing_large">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@android:color/transparent"
+                                    android:tint="@color/grey_40"
+                                    app:srcCompat="@drawable/ic_bize_yaz" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_medium"
+                                    android:text="Bize Yazın"
+                                    android:textSize="18dp"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                    android:textColor="@color/grey_60" />
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_300"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_middle"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="#b66083"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_large"
+                        android:visibility="visible">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_11"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:layout_weight="1"
+                            android:checkable="true"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@android:color/white"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:background="@android:color/white"
+                                android:orientation="vertical"
+                                android:layout_centerHorizontal="true"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/spacing_large">
+
+                                <ImageView
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@android:color/transparent"
+                                    android:tint="@color/grey_40"
+                                    app:srcCompat="@drawable/ic_account_circle" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_medium"
+                                    android:text="Profil Bilgileri"
+                                    android:textSize="18dp"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                    android:textColor="@color/grey_60" />
+
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_12"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:layout_weight="1"
+                            android:checkable="true"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@android:color/white"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/white"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/spacing_large">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@android:color/transparent"
+                                    android:tint="@color/grey_40"
+                                    app:srcCompat="@drawable/ic_settings" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_medium"
+                                    android:text="Ayarlar"
+                                    android:textSize="18dp"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                    android:textColor="@color/grey_60" />
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#9a2762">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/menu_nav_1"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:padding="15dp"
+                android:tint="@color/mdtp_white"
+                app:srcCompat="@drawable/ic_home" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/alt_menu_fallarim"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:padding="15dp"
+                android:tint="@color/mdtp_white"
+                app:srcCompat="@drawable/ic_fallarim" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/alt_menu_fal_istek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/mdtp_white"
+                app:elevation="2dp"
+                app:fabSize="mini"
+                app:rippleColor="@android:color/white"
+                app:srcCompat="@drawable/ic_add" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
+
+            <ImageView
+                android:id="@+id/alt_menu_burclar"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:padding="15dp"
+                android:tint="@color/mdtp_white"
+                app:srcCompat="@drawable/ic_burc" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/alt_menu_duyurular"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:padding="15dp"
+                android:tint="@color/mdtp_white"
+                app:srcCompat="@drawable/ic_notifications" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+</LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="230dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="false">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_large"
+                        android:layout_height="0dp" />
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/logo_mobil"
+                        android:layout_width="@dimen/spacing_xmlarge"
+                        android:layout_height="@dimen/spacing_xmlarge"
+                        android:layout_margin="@dimen/spacing_xsmall"
+                        android:src="@drawable/logo_mobil"
+                        app:civ_border="true"
+                        app:civ_border_color="@color/grey_10"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0" />
+
+                    <TextView
+                        android:id="@+id/uygulama_adi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_large"
+                        android:layout_marginRight="@dimen/spacing_large"
+                        android:text="Beyaz Fincan"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/blue_grey_800"
+                        app:fontFamily="sans-serif-medium" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/menu_close"
+                        android:layout_width="?attr/actionBarSize"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_power_settings" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_middle"
+                    android:paddingLeft="@dimen/spacing_middle"
+                    android:paddingRight="@dimen/spacing_middle"
+                    android:text="Fallar"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                <LinearLayout
+                    android:id="@+id/menu_kahvefali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_local_cafe" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kahve Falı" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_tarotfali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_tarot" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tarot Falı" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_Elfali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_el" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="El Falı" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_yuzfali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_face" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yüz Falı" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/menu_ruyayorumu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_ruya" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rüya Yorumu" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/menu_gunlukburc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_burc" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Günlük Burçlar" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+
+                <LinearLayout
+                    android:id="@+id/menu_fallarim"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_fallarim" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fallarım" />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_middle"
+                    android:paddingLeft="@dimen/spacing_middle"
+                    android:paddingRight="@dimen/spacing_middle"
+                    android:text="Kredi İşlemleri"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                <LinearLayout
+                    android:id="@+id/menu_kredisatinal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_credit_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kredi Satınal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_kredikazan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_attach_money" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kredi Kazan" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_reklamkaldir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_reklam_kaldir" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reklamları Kaldır" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_middle"
+                    android:paddingLeft="@dimen/spacing_middle"
+                    android:paddingRight="@dimen/spacing_middle"
+                    android:text="Diğer İşlemler"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                <LinearLayout
+                    android:id="@+id/menu_bizeyazin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_bize_yaz" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bize Yazın" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_account_circle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profil Bilgileri" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_ayarlar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_settings" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ayarlar" />
+
+
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_5" />
+
+
+                <LinearLayout
+                    android:id="@+id/hakkinda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_touch_app" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hakkında" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/cikis_yap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:tint="@color/deep_orange_300"
+                        app:srcCompat="@drawable/ic_exit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Çıkış Yap" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_mlarge" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

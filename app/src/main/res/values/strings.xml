@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Darphane</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="facebook_app_id">404389187542612</string>
+    <string name="fb_login_protocol_scheme">fb404389187542612</string>
+    <string name="gecis_reklam_id">"ca-app-pub-3940256099942544/1033173712"</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyC3SrcUtXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    </string>
+
+    <string name="step_of">Step %1$d of %2$d</string>
+    <string name="section_format">Section : %1$d</string>
+
+    <string name="about_text">En kaliteli fal uygulamasına hoş geldiniz.
+    </string>
+
+    <string name="version_unknown">1.0.0</string>
+    <string name="app_version">Version</string>
+    <string name="default_notification_channel_id">Default</string>
+    <string name="webview_loading">Yükleniyor... </string>
+
+
+</resources>
