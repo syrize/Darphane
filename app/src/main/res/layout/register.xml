@@ -26,7 +26,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/spacing_large"
                 android:layout_marginBottom="@dimen/spacing_mlarge"
-                android:src="@drawable/logo_mobil" />
+                android:src="@drawable/logo_mobil_eski" />
 
             <!--Any child View here, TabLayout for example. This View will NOT be blurred -->
 

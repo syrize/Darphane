@@ -5,7 +5,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class AppConfig {
 
-    public static String URL = "https://beyazfincan.com/yonetim/_PHP_Rest_API";
+    //public static String URL = "https://beyazfincan.com/yonetim/_PHP_Rest_API";
+    public static String URL = "https://turkogame.com/uygulamalar/bilgi_oyunu";
 
     public static final String APP_ID = "ca-app-pub-5156810606852734~7405908617";
 

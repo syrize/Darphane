@@ -302,7 +302,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         MaterialCardView kahve_buton = findViewById(R.id.kahve_buton);
         MaterialCardView tarot_buton = findViewById(R.id.tarot_buton);
         MaterialCardView el_buton = findViewById(R.id.el_buton);
-        MaterialCardView yuz_buton = findViewById(R.id.yuz_buton);
+        MaterialCardView sans_carki = findViewById(R.id.sans_carki);
         MaterialCardView ruya_buton = findViewById(R.id.ruya_buton);
         MaterialCardView card_6 = findViewById(R.id.card_6);
         MaterialCardView card_7 = findViewById(R.id.card_7);
@@ -485,12 +485,13 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        yuz_buton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        sans_carki.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainMenu.this, Hediye_Carki.class);
+                    startActivity(intent);
 
-                fal_baslat( kullanici_id, token,5, Falcilar.class);
+                }
 
-            }
         });
 
         menu_yuzfali.setOnClickListener(new View.OnClickListener() {

@@ -45,7 +45,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_middle"
-                    android:text="Kullanıcı Girişi"
+                    android:text="Darphane"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:textColor="@color/green_500"
                     android:textStyle="bold" />
@@ -153,23 +153,12 @@
 
 
                     <Button
-                        android:id="@+id/btn_facebook"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/btn_rounded_primary"
-                        android:text="Facebook Login"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold" />
-
-                    <Button
                         android:id="@+id/btn_google"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_weight="0.5"
                         android:background="@drawable/btn_rounded_red"
-                        android:text="Google Login"
+                        android:text="Google ile Bağlan"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />

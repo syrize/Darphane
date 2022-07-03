@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "878949709282",
-    "project_id": "beyaz-fincan-login-296619",
-    "storage_bucket": "beyaz-fincan-login-296619.appspot.com"
+    "project_number": "955735201141",
+    "project_id": "darphane-1656882094874",
+    "storage_bucket": "darphane-1656882094874.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:878949709282:android:91719351722c6e6e1b75bb",
+        "mobilesdk_app_id": "1:955735201141:android:eb8de67b5c23b848e02f3c",
         "android_client_info": {
-          "package_name": "com.bipara.beyazfincan"
+          "package_name": "com.turkogame.darphane"
         }
       },
       "oauth_client": [
         {
-          "client_id": "878949709282-hb8b620d7i3hjds21b6h8ctvvp7k2f4k.apps.googleusercontent.com",
+          "client_id": "955735201141-a8eav8m9ckms13i0ohl2remk1a5qd3d2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.bipara.beyazfincan",
+            "package_name": "com.turkogame.darphane",
             "certificate_hash": "b025e929f000dfe062577baa1f147ad777b4279a"
           }
         },
         {
-          "client_id": "878949709282-55b1a9rmjbdrtdem5eo4g0jrr64g14q0.apps.googleusercontent.com",
+          "client_id": "955735201141-ftlol03atjq1vajpdv35oobv21phiaad.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZGs_JcLUb2P0AGRrwnlxcEtAa_ln9Mx8"
+          "current_key": "AIzaSyBHwWEladMCfI_VxRtdHthZQJTcBVnvaIk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "878949709282-55b1a9rmjbdrtdem5eo4g0jrr64g14q0.apps.googleusercontent.com",
+              "client_id": "955735201141-ftlol03atjq1vajpdv35oobv21phiaad.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

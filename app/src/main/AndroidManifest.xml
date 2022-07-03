@@ -131,6 +131,9 @@
         <activity
             android:name="com.turkogame.darphane.activity.Duyuru_Detay"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.turkogame.darphane.activity.Hediye_Carki"
+            android:screenOrientation="portrait" />
 
 
 

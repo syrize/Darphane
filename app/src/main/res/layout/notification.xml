@@ -9,7 +9,7 @@
         <ImageView
             android:padding="5dp"
             android:id="@+id/icon"
-            android:src="@drawable/logo_mobil"
+            android:src="@drawable/logo_mobil_eski"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
     </LinearLayout>

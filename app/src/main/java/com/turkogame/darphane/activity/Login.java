@@ -22,15 +22,6 @@ import com.android.volley.toolbox.Volley;
 import com.turkogame.darphane.R;
 import com.turkogame.darphane.activity.app.AppConfig;
 import com.turkogame.darphane.utils.Tools;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -53,13 +44,11 @@ public class Login extends AppCompatActivity {
     SharedPreferences sharedPreferences;
 
     private View parent_view;
-    private Button btn_login,btn_facebook,btn_google;
-    private LoginButton facebook_loginButton;
+    private Button btn_login,btn_google;
     private TextInputEditText eposta, parola;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int code=100;
     int RC_SIGN_IN=0;
-    CallbackManager callbackManager;
     String user_id,email,name,last_name;
     TextView register;
     String image_url;
@@ -75,13 +64,12 @@ public class Login extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
         parent_view = findViewById(android.R.id.content);
-        btn_facebook =  findViewById(R.id.btn_facebook);
         btn_google = findViewById(R.id.btn_google);
         btn_login = findViewById(R.id.btn_giris);
         eposta = findViewById(R.id.eposta);
         parola = findViewById(R.id.parola);
         register = findViewById(R.id.sign_up);
-      //  facebook_loginButton=findViewById(R.id.login_button);
+
 
 
 
@@ -91,77 +79,7 @@ public class Login extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        callbackManager=CallbackManager.Factory.create();
 
-
-
-            LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        Log.d("mesaj", "Login");
-
-
-                        String facebook_user_id=loginResult.getAccessToken().getUserId();
-                        image_url="https://graph.facebook.com/"+loginResult.getAccessToken().getUserId()+"/picture?return_ssl_resources=1";
-                        //Picasso.get().load(image_url).into(image_view nesnesi);
-
-                        GraphRequest graphRequest = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
-                                new GraphRequest.GraphJSONObjectCallback() {
-                                    @Override
-                                    public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
-
-                                        try {
-                                            Log.d("mesaj", jsonObject.toString());
-                                            Log.d("mesaj", jsonObject.getString("id"));
-                                            Log.d("mesaj", jsonObject.getString("email"));
-                                            Log.d("mesaj", jsonObject.getString("first_name"));
-                                            Log.d("mesaj", jsonObject.getString("last_name"));
-                                            Log.d("mesaj", image_url);
-
-                                            user_id=jsonObject.getString("id");
-                                            email=jsonObject.getString("email");
-                                            name=  jsonObject.getString("first_name");
-                                            last_name=jsonObject.getString("last_name");
-
-
-                                            Facebook_Login_Json();
-
-                                            Intent intent = new Intent(Login.this, MainMenu.class);
-                                            startActivity(intent);
-                                            finishAffinity();
-
-                                        }
-                                        catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-
-                            Bundle bundle = new Bundle();
-                        bundle.putString(
-                                "fields",
-                                "id,name,link,email,gender,last_name,first_name,locale,timezone,updated_time,verified"
-                        );
-
-
-
-                            graphRequest.setParameters(bundle);
-                            graphRequest.executeAsync();
-
-
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(Login.this, "Login Cancel", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        Toast.makeText(Login.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
 
             //setContentView(R.layout.login);
 
@@ -204,15 +122,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-            btn_facebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                LoginManager.getInstance().logInWithReadPermissions(Login.this, Arrays.asList("user_status","public_profile", "user_friends","email"));
-
-
-            }
-        });
 
 
 
@@ -251,7 +161,7 @@ public class Login extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        callbackManager.onActivityResult(requestCode, resultCode, data);//bu facebook login için
+
 
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -280,76 +190,6 @@ public class Login extends AppCompatActivity {
         }
     }
 
-
-    public void Facebook_Login_Json() {
-
-        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-
-        String md5=AppConfig.md5(email+"loginPOST");
-        String kontrol_key = md5.toUpperCase();
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JSONObject object = new JSONObject();
-        try {
-            object.put("kontrol_key", kontrol_key);
-            object.put("email", email);
-            object.put("sifre", user_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        String url = AppConfig.URL + "/login.php";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, object,
-                new com.android.volley.Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-
-                        try {
-                            JSONObject kontrol = new JSONObject(response.toString());
-
-                            if (kontrol.getString("hata")=="false"){
-                                JSONObject bilgiler = new JSONObject(kontrol.getString("uye-bilgileri"));
-
-                                sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("email",bilgiler.getString("EMAIL"));
-                                editor.putString("user_id",bilgiler.getString("KULLANICI_ID"));
-                                editor.putString("adi",bilgiler.getString("ADI"));
-                                editor.putString("soyadi",bilgiler.getString("SOYADI"));
-                                editor.putString("resim",image_url);
-                                editor.putString("login","1");
-                                Log.d("mesaj", "login başarılı");
-                                editor.commit();
-
-
-
-                            } else {
-
-                                kullanici_kayit();
-
-                                /*
-                                Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
-                                toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
-                                toast.show();*/
-
-                            }
-
-
-                        } catch (Exception e) {
-
-                        }
-
-
-                    }
-                }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("mesaj", error.toString());
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
-    }
 
 
     public void kullanici_kayit() {
@@ -396,7 +236,7 @@ public class Login extends AppCompatActivity {
                                 editor.putString("login","1");
                                 editor.commit();
 
-                                Facebook_Login_Json();
+
 
 
                             } else {

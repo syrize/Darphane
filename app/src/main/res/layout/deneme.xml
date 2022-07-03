@@ -86,7 +86,7 @@
                         android:layout_width="@dimen/spacing_xmlarge"
                         android:layout_height="@dimen/spacing_xmlarge"
                         android:layout_margin="@dimen/spacing_xsmall"
-                        android:src="@drawable/logo_mobil"
+                        android:src="@drawable/logo_mobil_eski"
                         app:civ_border="true"
                         app:civ_border_color="@color/grey_10"
                         app:civ_border_width="0dp"
