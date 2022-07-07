@@ -300,11 +300,10 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
         ImageButton btn_menu = findViewById(R.id.bt_menu);
         MaterialCardView kahve_buton = findViewById(R.id.kahve_buton);
-        MaterialCardView tarot_buton = findViewById(R.id.tarot_buton);
+        MaterialCardView bilkazan_buton = findViewById(R.id.bilkazan_buton);
         MaterialCardView el_buton = findViewById(R.id.el_buton);
         MaterialCardView sans_carki = findViewById(R.id.sans_carki);
-        MaterialCardView ruya_buton = findViewById(R.id.ruya_buton);
-        MaterialCardView card_6 = findViewById(R.id.card_6);
+
         MaterialCardView card_7 = findViewById(R.id.card_7);
         MaterialCardView card_8 = findViewById(R.id.card_8);
         MaterialCardView card_9 = findViewById(R.id.card_9);
@@ -453,10 +452,12 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         });
 
 
-        tarot_buton.setOnClickListener(new View.OnClickListener() {
+        bilkazan_buton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                fal_baslat( kullanici_id,token, 2, Falcilar.class);
+                Intent intent = new Intent(MainMenu.this, Bilkazan_Start.class);
+                startActivity(intent);
+
 
             }
         });
@@ -505,13 +506,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
 
-        ruya_buton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                fal_baslat( kullanici_id, token,4, Falcilar.class);
-
-            }
-        });
 
         menu_ruyayorumu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -522,18 +517,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         });
 
 
-        card_6.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
-                SharedPreferences.Editor kayitci = kayit_kontrol.edit();
-                kayitci.putString("user_id", kullanici_id);
-                kayitci.commit();
-
-                Intent intent = new Intent(MainMenu.this, Burclar.class);
-                startActivity(intent);
-            }
-        });
 
         menu_gunlukburc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
