@@ -644,7 +644,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
     private void initToolbar() {
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
 
 
     }

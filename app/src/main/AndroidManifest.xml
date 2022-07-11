@@ -91,9 +91,6 @@
             android:name="com.turkogame.darphane.activity.Yuz_Istek"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.turkogame.darphane.activity.Tarot_Istek"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.turkogame.darphane.activity.Hakkinda"
             android:screenOrientation="portrait" />
         <activity
