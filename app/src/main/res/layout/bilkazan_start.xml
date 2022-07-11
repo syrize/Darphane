@@ -91,7 +91,7 @@
                                 10 soruya doğru cevap vererek 500 kredilik ödülü kazanabilirsiniz.
                                 "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/blue_800" />
+                                android:textColor="@color/indigo_600" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -101,14 +101,14 @@
                                 kaybettiğiniz krediyi geri alabilirsiniz.
                                  "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/blue_800" />
+                                android:textColor="@color/indigo_600" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/spacing_middle"
                                 android:text="Bu sayede hiç kaybetmeden sürekli olarak kazanç sağlama fırsatına erişebilirsiniz."
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/blue_800" />
+                                android:textColor="@color/indigo_600" />
 
                         </LinearLayout>
 
@@ -170,7 +170,7 @@
                                 android:paddingTop="@dimen/spacing_middle"
                                 android:text="500 Kredi"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                                android:textColor="@color/blue_800" />
+                                android:textColor="@color/indigo_600" />
 
 
 
@@ -234,7 +234,7 @@
                                 android:paddingTop="@dimen/spacing_middle"
                                 android:text="10 Kredi"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/blue_800" />
+                                android:textColor="@color/indigo_600" />
 
 
 
@@ -263,17 +263,15 @@
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:paddingBottom="@dimen/spacing_middle"
-                android:paddingTop="@dimen/spacing_middle"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                app:srcCompat="@drawable/btn_rect_primary" />
+                <Button
+                    android:id="@+id/start"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/spacing_mxlarge"
+                    android:text="Başlat"
+                    android:theme="@style/Button.Baslat" />
 
             </androidx.cardview.widget.CardView>
 

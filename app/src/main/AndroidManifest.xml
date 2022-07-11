@@ -135,6 +135,9 @@
         <activity
             android:name="com.turkogame.darphane.activity.Bilkazan_Start"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.turkogame.darphane.activity.Bilkazan"
+            android:screenOrientation="portrait" />
 
 
 
