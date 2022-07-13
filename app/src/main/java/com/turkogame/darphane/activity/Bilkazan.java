@@ -1,5 +1,6 @@
 package com.turkogame.darphane.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -10,6 +11,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -153,23 +156,42 @@ public class Bilkazan extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
             if (verilen_cevap.equals(dogru_sik)){
+
+                if (dogru_sik.equals("A")) lyt_a.setBackgroundColor(Color.GREEN);
+                if (dogru_sik.equals("B")) lyt_b.setBackgroundColor(Color.GREEN);
+                if (dogru_sik.equals("C")) lyt_c.setBackgroundColor(Color.GREEN);
+                if (dogru_sik.equals("D")) lyt_d.setBackgroundColor(Color.GREEN);
+
                 soru_puani=soru_puani+50;
                 puan.setText("Puan: " + soru_puani);
 
                 Toast.makeText(Bilkazan.this, "Verilen Cevap : " + verilen_cevap+" Cevap Doğru " ,
                         Toast.LENGTH_SHORT).show();
 
-                yeni_soru();
+                new CountDownTimer(1000, 1000){
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        yeni_soru();
+                    }
+                }.start();
+
+
 
             }else {
                 Toast.makeText(Bilkazan.this, "Cevap Yanlış. Oyunu Kaybettiniz! " ,
                         Toast.LENGTH_SHORT).show();
                 Count.cancel();
 
+                oyun_sonu();
+
                 soru_puani=0;
                 puan.setText("Puan: " + soru_puani);
                 soru_sayaci=0;
-                onayla.setText("Yeniden Oyna");
                 oyun_durumu=1;
                 soru_id=0;
                 dogru_cevap="";
@@ -246,7 +268,7 @@ public class Bilkazan extends AppCompatActivity {
                                     dogru_cevap=sorular.getString("DOGRU_CEVAP");
                                     dogru_sik=sorular.getString("DOGRU_SIK");
 
-                                    onayla.setText("Onayla");
+                                    onayla.setText("Cevapla");
                                     oyun_durumu=0;
 
                                     zaman_sayaci();
@@ -287,6 +309,46 @@ public class Bilkazan extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void oyun_sonu() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.bilkazan_end);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.verticalMargin=50;
+
+        final LinearLayout reklam_izle = (LinearLayout) dialog.findViewById(R.id.reklam_izle);
+        final Button yeni_oyun = (Button) dialog.findViewById(R.id.yeni_oyun);
+
+
+        ((Button) dialog.findViewById(R.id.yeni_oyun)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yeni_soru();
+                dialog.dismiss();
+            }
+        });
+
+        ((LinearLayout) dialog.findViewById(R.id.reklam_izle)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yeni_soru();
+                dialog.dismiss();
+            }
+        });
+
+
+
+
+        dialog.setCancelable(false);
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
     }
 
 

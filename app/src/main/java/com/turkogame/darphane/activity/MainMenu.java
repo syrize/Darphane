@@ -246,7 +246,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                 dialog.dismiss();
             }
         });
-
+        //dialog.setCancelable(false);
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
