@@ -254,23 +254,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
 
-    private  void FacebookLogout(){
 
-        LoginManager.getInstance().logOut();
-
-        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("email","");
-        editor.putString("user_id","");
-        editor.putString("adi","");
-        editor.putString("soyadi","");
-        editor.putString("login","0");
-        editor.commit();
-
-        Toast.makeText(MainMenu.this,"Çıkış Yapıldı",Toast.LENGTH_LONG).show();
-
-    }
 
     private void GoogleSignOut() {
         mGoogleSignInClient.signOut()
@@ -344,7 +328,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                     // ...
                 }
 
-                FacebookLogout();
+
 
                 Intent intent = new Intent(MainMenu.this, Login.class);
                 startActivity(intent);
