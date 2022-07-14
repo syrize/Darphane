@@ -9,6 +9,7 @@
     tools:context=".Hediye_Carki">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,12 +17,52 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#9a2762"
+            android:background="#34495e"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentInsetStartWithNavigation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/AppBarLayout"
+            android:paddingBottom="@dimen/spacing_middle"
+            android:paddingTop="@dimen/spacing_middle">
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/cuzdan1" />
+
+            <TextView
+                android:id="@+id/kredi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/spacing_medium"
+                android:paddingRight="10dp"
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/green_900"
+                android:textSize="@dimen/spacing_mxlarge"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
 
 
 
@@ -66,15 +107,21 @@
 
         </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/spinBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <Button
+        android:id="@+id/cevir"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="@dimen/spacing_xlarge"
+        android:paddingRight="@dimen/spacing_xlarge"
+        android:text="Çevir"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="57dp"
-        android:src="@drawable/btn_rounded_primary" />
+        android:textSize="@dimen/spacing_mxlarge"
+        android:theme="@style/Button.Baslat" />
 
 
 </RelativeLayout>

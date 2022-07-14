@@ -1,14 +1,18 @@
 package com.turkogame.darphane.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +33,9 @@ public class Hediye_Carki extends AppCompatActivity {
     private boolean isSpinning = false;
 
     private ImageView wheel;
+    SharedPreferences sharedPreferences,bakiye_kontrol,kayit_kontrol,kullanim_kontrol,kullanim_kayit;
+    String kullanici_id,paket_id,paket_adi,paket_turux,kredi_bedeli,token;
+    TextView kredi;
 
 
 
@@ -46,9 +53,21 @@ public class Hediye_Carki extends AppCompatActivity {
         setContentView(R.layout.hediye_carki);
         initToolbar();
 
-        final ImageView spinBtn = findViewById(R.id.spinBtn);
+        final Handler handler = new Handler();
+
+        final Button spinBtn = findViewById(R.id.cevir);
         ImageView wheel = findViewById(R.id.wheel);
         float ilk_rota = wheel.getRotation();
+        kredi = (TextView) findViewById(R.id.kredi);
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
+        kullanici_id = sharedPreferences.getString("user_id","0");
+
+        Kredi_Girisi.kredi_oku(kullanici_id,"2" );
+
+        bakiye_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+
+        kredi.setText(bakiye_kontrol.getString("kredi","0"));
 
 
 
@@ -75,8 +94,25 @@ public class Hediye_Carki extends AppCompatActivity {
                     public void onFinish() {
 
                         if ( wheel.getRotation()==360*sectors.length+sectorDegrees[degree]) {
-                            Toast.makeText(Hediye_Carki.this, "Konumunuz " + (degree + 1) + ". Sektördür.  Puanınız " + sectors[degree],
-                                    Toast.LENGTH_SHORT).show();
+
+                            Kredi_Girisi.kredi_satinalma(kullanici_id,"9" ,"2", sectors[degree],"0","4");
+
+
+
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    bakiye_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+
+                                    kredi.setText(bakiye_kontrol.getString("kredi","0"));
+
+
+                                }
+                            }, 1000);
+
+
+
                         }
 
                     }
@@ -111,7 +147,7 @@ public class Hediye_Carki extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Hediye Çarkı");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     @Override

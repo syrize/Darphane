@@ -1,6 +1,9 @@
 package com.turkogame.darphane.activity;
 
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,6 +22,8 @@ public class Kredi_Girisi {
 
   // İşlem Türü:  1- SATINALMA  2- ÖDÜLLÜ REKLAM  3- ARKADAŞ DAVETİ  4- TAKİP ET  5- PAYLAŞ  6- HEDİYE KREDİ
   // Ödeme Tipi:  1-Kredi kartı  2-Havele - EFT  3-Bedelsiz  4-Adsense
+
+    public static SharedPreferences kayit_kontrol;
 
     public static void kredi_satinalma(String user_id,String paket_id,String islem_turu,String miktar,String tutar,String odeme_tipi){
 
@@ -53,8 +58,8 @@ public class Kredi_Girisi {
 
                             if (kontrol.getString("hata")=="false"){
 
-
-                                Log.d("mesaj", kontrol.getString("mesaj"));
+                                Kredi_Girisi.kredi_oku(user_id,"2" );
+                               // Log.d("mesaj", kontrol.getString("mesaj"));
 
 
                             } else {
@@ -148,6 +153,76 @@ public class Kredi_Girisi {
         requestQueue.add(jsonObjectRequest);
 
     }
+
+
+    public static void kredi_oku(String kullanici_id,String islem ){
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
+        String kontrol_key = md5.toUpperCase();
+
+        try {
+
+            String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&islem="+islem+"&kontrol_key="+kontrol_key;
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new com.android.volley.Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            // Log.d("mesaj", response.toString());
+
+                            try {
+                                JSONObject kontrol = new JSONObject(response.toString());
+
+                                if (kontrol.getString("hata")=="false"){
+
+
+                                    kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+                                    SharedPreferences.Editor kayitci = kayit_kontrol.edit();
+                                    kayitci.putString("kredi",  kontrol.getString("kredi_miktari"));
+                                    kayitci.putInt("bakiye_sorgula",1);
+                                    kayitci.commit();
+
+                                   return;
+
+
+                                } else {
+
+
+                                    Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    toast.show();
+
+                                }
+
+
+                            } catch (Exception e) {
+
+                            }
+
+
+
+
+
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                }
+
+
+
+            });
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 }

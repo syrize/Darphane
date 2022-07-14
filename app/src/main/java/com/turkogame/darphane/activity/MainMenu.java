@@ -304,8 +304,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         LinearLayout menu_tarotfali=findViewById(R.id.menu_tarotfali);
         LinearLayout menu_elfali=findViewById(R.id.menu_Elfali);
         LinearLayout menu_yuzfali=findViewById(R.id.menu_yuzfali);
-        LinearLayout menu_ruyayorumu=findViewById(R.id.menu_ruyayorumu);
-        LinearLayout menu_gunlukburc=findViewById(R.id.menu_gunlukburc);
         LinearLayout menu_fallarim=findViewById(R.id.menu_fallarim);
         LinearLayout menu_kredisatinal=findViewById(R.id.menu_kredisatinal);
         LinearLayout menu_kredikazan=findViewById(R.id.menu_kredikazan);
@@ -489,33 +487,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
 
-
-
-
-        menu_ruyayorumu.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                fal_baslat( kullanici_id, token,4, Falcilar.class);
-
-            }
-        });
-
-
-
-
-        menu_gunlukburc.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
-                SharedPreferences.Editor kayitci = kayit_kontrol.edit();
-                kayitci.putString("user_id", kullanici_id);
-                kayitci.commit();
-
-                Intent intent = new Intent(MainMenu.this, Burclar.class);
-                startActivity(intent);
-
-            }
-        });
 
         card_7.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

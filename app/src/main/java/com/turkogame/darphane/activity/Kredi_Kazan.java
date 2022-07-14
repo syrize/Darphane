@@ -483,7 +483,7 @@ public class Kredi_Kazan extends AppCompatActivity  implements RewardedVideoAdLi
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Kredi Kazan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
        // Tools.setSystemBarLight(this);
     }
 
