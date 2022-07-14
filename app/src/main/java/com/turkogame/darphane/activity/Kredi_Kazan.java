@@ -165,7 +165,7 @@ public class Kredi_Kazan extends AppCompatActivity  implements RewardedVideoAdLi
         alt_menu_burclar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+                kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
                 SharedPreferences.Editor kayitci = kayit_kontrol.edit();
                 kayitci.putString("user_id", kullanici_id);
                 kayitci.commit();
@@ -332,7 +332,7 @@ public class Kredi_Kazan extends AppCompatActivity  implements RewardedVideoAdLi
 
     private void fal_baslat(String kullanici_id, String fb_token, int fal_turu, Class form){
 
-        kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+        kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
         SharedPreferences.Editor kayitci = kayit_kontrol.edit();
         kayitci.putString("user_id", kullanici_id);
         kayitci.putString("token",fb_token);
@@ -532,7 +532,7 @@ public class Kredi_Kazan extends AppCompatActivity  implements RewardedVideoAdLi
 
                                     kredi.setText( kontrol.getString("kredi_miktari"));
 
-                                    kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+                                    kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
                                     SharedPreferences.Editor kayitci = kayit_kontrol.edit();
                                     kayitci.putString("kredi",  kontrol.getString("kredi_miktari"));
                                     kayitci.putInt("bakiye_sorgula",1);

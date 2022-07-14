@@ -1,11 +1,13 @@
 package com.turkogame.darphane.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,21 +18,42 @@ import com.turkogame.darphane.utils.Tools;
 
 public class Bilkazan_Start extends AppCompatActivity {
     Button start;
+    SharedPreferences bakiye_kontrol;
+    TextView kredi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bilkazan_start);
         start = (Button) findViewById(R.id.start);
+        kredi = (TextView) findViewById(R.id.kredi);
         initToolbar();
 
+        bakiye_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+        kredi.setText(bakiye_kontrol.getString("kredi","0"));
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Bilkazan_Start.this, Bilkazan.class);
-                startActivity(intent);
+                bakiye_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+                if( Integer.parseInt(bakiye_kontrol.getString("kredi","0"))>0 ){
+
+                    Intent intent = new Intent(Bilkazan_Start.this, Bilkazan.class);
+                    startActivity(intent);
+                    finish();
+
+                } else{
+                    Toast.makeText(Bilkazan_Start.this, "Bakiyeniz Yetersiz! " ,
+                            Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(Bilkazan_Start.this, Kredi_Kazan.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+
+
             }
         });
 

@@ -102,7 +102,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
         kullanici_id = sharedPreferences.getString("user_id","0");
 
-        Log.d("mesaj","Kullanıcı id:"+kullanici_id);
+       // Log.d("mesaj","Kullanıcı id:"+kullanici_id);
 
         paketleri_oku();
 
@@ -115,7 +115,9 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
 
         initToolbar();
+        kredi_oku();
         zaman_sayaci();
+
 
         yeni_soru();
 
@@ -186,15 +188,30 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         Count.cancel();
         Count.start();
 
+    }
 
+    private void kredi_cikisi(){
+        Kredi_Girisi.kredi_cikisi(kullanici_id,"1" ,"10");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        kredi_oku();
     }
 
     private void cevap_kontrol(){
-        if (verilen_cevap == "" || verilen_cevap == null ) {
-            Toast.makeText(Bilkazan.this, "Lütfen bir cevap seçiniz " ,
-                    Toast.LENGTH_SHORT).show();
+        onayla.setEnabled(false);
+        lyt_a.setEnabled(false);
+        lyt_b.setEnabled(false);
+        lyt_c.setEnabled(false);
+        lyt_d.setEnabled(false);
+
+        if ((verilen_cevap == "" || verilen_cevap == null) && Integer.parseInt(zaman.getText().toString())>0) {
+            Toast.makeText(Bilkazan.this, "Lütfen bir cevap seçiniz " , Toast.LENGTH_SHORT).show();
         } else {
-            if (verilen_cevap.equals(dogru_sik)){
+            if (verilen_cevap!=null && verilen_cevap!="" && verilen_cevap.equals(dogru_sik)){
 
                 if (dogru_sik.equals("A")) lyt_a.setBackgroundColor(Color.GREEN);
                 if (dogru_sik.equals("B")) lyt_b.setBackgroundColor(Color.GREEN);
@@ -248,7 +265,11 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
     }
 
     private void yeni_soru(){
+
         soru_sayaci=soru_sayaci+1;
+        if (soru_sayaci==1){
+            kredi_cikisi();
+        }
 
         if (soru_sayaci<3){
             seviye=1;
@@ -286,7 +307,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
                         @Override
                         public void onResponse(JSONObject response) {
 
-                            Log.d("mesaj", response.toString());
+                          //  Log.d("mesaj", response.toString());
 
                             try {
                                 JSONObject kontrol = new JSONObject(response.toString());
@@ -310,8 +331,11 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                                     zaman_sayaci();
 
-
-                                     Log.d("mesaj", dogru_sik );
+                                    onayla.setEnabled(true);
+                                    lyt_a.setEnabled(true);
+                                    lyt_b.setEnabled(true);
+                                    lyt_c.setEnabled(true);
+                                    lyt_d.setEnabled(true);
 
 
                                 } else {
@@ -328,10 +352,6 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                             }
 
-
-
-
-
                         }
                     }, new com.android.volley.Response.ErrorListener() {
                 @Override
@@ -346,6 +366,8 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
     private void oyun_sonu() {
@@ -369,18 +391,19 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         ((ImageView) dialog.findViewById(R.id.home)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Bilkazan.this, MainMenu.class);
-                startActivity(intent);
+
                 finish();
-                dialog.dismiss();
+
+
             }
         });
 
         ((Button) dialog.findViewById(R.id.yeni_oyun)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                yeni_soru();
-                dialog.dismiss();
+                Intent intent = new Intent(Bilkazan.this, Bilkazan_Start.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -529,24 +552,22 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
             String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&islem=2&kontrol_key="+kontrol_key;
 
-
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     new com.android.volley.Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
 
-                            //Log.d("mesaj", response.toString());
+                           // Log.d("mesaj", response.toString());
 
                             try {
                                 JSONObject kontrol = new JSONObject(response.toString());
 
                                 if (kontrol.getString("hata")=="false"){
 
-
                                     kredi.setText( kontrol.getString("kredi_miktari"));
 
-                                    kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+                                    kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
                                     SharedPreferences.Editor kayitci = kayit_kontrol.edit();
                                     kayitci.putString("kredi",  kontrol.getString("kredi_miktari"));
                                     kayitci.putInt("bakiye_sorgula",1);
@@ -633,8 +654,8 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                                             reklam_kredisi.setText(kredi_bedeli);
                                             reklam_id.setText(paket_id);
-                                            Log.d("mesaj", "paket_turu : "+paket_turux);
-                                            Log.d("mesaj", "Kredi Miktarı : "+kredi_bedeli);
+                                           // Log.d("mesaj", "paket_turu : "+paket_turux);
+                                           // Log.d("mesaj", "Kredi Miktarı : "+kredi_bedeli);
 
                                         }
 
@@ -643,7 +664,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
 
 
-                                    Log.d("mesaj", list.toString());
+                                   // Log.d("mesaj", list.toString());
 
 
                                 } else {

@@ -36,6 +36,53 @@
             android:background="#ecf0f1"
             android:padding="@dimen/spacing_middle">
 
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ecf0f1"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_middle"
+                    android:paddingTop="@dimen/spacing_middle">
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/cuzdan1" />
+
+                    <TextView
+                        android:id="@+id/kredi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/spacing_medium"
+                        android:paddingRight="10dp"
+                        android:text="0"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/green_900"
+                        android:textSize="@dimen/spacing_mxlarge"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,19 +202,21 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Ödül"
                                 android:gravity="center"
+                                android:text="Ödül"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                                android:textColor="@color/grey_80" />
+                                android:textColor="@color/grey_80"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:paddingTop="@dimen/spacing_middle"
                                 android:text="500 Kredi"
-                                android:gravity="center"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                                android:textColor="@color/indigo_600" />
+                                android:textColor="@color/indigo_600"
+                                android:textStyle="bold" />
 
 
 
@@ -223,11 +272,12 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="@dimen/spacing_middle"
                                 android:gravity="center"
+                                android:paddingTop="@dimen/spacing_middle"
                                 android:text="10 Kredi"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/indigo_600" />
+                                android:textColor="@color/indigo_600"
+                                android:textStyle="bold" />
 
 
 

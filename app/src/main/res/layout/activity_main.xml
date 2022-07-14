@@ -77,16 +77,16 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/spacing_medium"
                     android:text="0"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/yellow_50" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/bt_search"
-                    android:layout_width="?attr/actionBarSize"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:tint="@android:color/white"
-                    app:srcCompat="@drawable/ic_stars" />
+                    android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/cuzdan1" />
 
             </LinearLayout>
 

@@ -170,7 +170,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
 
-            bakiye_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+            bakiye_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
             int bakiye_sorgula = bakiye_kontrol.getInt("bakiye_sorgula",0);
 
             if (bakiye_sorgula==1){
@@ -368,7 +368,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         alt_menu_burclar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+                kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
                 SharedPreferences.Editor kayitci = kayit_kontrol.edit();
                 kayitci.putString("user_id", kullanici_id);
                 kayitci.commit();
@@ -506,7 +506,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         menu_gunlukburc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+                kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
                 SharedPreferences.Editor kayitci = kayit_kontrol.edit();
                 kayitci.putString("user_id", kullanici_id);
                 kayitci.commit();
@@ -613,7 +613,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
     private void fal_baslat(String kullanici_id, String fb_token, int fal_turu, Class form){
 
-        kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+        kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
         SharedPreferences.Editor kayitci = kayit_kontrol.edit();
         kayitci.putString("user_id", kullanici_id);
         kayitci.putString("token",fb_token);
@@ -829,7 +829,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
                                     kredi.setText( kontrol.getString("kredi_miktari"));
 
-                                    kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+                                    kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
                                     SharedPreferences.Editor kayitci = kayit_kontrol.edit();
                                     kayitci.putString("kredi",  kontrol.getString("kredi_miktari"));
                                     kayitci.commit();
