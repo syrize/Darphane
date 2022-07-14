@@ -47,7 +47,7 @@ import java.util.List;
 public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListener {
 
     Button onayla;
-    TextView soru,cevap_a,cevap_b,cevap_c,cevap_d,zaman,puan,soru_no,reklam_id,reklam_kredisi;
+    TextView soru,cevap_a,cevap_b,cevap_c,cevap_d,zaman,puan,soru_no,reklam_id,reklam_kredisi,kredi;
     LinearLayout lyt_a,lyt_b,lyt_c,lyt_d;
     int soru_sayaci=0;
     int soru_puani=0;
@@ -68,7 +68,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
    final CountDownTimer Count = new CountDownTimer(20000, 1000){
         @Override
         public void onTick(long millisUntilFinished) {
-            zaman.setText("Zaman: " + millisUntilFinished / 1000);
+            zaman.setText(String.valueOf(millisUntilFinished / 1000));
         }
 
         @Override
@@ -90,6 +90,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         cevap_d = (TextView) findViewById(R.id.cevap_d);
         zaman = (TextView) findViewById(R.id.zaman);
         puan = (TextView) findViewById(R.id.puan);
+        kredi = (TextView) findViewById(R.id.kredi);
 
         lyt_a = (LinearLayout) findViewById(R.id.lyt_a);
         lyt_b = (LinearLayout) findViewById(R.id.lyt_b);
@@ -201,7 +202,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
                 if (dogru_sik.equals("D")) lyt_d.setBackgroundColor(Color.GREEN);
 
                 soru_puani=soru_puani+50;
-                puan.setText("Puan: " + soru_puani);
+                puan.setText(String.valueOf(soru_puani));
 
                // Toast.makeText(Bilkazan.this, "Verilen Cevap : " + verilen_cevap+" Cevap Doğru " , Toast.LENGTH_SHORT).show();
 
@@ -226,7 +227,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
                 oyun_sonu();
 
                 soru_puani=0;
-                puan.setText("Puan: " + soru_puani);
+                puan.setText(String.valueOf(soru_puani));
                 soru_sayaci=0;
                 oyun_durumu=1;
                 soru_id=0;
@@ -476,7 +477,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
             e.printStackTrace();
         }
 
-        //kredi_oku();
+        kredi_oku();
 
         loadRewardedVideoAd();
         //Toast.makeText(this, "onRewarded: "+rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
@@ -517,6 +518,78 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         mRewardedVideoAd.destroy(this);
         super.onDestroy();
     }
+
+    public void kredi_oku(){
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
+        String kontrol_key = md5.toUpperCase();
+
+        try {
+
+            String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&islem=2&kontrol_key="+kontrol_key;
+
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new com.android.volley.Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            //Log.d("mesaj", response.toString());
+
+                            try {
+                                JSONObject kontrol = new JSONObject(response.toString());
+
+                                if (kontrol.getString("hata")=="false"){
+
+
+                                    kredi.setText( kontrol.getString("kredi_miktari"));
+
+                                    kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+                                    SharedPreferences.Editor kayitci = kayit_kontrol.edit();
+                                    kayitci.putString("kredi",  kontrol.getString("kredi_miktari"));
+                                    kayitci.putInt("bakiye_sorgula",1);
+                                    kayitci.commit();
+
+
+                                    // Log.d("mesaj", kontrol.getString("kredi_miktari") );
+
+
+                                } else {
+
+
+                                    Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    toast.show();
+
+                                }
+
+
+                            } catch (Exception e) {
+
+                            }
+
+
+
+
+
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                }
+
+
+
+            });
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void paketleri_oku(){
 
