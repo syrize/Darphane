@@ -27,16 +27,27 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.turkogame.darphane.R;
 import com.turkogame.darphane.activity.app.AppConfig;
+import com.turkogame.darphane.activity.models.KrediPaketleriItem;
 import com.turkogame.darphane.utils.Tools;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Bilkazan extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListener {
 
     Button onayla;
-    TextView soru,cevap_a,cevap_b,cevap_c,cevap_d,zaman,puan,soru_no;
+    TextView soru,cevap_a,cevap_b,cevap_c,cevap_d,zaman,puan,soru_no,reklam_id,reklam_kredisi;
     LinearLayout lyt_a,lyt_b,lyt_c,lyt_d;
     int soru_sayaci=0;
     int soru_puani=0;
@@ -44,6 +55,15 @@ public class Bilkazan extends AppCompatActivity {
     int soru_id;
     int oyun_durumu=0;
     String verilen_cevap,dogru_cevap,dogru_sik;
+    String kullanici_id,paket_id,paket_adi,paket_turux,kredi_bedeli,token;
+    SharedPreferences sharedPreferences,kayit_kontrol,kullanim_kontrol,kullanim_kayit;
+    List<KrediPaketleriItem> list;
+
+    private static final String APP_ID = AppConfig.APP_ID;
+    private static final String AD_UNIT_ID = AppConfig.odullu_reklam_id;
+
+    private RewardedVideoAd mRewardedVideoAd;
+    AdRequest adRequest;
 
    final CountDownTimer Count = new CountDownTimer(20000, 1000){
         @Override
@@ -75,6 +95,23 @@ public class Bilkazan extends AppCompatActivity {
         lyt_b = (LinearLayout) findViewById(R.id.lyt_b);
         lyt_c = (LinearLayout) findViewById(R.id.lyt_c);
         lyt_d = (LinearLayout) findViewById(R.id.lyt_d);
+        reklam_id = findViewById(R.id.reklam_id);
+        reklam_kredisi=(TextView)  findViewById(R.id.reklam_kredisi);
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
+        kullanici_id = sharedPreferences.getString("user_id","0");
+
+        Log.d("mesaj","Kullanıcı id:"+kullanici_id);
+
+        paketleri_oku();
+
+        MobileAds.initialize(this, APP_ID);
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        mRewardedVideoAd.setRewardedVideoAdListener(this);
+        mRewardedVideoAd.setUserId(kullanici_id);
+        adRequest = new AdRequest.Builder().build();
+        loadRewardedVideoAd();
+
 
         initToolbar();
         zaman_sayaci();
@@ -143,6 +180,7 @@ public class Bilkazan extends AppCompatActivity {
 
     }
 
+
     public void zaman_sayaci(){
         Count.cancel();
         Count.start();
@@ -165,8 +203,7 @@ public class Bilkazan extends AppCompatActivity {
                 soru_puani=soru_puani+50;
                 puan.setText("Puan: " + soru_puani);
 
-                Toast.makeText(Bilkazan.this, "Verilen Cevap : " + verilen_cevap+" Cevap Doğru " ,
-                        Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Bilkazan.this, "Verilen Cevap : " + verilen_cevap+" Cevap Doğru " , Toast.LENGTH_SHORT).show();
 
                 new CountDownTimer(1000, 1000){
                     @Override
@@ -183,8 +220,7 @@ public class Bilkazan extends AppCompatActivity {
 
 
             }else {
-                Toast.makeText(Bilkazan.this, "Cevap Yanlış. Oyunu Kaybettiniz! " ,
-                        Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Bilkazan.this, "Cevap Yanlış. Oyunu Kaybettiniz! " , Toast.LENGTH_SHORT).show();
                 Count.cancel();
 
                 oyun_sonu();
@@ -325,7 +361,19 @@ public class Bilkazan extends AppCompatActivity {
 
         final LinearLayout reklam_izle = (LinearLayout) dialog.findViewById(R.id.reklam_izle);
         final Button yeni_oyun = (Button) dialog.findViewById(R.id.yeni_oyun);
+        final TextView reklam_izle_kredisi = (TextView) dialog.findViewById(R.id.reklam_izle_kredisi);
+        final ImageView home = (ImageView) dialog.findViewById(R.id.home);
+        reklam_izle_kredisi.setText(reklam_kredisi.getText());
 
+        ((ImageView) dialog.findViewById(R.id.home)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Bilkazan.this, MainMenu.class);
+                startActivity(intent);
+                finish();
+                dialog.dismiss();
+            }
+        });
 
         ((Button) dialog.findViewById(R.id.yeni_oyun)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,8 +386,7 @@ public class Bilkazan extends AppCompatActivity {
         ((LinearLayout) dialog.findViewById(R.id.reklam_izle)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                yeni_soru();
-                dialog.dismiss();
+                mRewardedVideoAd.show();
             }
         });
 
@@ -350,6 +397,7 @@ public class Bilkazan extends AppCompatActivity {
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
 
 
     private void initToolbar() {
@@ -383,4 +431,206 @@ public class Bilkazan extends AppCompatActivity {
         lyt_c.setBackgroundColor(Color.WHITE);
         lyt_d.setBackgroundColor(Color.WHITE);
     }
+
+     //Video Reklam yükle
+    private void loadRewardedVideoAd() {
+        if (!mRewardedVideoAd.isLoaded()) {
+
+            mRewardedVideoAd.loadAd(AD_UNIT_ID, adRequest);
+
+        }
+    }
+
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+        // Toast.makeText(this, "onRewardedVideoAdLoaded", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Ödüllü Video Reklam Yüklendi", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+       // Toast.makeText(this, "Ödüllü Video Reklam Açıldı", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+       // Toast.makeText(this, "Ödüllü Video Başladı", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+       // Toast.makeText(this, "Ödüllü Video Reklamında Kapatıldı", Toast.LENGTH_SHORT).show();
+        loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+        String miktar = String.valueOf(rewardItem.getAmount());
+
+        Kredi_Girisi.kredi_satinalma(kullanici_id,reklam_id.getText().toString() ,"2", miktar,"0","3");
+        //Kredi_Girisi.kredi_oku(kullanici_id);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //kredi_oku();
+
+        loadRewardedVideoAd();
+        //Toast.makeText(this, "onRewarded: "+rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+       // Toast.makeText(this, "onRewardedVideoAdLeftApplication", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+       // Toast.makeText(this, "Ödüllü Video Reklam Yüklenemedi", Toast.LENGTH_SHORT).show();
+          loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+       // Toast.makeText(this, "Ödüllü Video Tamamlandı", Toast.LENGTH_SHORT).show();
+        loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRewardedVideoAd.resume(this);
+    }
+
+    @Override
+    public void onPause() {
+        mRewardedVideoAd.pause(this);
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        mRewardedVideoAd.destroy(this);
+        super.onDestroy();
+    }
+
+    private void paketleri_oku(){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
+        String kontrol_key = md5.toUpperCase();
+
+        try {
+            String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&kontrol_key="+kontrol_key+"&islem=3";
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new com.android.volley.Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                           // Log.d("mesaj", response.toString());
+
+                            try {
+                                JSONObject kontrol = new JSONObject(response.toString());
+
+                                if (kontrol.getString("hata")=="false"){
+
+                                    String gelenveri=kontrol.toString().replace("{\"hata\":false,\"kredi_paketleri\":","");
+                                    gelenveri = gelenveri.replace("]}","]");
+
+                                    //Log.d("mesaj", gelenveri);
+
+                                    list = new ArrayList<>();
+                                    list = okunanlariParseEt(gelenveri); // parse metodu çağrıldı
+
+                                    for (int i = 0; i < list.size(); ++i) {
+
+                                        paket_id = list.get(i).getPAKET_ID();
+                                        paket_adi = list.get(i).getPAKET_ADI();
+                                        paket_turux = list.get(i).getPAKET_TURU();
+                                        kredi_bedeli = list.get(i).getMIKTAR();
+
+
+                                        if (paket_turux.equals("2")){
+
+                                            reklam_kredisi.setText(kredi_bedeli);
+                                            reklam_id.setText(paket_id);
+                                            Log.d("mesaj", "paket_turu : "+paket_turux);
+                                            Log.d("mesaj", "Kredi Miktarı : "+kredi_bedeli);
+
+                                        }
+
+
+                                    }
+
+
+
+                                    Log.d("mesaj", list.toString());
+
+
+                                } else {
+
+                                    Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    toast.show();
+
+                                }
+
+
+                            } catch (Exception e) {
+
+                            }
+
+
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                }
+
+
+
+            });
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    ArrayList<KrediPaketleriItem> okunanlariParseEt(String okunanJson) {
+        ArrayList<KrediPaketleriItem> kullaniciList = new ArrayList<>();
+        try {
+            JSONArray arrayKullanici = new JSONArray(okunanJson);
+
+            for (int i = 0; i < arrayKullanici.length(); ++i) {
+                String paket_id =arrayKullanici.getJSONObject(i).get("PAKET_ID").toString();
+                String paket_adi =arrayKullanici.getJSONObject(i).get("PAKET_ADI").toString();
+                String aciklama =arrayKullanici.getJSONObject(i).get("ACIKLAMA").toString();
+                String miktar =arrayKullanici.getJSONObject(i).get("MIKTAR").toString();
+                String tutar =arrayKullanici.getJSONObject(i).get("TUTAR").toString();
+                String aktif =arrayKullanici.getJSONObject(i).get("AKTIF").toString();
+                String paket_turu =arrayKullanici.getJSONObject(i).get("PAKET_TURU").toString();
+                String paket_resmi =arrayKullanici.getJSONObject(i).get("PAKET_RESMI").toString();
+                String adsense_id =arrayKullanici.getJSONObject(i).get("ADSENSE_ID").toString();
+
+                KrediPaketleriItem satir = new KrediPaketleriItem( paket_id,paket_adi,aciklama,miktar,tutar,aktif,paket_turu,paket_resmi,adsense_id );
+                kullaniciList.add(satir);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return kullaniciList;
+    }
+
+
+
 }

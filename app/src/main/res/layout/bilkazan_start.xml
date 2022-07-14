@@ -144,31 +144,28 @@
                         android:paddingLeft="@dimen/spacing_medium"
                         android:paddingRight="@dimen/spacing_medium">
 
-                        <View
-                            android:layout_width="@dimen/spacing_large"
-                            android:layout_height="wrap_content" />
 
-                        <View
-                            android:layout_width="@dimen/spacing_large"
-                            android:layout_height="wrap_content" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            >
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Ödül"
+                                android:gravity="center"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                 android:textColor="@color/grey_80" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/spacing_middle"
                                 android:text="500 Kredi"
+                                android:gravity="center"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                                 android:textColor="@color/indigo_600" />
 
@@ -208,13 +205,7 @@
                         android:paddingLeft="@dimen/spacing_medium"
                         android:paddingRight="@dimen/spacing_medium">
 
-                        <View
-                            android:layout_width="@dimen/spacing_large"
-                            android:layout_height="wrap_content" />
 
-                        <View
-                            android:layout_width="@dimen/spacing_large"
-                            android:layout_height="wrap_content" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -222,16 +213,18 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Katılım Bedeli"
+                                android:gravity="center"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                 android:textColor="@color/grey_80" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/spacing_middle"
+                                android:gravity="center"
                                 android:text="10 Kredi"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/indigo_600" />
@@ -251,10 +244,10 @@
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_middle" />
+                android:layout_height="match_parent" />
             <View
                 android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_middle" />
+                android:layout_height="match_parent" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -266,7 +259,7 @@
                 <Button
                     android:id="@+id/start"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="@dimen/spacing_mxlarge"
