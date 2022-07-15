@@ -95,7 +95,7 @@ public class Hediye_Carki extends AppCompatActivity {
 
                         if ( wheel.getRotation()==360*sectors.length+sectorDegrees[degree]) {
 
-                            Kredi_Girisi.kredi_satinalma(kullanici_id,"9" ,"2", sectors[degree],"0","4");
+                            Kredi_Girisi.kredi_satinalma(kullanici_id,"9" ,"6", sectors[degree],"0","3");
 
 
 

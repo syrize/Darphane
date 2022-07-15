@@ -59,6 +59,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
     SharedPreferences sharedPreferences,kayit_kontrol,kullanim_kontrol,kullanim_kayit;
     List<KrediPaketleriItem> list;
 
+
     private static final String APP_ID = AppConfig.APP_ID;
     private static final String AD_UNIT_ID = AppConfig.odullu_reklam_id;
 
@@ -231,7 +232,24 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                     @Override
                     public void onFinish() {
-                        yeni_soru();
+                        if(soru_sayaci==10){
+
+                            Kredi_Girisi.kredi_satinalma(kullanici_id,"10","7", "500","0","3");
+
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            kredi_oku();
+
+                            oyun_sonu(".: Kazandınız :.");
+
+                        } else {
+                            yeni_soru();
+                        }
+
                     }
                 }.start();
 
@@ -241,7 +259,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
                // Toast.makeText(Bilkazan.this, "Cevap Yanlış. Oyunu Kaybettiniz! " , Toast.LENGTH_SHORT).show();
                 Count.cancel();
 
-                oyun_sonu();
+                oyun_sonu("Oyunu Kaybettiniz!");
 
                 soru_puani=0;
                 puan.setText(String.valueOf(soru_puani));
@@ -256,8 +274,6 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
                 if (dogru_sik.equals("D")) lyt_d.setBackgroundColor(Color.GREEN);
 
                 dogru_sik="";
-
-
 
             }
 
@@ -370,7 +386,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
     }
 
-    private void oyun_sonu() {
+    private void oyun_sonu(String mesaj) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.bilkazan_end);
@@ -385,8 +401,10 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         final LinearLayout reklam_izle = (LinearLayout) dialog.findViewById(R.id.reklam_izle);
         final Button yeni_oyun = (Button) dialog.findViewById(R.id.yeni_oyun);
         final TextView reklam_izle_kredisi = (TextView) dialog.findViewById(R.id.reklam_izle_kredisi);
+        final TextView oyunsonu = (TextView) dialog.findViewById(R.id.oyunsonu);
         final ImageView home = (ImageView) dialog.findViewById(R.id.home);
         reklam_izle_kredisi.setText(reklam_kredisi.getText());
+        oyunsonu.setText(mesaj);
 
         ((ImageView) dialog.findViewById(R.id.home)).setOnClickListener(new View.OnClickListener() {
             @Override
