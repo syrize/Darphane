@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/spacing_small"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_large">
+
+
+            <TextView
+                android:id="@+id/oyunsonu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="10sp"
+                android:text="Çeviri hakkınız Bitti!"
+                android:textColor="@color/red_600"
+                android:textSize="@dimen/spacing_mxlarge"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:id="@+id/reklam_izle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_large">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:src="@drawable/galery1" />
+           <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="İzle Kazan"
+                   android:textColor="@color/indigo_600"
+                   android:textSize="18dp"
+                   android:textStyle="bold" />
+
+               <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+               <TextView
+                   android:id="@+id/reklam_izle_kredisi"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="3"
+                   android:textColor="@color/indigo_600"
+                   android:textSize="22dp"
+                   android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:padding="@dimen/spacing_small"
+                       android:text="Hak"
+                       android:textColor="@color/indigo_600"
+                       android:textSize="22dp"
+                       android:textStyle="bold" />
+               </LinearLayout>
+           </LinearLayout>
+
+    </LinearLayout>
+<LinearLayout
+        android:id="@+id/reklam_izle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+>
+
+    <Button
+        android:id="@+id/yeni_oyun"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text=" Tamam "
+        android:textSize="23dp"
+        android:theme="@style/Button.Baslat" />
+    <ImageView
+        android:id="@+id/home"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/spacing_xlarge"
+        android:src="@drawable/home3" />
+
+</LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -26,6 +26,7 @@
 
 
         <LinearLayout
+            android:id="@+id/kredibar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -79,6 +80,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/carkbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
@@ -106,6 +108,44 @@
 
 
         </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/carkbar"
+        android:paddingBottom="@dimen/spacing_middle"
+        android:paddingTop="@dimen/spacing_medium">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/spacing_medium"
+            android:paddingRight="10dp"
+            android:text="Çevirme Hakkı"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/green_900"
+            android:textSize="@dimen/spacing_mxlarge"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/cevirme_hakki"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/spacing_medium"
+            android:paddingRight="10dp"
+            android:text="0"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/green_900"
+            android:textSize="@dimen/spacing_mxlarge"
+            android:textStyle="bold" />
+
+
+
+    </LinearLayout>
+
 
 
     <Button
