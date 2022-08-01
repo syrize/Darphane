@@ -103,7 +103,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
         kullanici_id = sharedPreferences.getString("user_id","0");
 
-       // Log.d("mesaj","Kullanıcı id:"+kullanici_id);
+
 
         paketleri_oku();
 
@@ -308,12 +308,14 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
     public void soru_oku(){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        String md5= AppConfig.md5("1yeni_soruGET");
+        Log.d("mesaj 2",kullanici_id);
+
+        String md5= AppConfig.md5(kullanici_id+"yeni_soruGET");
         String kontrol_key = md5.toUpperCase();
 
         try {
 
-            String url = AppConfig.URL + "/yeni_soru.php?user_id=1&kategori_id=1&kontrol_key="+kontrol_key+"&seviye="+seviye;
+            String url = AppConfig.URL + "/yeni_soru.php?user_id="+kullanici_id+"&kategori_id=1&kontrol_key="+kontrol_key+"&seviye="+seviye;
 
 
 
@@ -356,7 +358,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                                 } else {
 
-
+                                    Log.d("mesaj Soru Oku",kontrol.getString("hataMesaj"));
                                     Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
                                     toast.show();
@@ -563,6 +565,8 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
     public void kredi_oku(){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
+
+
         String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
         String kontrol_key = md5.toUpperCase();
 
@@ -597,7 +601,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                                 } else {
 
-
+                                    Log.d("mesaj kredi_oku",kontrol.getString("hataMesaj"));
                                     Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
                                     toast.show();
@@ -633,6 +637,8 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
     private void paketleri_oku(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+
 
         String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
         String kontrol_key = md5.toUpperCase();

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "955735201141",
+    "firebase_url": "https://darphane-1656882094874-default-rtdb.firebaseio.com",
     "project_id": "darphane-1656882094874",
     "storage_bucket": "darphane-1656882094874.appspot.com"
   },
@@ -14,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "955735201141-a8eav8m9ckms13i0ohl2remk1a5qd3d2.apps.googleusercontent.com",
+          "client_id": "955735201141-5dums3ibcikk52ctd0ipjpp0k1v3sf07.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.turkogame.darphane",

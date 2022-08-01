@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -21,6 +23,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.turkogame.darphane.R;
 import com.turkogame.darphane.activity.app.AppConfig;
 import com.turkogame.darphane.utils.Tools;
@@ -45,6 +51,8 @@ public class Register extends AppCompatActivity {
     CardView form_alani;
     int blurred = 0;
     BlurView blurView;
+    private FirebaseAuth mAuth;
+    String firebase_user_id;
 
 
 
@@ -62,6 +70,7 @@ public class Register extends AppCompatActivity {
         logo_mobil =  findViewById(R.id.logo_mobil);
         ana_view =  findViewById(R.id.ana_view);
         form_alani =  findViewById(R.id.form_alani);
+        mAuth=FirebaseAuth.getInstance();
 
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
@@ -84,43 +93,61 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
 
                if(sartlar.isChecked()) {
-                   if (parola.getText().toString().equals(parola_tekrar.getText().toString())) {
+
+                       String adix=adi.getText().toString();
+                       String soyadix=soyadi.getText().toString();
+                       String emailx=email.getText().toString();
+                       String parolax=parola.getText().toString();
+                       String parola_tekrarx=parola_tekrar.getText().toString();
+
+                      int kontrol=0;
+
+                       if (TextUtils.isEmpty(adix)) {
+                           YoYo.with(Techniques.Tada).duration(700).repeat(5).playOn(findViewById(R.id.ad));
+                           kontrol=1;
+                       } else if (TextUtils.isEmpty(soyadix)) {
+                           YoYo.with(Techniques.Tada).duration(700).repeat(5).playOn(findViewById(R.id.soyad));
+                           kontrol=2;
+                       } else  if (TextUtils.isEmpty(emailx)) {
+                           YoYo.with(Techniques.Tada).duration(700).repeat(5).playOn(findViewById(R.id.email));
+                           kontrol=3;
+                       }else  if (TextUtils.isEmpty(parolax)) {
+                           YoYo.with(Techniques.Tada).duration(700).repeat(5).playOn(findViewById(R.id.parola));
+                           kontrol=4;
+                       } else if (TextUtils.isEmpty(parola_tekrarx)) {
+                           YoYo.with(Techniques.Tada).duration(700).repeat(5).playOn(findViewById(R.id.parola_tekrar));
+                           kontrol=5;
+                       } else if (!parolax.equals(parola_tekrarx)) {
+                           YoYo.with(Techniques.Tada).duration(700).repeat(5).playOn(findViewById(R.id.parola_tekrar));
+                           kontrol=6;
+                       }
+
+                       Toast toast;
+
+                       if (kontrol>0){
+                           toast = Toast.makeText(getApplicationContext(),"Verilerde Hata", Toast.LENGTH_LONG);
+                           if (kontrol==1) { toast = Toast.makeText(getApplicationContext(),"Ad boş olamaz", Toast.LENGTH_LONG);}
+                           if (kontrol==2) { toast = Toast.makeText(getApplicationContext(),"Soyad boş olamaz", Toast.LENGTH_LONG);}
+                           if (kontrol==3) { toast = Toast.makeText(getApplicationContext(),"Email boş olamaz", Toast.LENGTH_LONG);}
+                           if (kontrol==4) { toast = Toast.makeText(getApplicationContext(),"Parola boş olamaz", Toast.LENGTH_LONG);}
+                           if (kontrol==5) { toast = Toast.makeText(getApplicationContext(),"Parola Tekrarı boş olamaz", Toast.LENGTH_LONG);}
+                           if (kontrol==6) { toast = Toast.makeText(getApplicationContext(),"Parola ve Tekrarı uyuşmuyor", Toast.LENGTH_LONG);}
 
 
-                       YoYo.with(Techniques.Tada).duration(700).repeat(5).playOn(findViewById(R.id.menu_baslik)); //sallanan nesne kodu
 
-                      // Blurry.with(Register.this).capture(view).into(logo_mobil);
+                           toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                           toast.show();
 
-                     //  Blurry.with(Register.this).capture(view).into(findViewById(R.id.logo_mobil));
 
-                     /*   if (blurred==0) {
-                            ana_view.measure(100, 100);
-                            //Blurry.with(Register.this).radius(25).sampling(2).onto(ana_view);
-                            //Blurry.with(Register.this).radius(25).sampling(2).async().animate(500).onto(ana_view);
-                            Blurry.with(Register.this)
-                                    .radius(5)
-                                    .sampling(2)
-                                    .async()
-                                    .animate(200)
-                                    .onto(form_alani);
+                       }else{
+                           register_user(adix+" "+soyadix,parolax,emailx);
 
-                            blurred=1;
-                        } else {
-                           Blurry.delete(findViewById(R.id.ana_view));
-                            blurred=0;
-                       }*/
+                       }
 
 
 
 
 
-                       kullanici_kayit();
-                   } else {
-
-                       Toast toast = Toast.makeText(getApplicationContext(), "Parola ve Tekrarı uyuşmuyor", Toast.LENGTH_LONG);
-                       toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-                       toast.show();
-                   }
                }else{
                    Toast toast = Toast.makeText(getApplicationContext(), "Lütfen Şartları Kabul edin", Toast.LENGTH_LONG);
                    toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -140,6 +167,27 @@ public class Register extends AppCompatActivity {
 
     }
 
+    private void register_user(String name, String password, String email){
+
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    firebase_user_id=mAuth.getUid();
+
+                    kullanici_kayit();
+
+                } else {
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Hata: "+task.getException().getMessage(), Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+
+                }
+            }
+        });
+    }
+
 
 
 
@@ -148,6 +196,8 @@ public class Register extends AppCompatActivity {
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         String md5= AppConfig.md5(email.getText().toString()+"kullaniciPOST");
         String kontrol_key = md5.toUpperCase();
+
+        Log.d("mesaj-kullaniciPOST1: ", "aaaaaaaaaaaaaaaaaaaa");
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JSONObject object = new JSONObject();
@@ -158,38 +208,34 @@ public class Register extends AppCompatActivity {
             object.put("soyad", soyadi.getText().toString());
             object.put("email", email.getText().toString());
             object.put("sifre", parola.getText().toString());
+            object.put("firebase_user_id", firebase_user_id);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Log.d("mesaj-kullaniciPOST2: ", "bbbbbbbbbbbbbbbbbbbb");
 
         String url = AppConfig.URL + "/kullanici.php";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, object,
                 new com.android.volley.Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("Veri", response.toString());
-
+                        Log.d("mesaj-kullaniciPOST3: ", response.toString());
                         try {
                             JSONObject kontrol = new JSONObject(response.toString());
 
+
                             if (kontrol.getString("hata")=="false"){
 
-
-                                Log.d("snow", kontrol.getString("mesaj"));
-
-                                Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("mesaj"), Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(), "Kullanıcı Kaydı Yapıldı", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
                                 toast.show();
 
-                              /*  sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("email",email);
-                                editor.putString("user_id",kontrol.getString("user_id"));
-                                editor.putString("adi",name);
-                                editor.putString("soyadi",last_name);
-                                editor.putString("login","1");
-                                editor.commit();*/
+                                Intent intent = new Intent(Register.this, Login.class);
+                                startActivity(intent);
+                                finish();
 
 
                             } else {

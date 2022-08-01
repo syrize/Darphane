@@ -43,6 +43,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.turkogame.darphane.R;
 import com.turkogame.darphane.activity.app.AppConfig;
 import com.turkogame.darphane.activity.models.KrediPaketleriItem;
@@ -73,10 +75,13 @@ import butterknife.ButterKnife;
 import static android.content.ContentValues.TAG;
 import static com.android.billingclient.api.BillingClient.BillingResponseCode.OK;
 
+
+
 public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListener {
 
     private ActionBar actionBar;
     private Toolbar toolbar;
+    private FirebaseAuth mAuth;
     DrawerLayout drawer;
     GoogleSignInClient mGoogleSignInClient;
     ImageView profil_resmi;
@@ -86,7 +91,9 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
     String personFamilyName;
     String personEmail;
     String personId;
+    String firebase_user_id;
     Uri personPhoto;
+    FirebaseUser user;
     SharedPreferences sharedPreferences,kayit_kontrol,reklam_kontrol,bakiye_kontrol;
     String kullanici_id,token,paket_id,paket_adi,tutar;
     FloatingActionButton alt_menu_fal_istek;
@@ -94,6 +101,30 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
     List<KrediPaketleriItem> list;
     private Handler mHandler = new Handler();
     int timer_kontrol=0;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        user = mAuth.getCurrentUser();
+        if(user!=null){
+
+            firebase_user_id=user.getUid();
+
+            sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
+
+            kullanici_id = sharedPreferences.getString("user_id","0");
+
+
+            kredi_oku();
+
+        }
+
+
+    }
 
 
     @Override
@@ -106,41 +137,50 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
        // Log.d("token", "token :"+ FirebaseInstanceId.getInstance().getToken());
         token= FirebaseInstanceId.getInstance().getToken();
+
+        Log.d("mesaj","Firebase Token:"+token);
         FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
 
         alt_menu_fal_istek = (FloatingActionButton) findViewById(R.id.alt_menu_fal_istek);
         profil_resmi = (ImageView) findViewById(R.id.logo_mobil);
         uygulama_adi=(TextView) findViewById(R.id.uygulama_adi);
         kredi=(TextView) findViewById(R.id.kredi);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        /*
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail().build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);   */
 
         initToolbar();
         NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if( sharedPreferences.getString("login_type","0")=="1") {
 
-        if (acct != null) {
-            personName = acct.getDisplayName();
-            personGivenName = acct.getGivenName();
-            personFamilyName = acct.getFamilyName();
-            personEmail = acct.getEmail();
-            personId = acct.getId();
-            personPhoto = acct.getPhotoUrl();
-            //Log.d("mesaj", "resim :"+String.valueOf(personPhoto));
-            login();
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
 
-            /*
-            //google bilgileri burada alınıyor
-            uygulama_adi.setText(personName);
-            Glide.with(this).load(String.valueOf(personPhoto)).into(profil_resmi);
+            if (acct != null) {
+                personName = acct.getDisplayName();
+                personGivenName = acct.getGivenName();
+                personFamilyName = acct.getFamilyName();
+                personEmail = acct.getEmail();
+                personId = acct.getId();
+                personPhoto = acct.getPhotoUrl();
 
-             */
+                Log.d("mesaj", "personName :" + String.valueOf(personName));
+                Log.d("mesaj", "personGivenName :" + String.valueOf(personGivenName));
+                Log.d("mesaj", "personFamilyName :" + String.valueOf(personFamilyName));
+                Log.d("mesaj", "personEmail :" + String.valueOf(personEmail));
+                Log.d("mesaj", "personId :" + String.valueOf(personId));
+                Log.d("mesaj", "personPhoto :" + String.valueOf(personPhoto));
+
+                login();
+
+            }
+
         }
 
 
@@ -154,7 +194,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
         tiklama_kontrol();
-        kredi_oku();
+
 
 
         startTime();
@@ -321,7 +361,23 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                 switch (v.getId()) {
                     // ...
                     case R.id.cikis_yap:
-                        GoogleSignOut();
+                        //GoogleSignOut();  // eski google login çıkış kodu
+
+                        FirebaseAuth.getInstance().signOut();
+
+                        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email","");
+                        editor.putString("user_id","");
+                        editor.putString("adi","");
+                        editor.putString("soyadi","");
+                        editor.putString("login","0");
+                        editor.commit();
+
+                        Toast.makeText(MainMenu.this,"Çıkış Yapıldı",Toast.LENGTH_LONG).show();
+
+
                         break;
                     // ...
                 }
@@ -649,6 +705,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             object.put("email", personEmail);
             object.put("sifre", personId);
             object.put("google_id", personId);
+            object.put("firebase_user_id", firebase_user_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -665,7 +722,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
                             if (kontrol.getString("hata")=="false"){
 
-
                                 Log.d("snow", kontrol.getString("mesaj"));
 
                                 sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
@@ -675,13 +731,14 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                                 editor.putString("user_id",kontrol.getString("user_id"));
                                 editor.putString("adi",personGivenName);
                                 editor.putString("soyadi",personFamilyName);
+                                editor.putString("firebase_user_id",firebase_user_id);
                                 editor.putString("login","1");
                                 editor.commit();
 
 
                             } else {
 
-                                Log.d("snow", kontrol.getString("hataMesaj"));
+                                Log.d("mesaj-LoginPost", kontrol.getString("hataMesaj"));
 
                                 /*Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -741,6 +798,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                                 editor.putString("user_id",bilgiler.getString("KULLANICI_ID"));
                                 editor.putString("adi",bilgiler.getString("ADI"));
                                 editor.putString("soyadi",bilgiler.getString("SOYADI"));
+                                editor.putString("firebase_user_id",bilgiler.getString("FIREBASE_USER_ID"));
                                 editor.putString("resim", String.valueOf(personPhoto));
                                 editor.putString("login","1");
 
@@ -748,7 +806,12 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
                                 editor.commit();
 
+                                sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
+                                kullanici_id = sharedPreferences.getString("user_id","0");
+
+
+                                kredi_oku();
 
                             } else {
 
@@ -775,6 +838,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
     public void kredi_oku(){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
 
         String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
         String kontrol_key = md5.toUpperCase();
@@ -813,7 +877,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
                                 } else {
-
+                                    Log.d("mesaj2", kontrol.getString("hataMesaj"));
 
                                     Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -834,7 +898,9 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                     }, new com.android.volley.Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+
                     Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+
                 }
 
 
@@ -1000,6 +1066,8 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
                                 } else {
+
+                                    Log.d("mesaj3", kontrol.getString("hataMesaj"));
 
                                     Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
