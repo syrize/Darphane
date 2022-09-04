@@ -146,6 +146,10 @@
             android:name="com.turkogame.darphane.activity.Bulkazan"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.turkogame.darphane.activity.Para_Cekme"
+            android:screenOrientation="portrait" />
+
 
 
         <activity

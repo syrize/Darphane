@@ -126,7 +126,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Bul Kazan Nasıl Oynanır"
+                                android:text="Kazancımı Nasıl Çekerim"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                 android:textColor="@color/grey_80" />
 
@@ -134,8 +134,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/spacing_middle"
-                                android:text="12 adet kutudan 3 tanesini açarak yıldızlı kutuyu bulun ve ödülü kazanın
-                                "
+                                android:text="Para çekmek için bakiyenizde en az 50 TL bulunmalıdır.  Para çekme işlemi 1 ila 3 iş günü içerisinde tamamlanacaktır. "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/indigo_600" />
 
@@ -143,16 +142,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/spacing_middle"
-                                android:text="Oyuna 10 kredi karşılığında katılabilir kaybettiğinizde reklam izleyerek
-                                kaybettiğiniz krediyi geri alabilirsiniz.
-                                 "
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/indigo_600" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="@dimen/spacing_middle"
-                                android:text="Bu sayede hiç kaybetmeden sürekli olarak kazanç sağlama fırsatına erişebilirsiniz."
+                                android:text="Ödeme işleminin yapılabilmesi için profil bilgilerinizde ödeme seçenekleriniz tanımlanmış olmalıdır."
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/indigo_600" />
 
@@ -202,17 +192,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Ödül"
+                                android:text="Bakiyeniz"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                 android:textColor="@color/grey_80"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/bakiye"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:paddingTop="@dimen/spacing_middle"
-                                android:text="100 Kredi"
+                                android:text=" TL"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                                 android:textColor="@color/indigo_600"
                                 android:textStyle="bold" />
@@ -240,52 +231,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingBottom="@dimen/spacing_middle"
-                    android:paddingTop="@dimen/spacing_middle">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/spacing_middle"
-                        android:layout_marginTop="@dimen/spacing_middle"
-                        android:gravity="center_vertical"
-                        android:minHeight="@dimen/spacing_xxlarge"
-                        android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium">
-
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Katılım Bedeli"
-                                android:gravity="center"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                                android:textColor="@color/grey_80" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingTop="@dimen/spacing_middle"
-                                android:text="10 Kredi"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/indigo_600"
-                                android:textStyle="bold" />
-
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:paddingTop="@dimen/spacing_middle"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -312,7 +258,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="@dimen/spacing_mxlarge"
-                    android:text="Başlat"
+                    android:text="Para Çek"
                     android:theme="@style/Button.Baslat" />
 
             </androidx.cardview.widget.CardView>

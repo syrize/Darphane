@@ -382,7 +382,7 @@
                         android:visibility="visible">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/kahve_buton"
+                            android:id="@+id/para_cekme"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/spacing_medium"

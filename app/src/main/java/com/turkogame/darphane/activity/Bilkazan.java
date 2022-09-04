@@ -244,7 +244,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                             kredi_oku();
 
-                            oyun_sonu(".: Kazandınız :.");
+                            oyun_sonu(".: Kazandınız :.", "+500 Kredi",1);
 
                         } else {
                             yeni_soru();
@@ -259,7 +259,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
                // Toast.makeText(Bilkazan.this, "Cevap Yanlış. Oyunu Kaybettiniz! " , Toast.LENGTH_SHORT).show();
                 Count.cancel();
 
-                oyun_sonu("Oyunu Kaybettiniz!");
+                oyun_sonu("Oyunu Kaybettiniz!","-10 Kredi",2);
 
                 soru_puani=0;
                 puan.setText(String.valueOf(soru_puani));
@@ -388,7 +388,7 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
     }
 
-    private void oyun_sonu(String mesaj) {
+    private void oyun_sonu(String mesaj,String kazanilankredi,int durum) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.bilkazan_end);
@@ -404,9 +404,21 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
         final Button yeni_oyun = (Button) dialog.findViewById(R.id.yeni_oyun);
         final TextView reklam_izle_kredisi = (TextView) dialog.findViewById(R.id.reklam_izle_kredisi);
         final TextView oyunsonu = (TextView) dialog.findViewById(R.id.oyunsonu);
+        final TextView kazanilan_kredi = (TextView) dialog.findViewById(R.id.kazanilankredi);
         final ImageView home = (ImageView) dialog.findViewById(R.id.home);
         reklam_izle_kredisi.setText(reklam_kredisi.getText());
+
+        if (durum==1) {
+            oyunsonu.setTextColor(Color.GREEN);
+            kazanilan_kredi.setTextColor(Color.GREEN);
+        } else {
+            oyunsonu.setTextColor(Color.RED);
+            kazanilan_kredi.setTextColor(Color.RED);
+
+        }
+
         oyunsonu.setText(mesaj);
+        kazanilan_kredi.setText(kazanilankredi);
 
         ((ImageView) dialog.findViewById(R.id.home)).setOnClickListener(new View.OnClickListener() {
             @Override

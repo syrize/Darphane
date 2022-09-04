@@ -125,8 +125,6 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
         initToolbar();
         kredi_oku();
-
-
         yeni_soru();
 
 
@@ -299,23 +297,23 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
     @Override
     public void onRewardedVideoAdLoaded() {
-        // Toast.makeText(this, "onRewardedVideoAdLoaded", Toast.LENGTH_SHORT).show();
-        // Toast.makeText(this, "Ödüllü Video Reklam Yüklendi", Toast.LENGTH_SHORT).show();
+        Log.d("mesaj", "Adsense Ödüllü Reklam Yüklendi");
+
     }
 
     @Override
     public void onRewardedVideoAdOpened() {
-        // Toast.makeText(this, "Ödüllü Video Reklam Açıldı", Toast.LENGTH_SHORT).show();
+        Log.d("mesaj", "Adsense Ödüllü Reklam Açıldı");
     }
 
     @Override
     public void onRewardedVideoStarted() {
-        // Toast.makeText(this, "Ödüllü Video Başladı", Toast.LENGTH_SHORT).show();
+        Log.d("mesaj", "Adsense Ödüllü Reklam Başladı");
     }
 
     @Override
     public void onRewardedVideoAdClosed() {
-        // Toast.makeText(this, "Ödüllü Video Reklamında Kapatıldı", Toast.LENGTH_SHORT).show();
+        Log.d("mesaj", "Adsense Ödüllü Reklam Kapatıldı");
         loadRewardedVideoAd();
     }
 
@@ -345,13 +343,13 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
-        // Toast.makeText(this, "Ödüllü Video Reklam Yüklenemedi", Toast.LENGTH_SHORT).show();
+        Log.d("mesaj", "Adsense Ödüllü Reklam Yüklenemedi");
         loadRewardedVideoAd();
     }
 
     @Override
     public void onRewardedVideoCompleted() {
-        // Toast.makeText(this, "Ödüllü Video Tamamlandı", Toast.LENGTH_SHORT).show();
+        Log.d("mesaj", "Adsense Ödüllü Reklam İzleme Tamamlandı");
         loadRewardedVideoAd();
     }
 
@@ -369,13 +367,13 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
     @Override
     public void onDestroy() {
+        Log.d("mesaj", "Adsense Ödüllü Reklam onDestroy");
         mRewardedVideoAd.destroy(this);
         super.onDestroy();
     }
 
     public void kredi_oku(){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-
 
 
         String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
@@ -424,10 +422,6 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                             }
 
-
-
-
-
                         }
                     }, new com.android.volley.Response.ErrorListener() {
                 @Override
@@ -447,8 +441,6 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
     private void paketleri_oku(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-
-
 
         String md5= AppConfig.md5(kullanici_id+"kredi_islemleriGET");
         String kontrol_key = md5.toUpperCase();
@@ -493,10 +485,7 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                                         }
 
-
                                     }
-
-
 
                                     // Log.d("mesaj", list.toString());
 
@@ -508,7 +497,6 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
                                     toast.show();
 
                                 }
-
 
                             } catch (Exception e) {
 
@@ -552,20 +540,58 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
             if (dogru_kutu == kutuno) {
 
-                if (kutuno == 1) cevap_1.setText("*");
-                if (kutuno == 2) cevap_2.setText("*");
-                if (kutuno == 3) cevap_3.setText("*");
-                if (kutuno == 4) cevap_4.setText("*");
-                if (kutuno == 5) cevap_5.setText("*");
-                if (kutuno == 6) cevap_6.setText("*");
-                if (kutuno == 7) cevap_7.setText("*");
-                if (kutuno == 8) cevap_8.setText("*");
-                if (kutuno == 9) cevap_9.setText("*");
-                if (kutuno == 10) cevap_10.setText("*");
-                if (kutuno == 11) cevap_11.setText("*");
-                if (kutuno == 12) cevap_12.setText("*");
+                if (kutuno == 1) {
+                    cevap_1.setText("$");
+                    cevap_1.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 2) {
+                    cevap_2.setText("$");
+                    cevap_2.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 3) {
+                    cevap_3.setText("$");
+                    cevap_3.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 4) {
+                    cevap_4.setText("$");
+                    cevap_4.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 5) {
+                    cevap_5.setText("$");
+                    cevap_5.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 6) {
+                    cevap_6.setText("$");
+                    cevap_6.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 7) {
+                    cevap_7.setText("$");
+                    cevap_7.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 8) {
+                    cevap_8.setText("$");
+                    cevap_8.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 9) {
+                    cevap_9.setText("$");
+                    cevap_9.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 10) {
+                    cevap_10.setText("$");
+                    cevap_10.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 11) {
+                    cevap_11.setText("$");
+                    cevap_11.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 12) {
+                    cevap_12.setText("$");
+                    cevap_12.setBackgroundColor(Color.GREEN);
+                }
 
-                new CountDownTimer(1000, 1000){
+                sayac=4;
+
+                new CountDownTimer(500, 500){
                     @Override
                     public void onTick(long millisUntilFinished) {
 
@@ -574,17 +600,17 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
                     @Override
                     public void onFinish() {
 
-                            Kredi_Girisi.kredi_satinalma(kullanici_id,"10","7", "500","0","3");
+                            Kredi_Girisi.kredi_satinalma(kullanici_id,"10","7", "100","0","3");
 
                             try {
-                                Thread.sleep(500);
+                                Thread.sleep(200);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
 
                             kredi_oku();
 
-                            oyun_sonu(".: Kazandınız :.");
+                            oyun_sonu(".: Kazandınız :.","+100 Kredi",1);
 
 
 
@@ -595,22 +621,58 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
             } else {
 
-                if (kutuno == 1) cevap_1.setText("X");
-                if (kutuno == 2) cevap_2.setText("X");
-                if (kutuno == 3) cevap_3.setText("X");
-                if (kutuno == 4) cevap_4.setText("X");
-                if (kutuno == 5) cevap_5.setText("X");
-                if (kutuno == 6) cevap_6.setText("X");
-                if (kutuno == 7) cevap_7.setText("X");
-                if (kutuno == 8) cevap_8.setText("X");
-                if (kutuno == 9) cevap_9.setText("X");
-                if (kutuno == 10) cevap_10.setText("X");
-                if (kutuno == 11) cevap_11.setText("X");
-                if (kutuno == 12) cevap_12.setText("X");
+                if (kutuno == 1){
+
+                    cevap_1.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 2) {
+
+                    cevap_2.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 3) {
+
+                    cevap_3.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 4) {
+
+                    cevap_4.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 5) {
+
+                    cevap_5.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 6) {
+
+                    cevap_6.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 7) {
+
+                    cevap_7.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 8) {
+
+                    cevap_8.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 9) {
+
+                    cevap_9.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 10) {
+
+                    cevap_10.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 11) {
+
+                    cevap_11.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 12) {
+
+                    cevap_12.setBackgroundColor(Color.RED);
+                }
 
                 if (sayac>=3){
 
-                    new CountDownTimer(1000, 1000){
+                    new CountDownTimer(500, 500){
                         @Override
                         public void onTick(long millisUntilFinished) {
 
@@ -626,7 +688,7 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
                             }
 
 
-                            oyun_sonu("Oyunu Kaybettiniz!");
+                            oyun_sonu("Oyunu Kaybettiniz!","-10 Kredi",2);
 
 
 
@@ -644,7 +706,7 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
     }
 
-    private void oyun_sonu(String mesaj) {
+    private void oyun_sonu(String mesaj, String kazanilan_kredi, int durum) {
 
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
@@ -661,9 +723,21 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
         final Button yeni_oyun = (Button) dialog.findViewById(R.id.yeni_oyun);
         final TextView reklam_izle_kredisi = (TextView) dialog.findViewById(R.id.reklam_izle_kredisi);
         final TextView oyunsonu = (TextView) dialog.findViewById(R.id.oyunsonu);
+        final TextView kazanilankredi = (TextView) dialog.findViewById(R.id.kazanilankredi);
         final ImageView home = (ImageView) dialog.findViewById(R.id.home);
-        reklam_izle_kredisi.setText(reklam_kredisi.getText());
+        reklam_izle_kredisi.setText("+"+reklam_kredisi.getText());
+
+        if (durum==1) {
+            oyunsonu.setTextColor(Color.GREEN);
+            kazanilankredi.setTextColor(Color.GREEN);
+        } else {
+            oyunsonu.setTextColor(Color.RED);
+            kazanilankredi.setTextColor(Color.RED);
+
+        }
+
         oyunsonu.setText(mesaj);
+        kazanilankredi.setText(kazanilan_kredi);
 
         ((ImageView) dialog.findViewById(R.id.home)).setOnClickListener(new View.OnClickListener() {
             @Override
