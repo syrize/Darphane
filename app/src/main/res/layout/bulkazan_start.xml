@@ -263,17 +263,18 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Katılım Bedeli"
                                 android:gravity="center"
+                                android:text="Oynama Hakkı"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                 android:textColor="@color/grey_80" />
 
                             <TextView
+                                android:id="@+id/oyun_hakki"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:paddingTop="@dimen/spacing_middle"
-                                android:text="10 Kredi"
+                                android:text="5"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/indigo_600"
                                 android:textStyle="bold" />

@@ -63,6 +63,45 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/kredibar"
+        android:paddingBottom="@dimen/spacing_middle"
+        android:paddingTop="@dimen/spacing_medium">
+
+        <TextView
+            android:id="@+id/kazanilantutar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/spacing_medium"
+            android:paddingRight="10dp"
+            android:text="0"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/green_900"
+            android:textSize="@dimen/spacing_mxlarge"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/kazanilanmetin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/spacing_medium"
+            android:paddingRight="10dp"
+            android:text="Kredi Kazandınız"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/green_900"
+            android:textSize="@dimen/spacing_mxlarge"
+            android:textStyle="bold" />
+
+
+
+    </LinearLayout>
+
 
 
 

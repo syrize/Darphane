@@ -72,11 +72,11 @@ public class Register extends AppCompatActivity {
         form_alani =  findViewById(R.id.form_alani);
         mAuth=FirebaseAuth.getInstance();
 
+        Tools.setSystemBarColor(this, R.color.system_bar);
+
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
         parent_view = findViewById(android.R.id.content);
-
-
 
 
         ((View) findViewById(R.id.sign_up)).setOnClickListener(new View.OnClickListener() {
@@ -160,7 +160,7 @@ public class Register extends AppCompatActivity {
         });
 
 
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+
 
 
 

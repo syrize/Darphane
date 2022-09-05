@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -84,6 +85,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        Tools.setSystemBarColor(this, R.color.system_bar);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
@@ -157,7 +159,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+
 
         //Kullanıcı login olduysa otomatik giriş yap
         String login_kontrol = sharedPreferences.getString("login","0");
@@ -177,6 +179,7 @@ public class Login extends AppCompatActivity {
 
 
     }
+
 
     private void firebase_login_user(String emailx, String parolax) {
         mAuth.signInWithEmailAndPassword(emailx,parolax).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -268,9 +271,6 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {

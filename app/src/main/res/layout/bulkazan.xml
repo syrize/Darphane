@@ -337,7 +337,6 @@
 
             </LinearLayout>
 
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_middle" />
@@ -970,8 +969,6 @@
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
-
-
 
 
             <View

@@ -37,7 +37,7 @@ import java.util.Random;
 
 public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdListener{
 
-    private static final String [] sectors ={"20","1","10","30","5","50","20","1","10","30","5","50"};
+    private static final String [] sectors ={"1","5","10","1","5","10","20","1","10","30","5","50"};
     private static final int [] sectorDegrees = new int[sectors.length];
     private static final Random random = new Random();
     private int degree= 0;
@@ -47,7 +47,7 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
     private ImageView wheel;
     SharedPreferences sharedPreferences,kayit_kontrol,bakiye_kontrol;
     String kullanici_id,paket_id,paket_adi,paket_turux,kredi_bedeli,token;
-    TextView kredi,cevirme_hakki;
+    TextView kredi,cevirme_hakki,kazanilan_tutar,kazanilan_metin;
 
     private static final String APP_ID = AppConfig.APP_ID;
     private static final String AD_UNIT_ID = AppConfig.odullu_reklam_id;
@@ -55,15 +55,6 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
     private RewardedVideoAd mRewardedVideoAd;
     AdRequest adRequest;
 
-
-
-    /*
-    Log.d(TAG, "onCreate: " + "Metodun, döngünün veya herhangi bir kod bloğunun çalışıp çalışmadığını kontrol eder.");
-        Log.w(TAG, "onCreate: " + "Uyarı mesajlarını verir");
-        Log.e(TAG, "onCreate: " + "Hata mesajlarını verir");
-        Log.i(TAG, "onCreate: " + "Bilgilendirme mesajlarını verir");
-
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +69,8 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
         float ilk_rota = wheel.getRotation();
         kredi = (TextView) findViewById(R.id.kredi);
         cevirme_hakki = (TextView) findViewById(R.id.cevirme_hakki);
+        kazanilan_tutar = (TextView) findViewById(R.id.kazanilantutar);
+        kazanilan_metin = (TextView) findViewById(R.id.kazanilanmetin);
 
         MobileAds.initialize(this, APP_ID);
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
@@ -113,7 +106,12 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
             @Override
             public void onClick(View v){
 
+                kazanilan_tutar.setText("");
+                kazanilan_tutar.setVisibility(View.INVISIBLE);
+                kazanilan_metin.setVisibility(View.INVISIBLE);
+
                 if (Integer.parseInt(cevirme_hakki.getText().toString())>0 ) {
+                    spinBtn.setEnabled(false);
 
                     getDegreeForSectors();
 
@@ -136,6 +134,10 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
 
                                 Kredi_Girisi.kredi_satinalma(kullanici_id, "9", "6", sectors[degree], "0", "3");
 
+                                kazanilan_tutar.setText(sectors[degree]);
+                                kazanilan_tutar.setVisibility(View.VISIBLE);
+                                kazanilan_metin.setVisibility(View.VISIBLE);
+
 
                                 int hak=0;
                                 kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
@@ -157,6 +159,8 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
 
                                         kredi.setText(bakiye_kontrol.getString("kredi", "0"));
 
+                                        spinBtn.setEnabled(true);
+
 
                                     }
                                 }, 2000);
@@ -173,10 +177,7 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
 
                 }
 
-
             }
-
-
 
         });
     }
@@ -236,6 +237,8 @@ public class Hediye_Carki extends AppCompatActivity implements RewardedVideoAdLi
         final TextView reklam_izle_kredisi = (TextView) dialog.findViewById(R.id.reklam_izle_kredisi);
         final TextView oyunsonu = (TextView) dialog.findViewById(R.id.oyunsonu);
         final ImageView home = (ImageView) dialog.findViewById(R.id.home);
+        oyunsonu.setText("Çevirme Hakkınız Bitti");
+        reklam_izle_kredisi.setText("3");
 
         ((ImageView) dialog.findViewById(R.id.home)).setOnClickListener(new View.OnClickListener() {
             @Override

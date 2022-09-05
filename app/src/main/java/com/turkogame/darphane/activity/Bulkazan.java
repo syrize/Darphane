@@ -104,13 +104,11 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
         kutu12 = (LinearLayout) findViewById(R.id.kutu12);
 
 
-
         reklam_id = findViewById(R.id.reklam_id);
         reklam_kredisi=(TextView)  findViewById(R.id.reklam_kredisi);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
         kullanici_id = sharedPreferences.getString("user_id","0");
-
 
 
         paketleri_oku();
@@ -241,9 +239,6 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
     }
 
 
-
-
-
     private void kredi_cikisi(){
         Kredi_Girisi.kredi_cikisi(kullanici_id,"1" ,"10");
         try {
@@ -256,13 +251,10 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
     }
 
 
-
-
-
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Bil Kazan");
+        getSupportActionBar().setTitle("Bul Kazan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Tools.setSystemBarColor(this, R.color.system_bar);
     }
