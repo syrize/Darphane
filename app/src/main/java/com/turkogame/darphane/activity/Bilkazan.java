@@ -244,7 +244,10 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
                             kredi_oku();
 
+
                             oyun_sonu(".: Kazandınız :.", "+500 Kredi",1);
+
+
 
                         } else {
                             yeni_soru();
@@ -256,10 +259,33 @@ public class Bilkazan extends AppCompatActivity implements RewardedVideoAdListen
 
 
             }else {
-               // Toast.makeText(Bilkazan.this, "Cevap Yanlış. Oyunu Kaybettiniz! " , Toast.LENGTH_SHORT).show();
+
                 Count.cancel();
 
-                oyun_sonu("Oyunu Kaybettiniz!","-10 Kredi",2);
+                new CountDownTimer(1000, 1000){
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        oyun_sonu("Oyunu Kaybettiniz!","-10 Kredi",2);
+
+
+
+                    }
+                }.start();
+
+
 
                 soru_puani=0;
                 puan.setText(String.valueOf(soru_puani));
