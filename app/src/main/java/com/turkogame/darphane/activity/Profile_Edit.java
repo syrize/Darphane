@@ -51,10 +51,9 @@ import java.util.Date;
 public class Profile_Edit extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private String cinsiyet[];
-    private String is_durumu[];
-    private String iliski_durumu[];
-    private String egitim_durumu[];
-    TextView dogum_tarihi,adi,soyadi;
+    private String odeme_yontemleri[];
+
+    TextView dogum_tarihi,adi,soyadi,nick,iban,alici;
     ImageView resim;
     FloatingActionButton kamera_buton;
     Button kaydet;
@@ -62,7 +61,7 @@ public class Profile_Edit extends AppCompatActivity {
     String imagebase64="";
 
     String kullanici_id,profil_foto,facebook_id,google_id,resim_url;
-    Spinner spinner_cinsiyet,spinner_isdurumu,spinner_iliski_durumu,spinner_egitim_durumu;
+    Spinner spinner_cinsiyet,spinner_odeme_yontemleri;
 
     private static final int CAMERA_REQUEST = 1888;
 
@@ -75,6 +74,10 @@ public class Profile_Edit extends AppCompatActivity {
         adi = findViewById(R.id.adi);
         soyadi = findViewById(R.id.soyadi);
         resim = findViewById(R.id.resim);
+
+        nick = findViewById(R.id.nick);
+        iban = findViewById(R.id.iban);
+        alici = findViewById(R.id.alici);
 
         kamera_buton = findViewById(R.id.kamera_buton);
         kaydet = findViewById(R.id.btn_kaydet);
@@ -166,6 +169,10 @@ public class Profile_Edit extends AppCompatActivity {
                                     facebook_id=bilgiler.getString("FACEBOOK_ID");
                                     google_id=bilgiler.getString("GOOGLE_ID");
 
+                                    nick.setText( bilgiler.getString("NICK"));
+                                    iban.setText( bilgiler.getString("IBAN_NO"));
+                                    alici.setText( bilgiler.getString("ALICI_ADSOYAD"));
+
                                     resim_url=bilgiler.getString("RESIM");
 
                                     //email.setText( bilgiler.getString("EMAIL"));
@@ -174,40 +181,11 @@ public class Profile_Edit extends AppCompatActivity {
                                     if(bilgiler.getString("CINSIYET").equals("2")){ spinner_cinsiyet.setSelection(1);}
                                     if(bilgiler.getString("CINSIYET").equals("3")){ spinner_cinsiyet.setSelection(2); }
 
-                                    if(bilgiler.getString("IS_DURUMU").equals("1")){ spinner_isdurumu.setSelection(1); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("2")){ spinner_isdurumu.setSelection(2); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("3")){ spinner_isdurumu.setSelection(3); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("4")){ spinner_isdurumu.setSelection(4);}
-                                    if(bilgiler.getString("IS_DURUMU").equals("5")){ spinner_isdurumu.setSelection(5); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("6")){ spinner_isdurumu.setSelection(6); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("7")){ spinner_isdurumu.setSelection(7); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("8")){ spinner_isdurumu.setSelection(8); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("9")){ spinner_isdurumu.setSelection(9); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("10")){ spinner_isdurumu.setSelection(10); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("11")){ spinner_isdurumu.setSelection(11); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("12")){ spinner_isdurumu.setSelection(12); }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("1")){ spinner_odeme_yontemleri.setSelection(1); }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("2")){ spinner_odeme_yontemleri.setSelection(2); }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("3")){ spinner_odeme_yontemleri.setSelection(3); }
 
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("1")){ spinner_iliski_durumu.setSelection(1); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("2")){ spinner_iliski_durumu.setSelection(2); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("3")){ spinner_iliski_durumu.setSelection(3);  }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("4")){ spinner_iliski_durumu.setSelection(4);  }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("5")){ spinner_iliski_durumu.setSelection(5);  }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("6")){ spinner_iliski_durumu.setSelection(6); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("7")){ spinner_iliski_durumu.setSelection(7);  }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("8")){ spinner_iliski_durumu.setSelection(8);  }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("9")){ spinner_iliski_durumu.setSelection(9);  }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("10")){ spinner_iliski_durumu.setSelection(10);  }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("11")){ spinner_iliski_durumu.setSelection(11);  }
 
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("1")){ spinner_egitim_durumu.setSelection(1);  }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("2")){ spinner_egitim_durumu.setSelection(2); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("3")){ spinner_egitim_durumu.setSelection(3); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("4")){ spinner_egitim_durumu.setSelection(4); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("5")){ spinner_egitim_durumu.setSelection(5); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("6")){ spinner_egitim_durumu.setSelection(6); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("7")){ spinner_egitim_durumu.setSelection(7); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("8")){ spinner_egitim_durumu.setSelection(8); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("9")){ spinner_egitim_durumu.setSelection(9); }
 
                                     if(bilgiler.getString("DOGUM_TARIHI") != "null") {
                                         Date tarih = new SimpleDateFormat("yyyy-MM-dd").parse(bilgiler.getString("DOGUM_TARIHI"));
@@ -239,7 +217,7 @@ public class Profile_Edit extends AppCompatActivity {
 
                                     if (bilgiler.getString("GOOGLE_ID").equals("null")  && bilgiler.getString("FACEBOOK_ID").equals("null")){
 
-                                        Picasso.get().load("https://beyazfincan.com/yonetim/kullanici_resimleri/" + bilgiler.getString("RESIM")).into(resim);
+                                        Picasso.get().load("https://turkogame.com/uygulamalar/bilgi_oyunu/kullanici_resimleri/" + bilgiler.getString("RESIM")).into(resim);
                                     }
 
                                 } else {
@@ -274,8 +252,6 @@ public class Profile_Edit extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
 
 
     private void kullanici_guncelle() {
@@ -313,6 +289,10 @@ public class Profile_Edit extends AppCompatActivity {
             object.put("adi", adi.getText());
             object.put("soyadi", soyadi.getText());
 
+            object.put("iban_no", iban.getText());
+            object.put("alici_adsoyad", alici.getText());
+            object.put("nick", nick.getText());
+
             Date eski_tarih;
             String yeni_tarih;
 
@@ -341,9 +321,8 @@ public class Profile_Edit extends AppCompatActivity {
 
 
             object.put("cinsiyet", spinner_cinsiyet.getSelectedItemId()+1);
-            object.put("is_durumu", spinner_isdurumu.getSelectedItemId());
-            object.put("iliski_durumu", spinner_iliski_durumu.getSelectedItemId());
-            object.put("egitim_durumu", spinner_egitim_durumu.getSelectedItemId());
+            object.put("odeme_yontemi", spinner_odeme_yontemleri.getSelectedItemId());
+
 
 
 
@@ -392,7 +371,6 @@ public class Profile_Edit extends AppCompatActivity {
     }
 
 
-
     private void showOnayDialog() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
@@ -427,10 +405,6 @@ public class Profile_Edit extends AppCompatActivity {
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
-
-
-
-
 
 
     private void initComponent() {
@@ -471,72 +445,26 @@ public class Profile_Edit extends AppCompatActivity {
 
     private void spinner_doldur(){
 
-        cinsiyet= new String[3];
+        cinsiyet= new String[2];
         cinsiyet[0]="Erkek";
         cinsiyet[1]="Kadın";
-        cinsiyet[2]="LGBT";
+
 
         spinner_cinsiyet = (Spinner) findViewById(R.id.cinsiyet);
         ArrayAdapter adapter_cinsiyet = new ArrayAdapter(this,  android.R.layout.simple_spinner_item, cinsiyet);
         spinner_cinsiyet.setAdapter(adapter_cinsiyet);
 
 
-        is_durumu= new String[13];
-        is_durumu[0]="İş Durumunuzu Seçiniz";
-        is_durumu[1]="Çalışıyor";
-        is_durumu[2]="Okuyor";
-        is_durumu[3]="İş Arıyor";
-        is_durumu[4]="İlgilenmiyor";
-        is_durumu[5]="Ev Hanımı";
-        is_durumu[6]="Öğrenci";
-        is_durumu[7]="Kendi İşini Yapıyor";
-        is_durumu[8]="Akademisyen";
-        is_durumu[9]="Kamu Sektörü";
-        is_durumu[10]="Özel Sektör";
-        is_durumu[11]="Emekli";
-        is_durumu[12]="Çalışmıyor";
+        odeme_yontemleri= new String[4];
+        odeme_yontemleri[0]="Ödeme Yönteminizi Seçiniz";
+        odeme_yontemleri[1]="Banka";
+        odeme_yontemleri[2]="Papara";
+        odeme_yontemleri[3]="İnninal Kart";
 
 
-        spinner_isdurumu = (Spinner) findViewById(R.id.is_durumu);
-        ArrayAdapter adapter_is_durumu = new ArrayAdapter(this,  android.R.layout.simple_spinner_item, is_durumu);
-        spinner_isdurumu.setAdapter(adapter_is_durumu);
-
-        iliski_durumu= new String[12];
-        iliski_durumu[0]="İlişki Durumunuzu Seçiniz";
-        iliski_durumu[1]="İlişkisi Yok";
-        iliski_durumu[2]="Evli";
-        iliski_durumu[3]="Boşanmış";
-        iliski_durumu[4]="Dul";
-        iliski_durumu[5]="İlişkisi Var";
-        iliski_durumu[6]="Nişanlı";
-        iliski_durumu[7]="Platonik";
-        iliski_durumu[8]="Ayrılmış";
-        iliski_durumu[9]="Flört Halinde";
-        iliski_durumu[10]="Karmaşık";
-        iliski_durumu[11]="Ayrı Yaşıyor";
-
-
-        spinner_iliski_durumu = (Spinner) findViewById(R.id.iliski_durumu);
-        ArrayAdapter adapter_iliski_durumu = new ArrayAdapter(this,  android.R.layout.simple_spinner_item, iliski_durumu);
-        spinner_iliski_durumu.setAdapter(adapter_iliski_durumu);
-
-
-        egitim_durumu= new String[10];
-        egitim_durumu[0]="Eğitim Durumunuzu Seçiniz";
-        egitim_durumu[1]="İlk OKul";
-        egitim_durumu[2]="Orta Okul";
-        egitim_durumu[3]="Lise";
-        egitim_durumu[4]="Yüksek Okul";
-        egitim_durumu[5]="Üniversite";
-        egitim_durumu[6]="Yüksek Lisans";
-        egitim_durumu[7]="Doktora";
-        egitim_durumu[8]="Okur Yazar";
-        egitim_durumu[9]="Okuma Yazma Bilmiyor";
-
-        spinner_egitim_durumu = (Spinner) findViewById(R.id.egitim_durumu);
-        ArrayAdapter adapter_egitim_durumu = new ArrayAdapter(this,  android.R.layout.simple_spinner_item, egitim_durumu);
-        spinner_egitim_durumu.setAdapter(adapter_egitim_durumu);
-
+        spinner_odeme_yontemleri = (Spinner) findViewById(R.id.odeme_yontemi);
+        ArrayAdapter adapter_is_durumu = new ArrayAdapter(this,  android.R.layout.simple_spinner_item, odeme_yontemleri);
+        spinner_odeme_yontemleri.setAdapter(adapter_is_durumu);
 
 
     }
