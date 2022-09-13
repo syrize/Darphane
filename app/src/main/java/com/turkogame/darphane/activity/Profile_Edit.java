@@ -83,6 +83,7 @@ public class Profile_Edit extends AppCompatActivity {
         kaydet = findViewById(R.id.btn_kaydet);
 
         spinner_doldur();
+
         initToolbar();
         initComponent();
 
@@ -123,7 +124,6 @@ public class Profile_Edit extends AppCompatActivity {
 
     }
 
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             photo = (Bitmap) data.getExtras().get("data");
@@ -137,7 +137,6 @@ public class Profile_Edit extends AppCompatActivity {
 
         }
     }
-
 
     private void kullanici_oku(){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -252,7 +251,6 @@ public class Profile_Edit extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     private void kullanici_guncelle() {
 
@@ -370,7 +368,6 @@ public class Profile_Edit extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-
     private void showOnayDialog() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
@@ -405,7 +402,6 @@ public class Profile_Edit extends AppCompatActivity {
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
-
 
     private void initComponent() {
 
@@ -474,7 +470,7 @@ public class Profile_Edit extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Profil Güncelle");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.pink_900);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     @Override

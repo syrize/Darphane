@@ -37,7 +37,7 @@ public class Profile extends AppCompatActivity {
 
     CircularImageView resim;
     String kullanici_id,profil_foto;
-    TextView ad_soyad,email,cinsiyet,dogum_tarihi,is_durumu,iliski_durumu,egitim_durumu;
+    TextView ad_soyad,email,cinsiyet,dogum_tarihi,nick,iban,alici,odeme_yontemi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,11 @@ public class Profile extends AppCompatActivity {
         email= findViewById(R.id.email);
         cinsiyet= findViewById(R.id.cinsiyet);
         dogum_tarihi= findViewById(R.id.dogum_tarihi);
-        is_durumu= findViewById(R.id.is_durumu);
-        iliski_durumu= findViewById(R.id.iliski_durumu);
-        egitim_durumu= findViewById(R.id.egitim_durumu);
+
+        nick = findViewById(R.id.nick);
+        iban = findViewById(R.id.iban);
+        alici = findViewById(R.id.alici);
+        odeme_yontemi = findViewById(R.id.odeme_yontemi);
 
         FloatingActionButton btn_profile = findViewById(R.id.btn_profile);
 
@@ -117,42 +119,15 @@ public class Profile extends AppCompatActivity {
 
                                     if(bilgiler.getString("CINSIYET").equals("1")){ cinsiyet.setText("Erkek"); }
                                     if(bilgiler.getString("CINSIYET").equals("2")){ cinsiyet.setText("Kadın"); }
-                                    if(bilgiler.getString("CINSIYET").equals("3")){ cinsiyet.setText("LGBT"); }
 
-                                    if(bilgiler.getString("IS_DURUMU").equals("1")){ is_durumu.setText("Çalışıyor"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("2")){ is_durumu.setText("Okuyor"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("3")){ is_durumu.setText("İş Arıyor"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("4")){ is_durumu.setText("İlgilenmiyor"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("5")){ is_durumu.setText("Ev Hanımı"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("6")){ is_durumu.setText("Öğrenci"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("7")){ is_durumu.setText("Kendi İşini Yapıyor"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("8")){ is_durumu.setText("Akademisyen"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("9")){ is_durumu.setText("Kamu Sektörü"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("10")){ is_durumu.setText("Özel Sektör"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("11")){ is_durumu.setText("Emekli"); }
-                                    if(bilgiler.getString("IS_DURUMU").equals("12")){ is_durumu.setText("Çalışmıyor"); }
 
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("1")){ iliski_durumu.setText("İlişkisi Yok"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("2")){ iliski_durumu.setText("Evli"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("3")){ iliski_durumu.setText("Boşanmış"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("4")){ iliski_durumu.setText("Dul"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("5")){ iliski_durumu.setText("İlişkisi Var"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("6")){ iliski_durumu.setText("Nişanlı"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("7")){ iliski_durumu.setText("Platonik"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("8")){ iliski_durumu.setText("Ayrılmış"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("9")){ iliski_durumu.setText("Flört Halinde"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("10")){ iliski_durumu.setText("Karmaşık"); }
-                                    if(bilgiler.getString("ILISKI_DURUMU").equals("11")){ iliski_durumu.setText("Ayrı Yaşıyor"); }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("1")){ odeme_yontemi.setText("Banka"); }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("2")){ odeme_yontemi.setText("Papara");  }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("3")){ odeme_yontemi.setText("İnninal Kart"); }
 
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("1")){ egitim_durumu.setText("İlkokul"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("2")){ egitim_durumu.setText("Ortaokul"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("3")){ egitim_durumu.setText("Lise"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("4")){ egitim_durumu.setText("Yüksek Okul"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("5")){ egitim_durumu.setText("Üniversite"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("6")){ egitim_durumu.setText("Yüksek Lisans"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("7")){ egitim_durumu.setText("Doktora"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("8")){ egitim_durumu.setText("Okur Yazar"); }
-                                    if(bilgiler.getString("EGITIM_DURUMU").equals("9")){ egitim_durumu.setText("Okuma Yazma Bilmiyor"); }
+                                    iban.setText( bilgiler.getString("IBAN_NO"));
+                                    alici.setText( bilgiler.getString("ALICI_ADSOYAD"));
+
 
                                     if(bilgiler.getString("DOGUM_TARIHI") != "null") {
                                         Date tarih = new SimpleDateFormat("yyyy-MM-dd").parse(bilgiler.getString("DOGUM_TARIHI"));
@@ -180,7 +155,7 @@ public class Profile extends AppCompatActivity {
                                     }
                                     if (bilgiler.getString("GOOGLE_ID").equals("null")  && bilgiler.getString("FACEBOOK_ID").equals("null")){
 
-                                        Picasso.get().load("https://beyazfincan.com/yonetim/kullanici_resimleri/" + bilgiler.getString("RESIM")).into(resim);
+                                        Picasso.get().load("https://turkogame.com/uygulamalar/bilgi_oyunu/kullanici_resimleri/" + bilgiler.getString("RESIM")).into(resim);
                                     }
 
                                 } else {
@@ -228,7 +203,7 @@ public class Profile extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Profil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.purple_600);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     private void initComponent() {
