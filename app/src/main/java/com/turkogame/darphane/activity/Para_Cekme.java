@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class Para_Cekme extends AppCompatActivity {
     Button start;
     SharedPreferences bakiye_kontrol;
     TextView kredi,bakiye;
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +32,17 @@ public class Para_Cekme extends AppCompatActivity {
         start = (Button) findViewById(R.id.start);
         kredi = (TextView) findViewById(R.id.kredi);
         bakiye = (TextView) findViewById(R.id.bakiye);
+        progress = (ProgressBar) findViewById(R.id.progress);
         initToolbar();
         DecimalFormat df = new DecimalFormat("#.##");
 
         bakiye_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
         kredi.setText(bakiye_kontrol.getString("kredi","0"));
         bakiye.setText(String.valueOf(df.format(Float.parseFloat(bakiye_kontrol.getString("kredi","0"))/10*0.005)) + " TL");
+
+        int pg_bakiye= (int) Math.round(Float.parseFloat(bakiye_kontrol.getString("kredi","0"))/10*0.005);
+
+        progress.setProgress(pg_bakiye);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override

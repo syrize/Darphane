@@ -102,8 +102,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/spacing_middle"
-                        android:layout_marginTop="@dimen/spacing_middle"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_small"
                         android:gravity="center_vertical"
                         android:minHeight="@dimen/spacing_xxlarge"
                         android:orientation="horizontal"
@@ -134,7 +134,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/spacing_middle"
-                                android:text="Para çekmek için bakiyenizde en az 50 TL bulunmalıdır.  Para çekme işlemi 1 ila 3 iş günü içerisinde tamamlanacaktır. "
+                                android:text="Para çekmek için bakiyenizde en az 50 TL bulunmalıdır.  Para çekme işlemi 1 ila 5 iş günü içerisinde tamamlanacaktır. "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/indigo_600" />
 
@@ -142,7 +142,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/spacing_middle"
-                                android:text="Ödeme işleminin yapılabilmesi için profil bilgilerinizde ödeme seçenekleriniz tanımlanmış olmalıdır."
+                                android:text="Ödeme işleminin yapılabilmesi için profil bilgilerinizde ödeme alma bilgileriniz tanımlanmış olmalıdır."
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/indigo_600" />
 
@@ -172,8 +172,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/spacing_middle"
-                        android:layout_marginTop="@dimen/spacing_middle"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_small"
                         android:gravity="center_vertical"
                         android:minHeight="@dimen/spacing_xxlarge"
                         android:orientation="horizontal"
@@ -186,6 +186,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
+                            android:gravity="center"
                             >
 
                             <TextView
@@ -208,6 +209,17 @@
                                 android:textColor="@color/indigo_600"
                                 android:textStyle="bold" />
 
+
+                            <ProgressBar
+                                android:id="@+id/progress"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:background="@drawable/circle_shape"
+                                android:indeterminate="false"
+                                android:max="50"
+                                android:progress="0"
+                                android:progressDrawable="@drawable/circular_progress_bar" />
 
 
                         </LinearLayout>
@@ -232,6 +244,16 @@
                     android:orientation="vertical"
                     android:paddingBottom="@dimen/spacing_middle"
                     android:paddingTop="@dimen/spacing_middle"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:text="Bakiyeniz 50 TL ye ulaştığında Para çekebilirsiniz."
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/grey_80"
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -260,6 +282,26 @@
                     android:textSize="@dimen/spacing_mxlarge"
                     android:text="Para Çek"
                     android:theme="@style/Button.Baslat" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <Button
+                    android:id="@+id/btntalepler"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Para Çekme Taleplerim"
+                    android:textColor="#090909"
+                    android:textSize="@dimen/spacing_large"
+                    android:theme="@style/Button.Green" />
 
             </androidx.cardview.widget.CardView>
 

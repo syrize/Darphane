@@ -196,28 +196,42 @@
 
 
                     </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
 
+                    <TextView
+                        android:layout_margin="@dimen/spacing_small"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.70"
+                        android:text="Ödeme Almak için Bilgilerinizi Giriniz"
+                        android:textAllCaps="false"
+                        android:textColor="#673AB7"
+                        android:background="#ecf0f1"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_small"
-                        android:layout_height="50dp"
                         android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/yontem_baslik"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.70"
+                            android:text="Ödeme Alma Yöntemi :" />
 
                         <Spinner
                             android:id="@+id/odeme_yontemi"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginVertical="@dimen/spacing_medium"
                             android:layout_weight="0.30"
-
                             />
-                        <EditText
-                           android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.30"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="" />
+
 
 
                     </LinearLayout>
@@ -225,6 +239,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
                         android:orientation="vertical">
 
                         <TextView

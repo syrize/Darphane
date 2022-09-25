@@ -453,8 +453,8 @@ public class Profile_Edit extends AppCompatActivity {
 
         odeme_yontemleri= new String[4];
         odeme_yontemleri[0]="Ödeme Yönteminizi Seçiniz";
-        odeme_yontemleri[1]="Banka";
-        odeme_yontemleri[2]="Papara";
+        odeme_yontemleri[1]="Banka Hesabı";
+        odeme_yontemleri[2]="Papara Hesabı";
         odeme_yontemleri[3]="İnninal Kart";
 
 

@@ -49,7 +49,7 @@ public class Profile extends AppCompatActivity {
         cinsiyet= findViewById(R.id.cinsiyet);
         dogum_tarihi= findViewById(R.id.dogum_tarihi);
 
-        nick = findViewById(R.id.nick);
+        nick = findViewById(R.id.nick_name);
         iban = findViewById(R.id.iban);
         alici = findViewById(R.id.alici);
         odeme_yontemi = findViewById(R.id.odeme_yontemi);
@@ -115,14 +115,15 @@ public class Profile extends AppCompatActivity {
                                     JSONObject bilgiler = new JSONObject(kontrol.getString("uye-bilgileri"));
 
                                     ad_soyad.setText( bilgiler.getString("ADI")+ " "+ bilgiler.getString("SOYADI"));
+                                    nick.setText( bilgiler.getString("NICK"));
                                     email.setText( bilgiler.getString("EMAIL"));
 
                                     if(bilgiler.getString("CINSIYET").equals("1")){ cinsiyet.setText("Erkek"); }
                                     if(bilgiler.getString("CINSIYET").equals("2")){ cinsiyet.setText("Kadın"); }
 
 
-                                    if(bilgiler.getString("ODEME_YONTEMI").equals("1")){ odeme_yontemi.setText("Banka"); }
-                                    if(bilgiler.getString("ODEME_YONTEMI").equals("2")){ odeme_yontemi.setText("Papara");  }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("1")){ odeme_yontemi.setText("Banka Hesabı"); }
+                                    if(bilgiler.getString("ODEME_YONTEMI").equals("2")){ odeme_yontemi.setText("Papara Hesabı");  }
                                     if(bilgiler.getString("ODEME_YONTEMI").equals("3")){ odeme_yontemi.setText("İnninal Kart"); }
 
                                     iban.setText( bilgiler.getString("IBAN_NO"));
