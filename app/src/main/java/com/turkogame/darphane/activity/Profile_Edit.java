@@ -342,7 +342,7 @@ public class Profile_Edit extends AppCompatActivity {
 
                                 Log.d("mesaj", kontrol.getString("mesaj"));
 
-                                showOnayDialog();
+                                showOnayDialog("Kayıt Yapıldı");
 
 
                             } else {
@@ -368,7 +368,7 @@ public class Profile_Edit extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void showOnayDialog() {
+    private void showOnayDialog(String mesaj_metni) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_onay);
@@ -378,7 +378,10 @@ public class Profile_Edit extends AppCompatActivity {
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-      //  lp.verticalMargin=50;
+
+        final TextView mesaj = (TextView) dialog.findViewById(R.id.mesaj);
+        mesaj.setText(mesaj_metni);
+
 
         final AppCompatButton bt_close = (AppCompatButton) dialog.findViewById(R.id.bt_close);
 

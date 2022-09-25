@@ -23,11 +23,11 @@
             app:srcCompat="@drawable/ic_verified_user" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/mesaj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_middle"
-            android:text="Kayıt Başarılı"
+            android:text=""
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
             android:textStyle="bold" />

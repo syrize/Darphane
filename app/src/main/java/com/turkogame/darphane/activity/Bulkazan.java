@@ -240,7 +240,7 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
 
     private void kredi_cikisi(){
-        Kredi_Girisi.kredi_cikisi(kullanici_id,"1" ,"10");
+        Kredi_Girisi.kredi_cikisi(kullanici_id,"2" ,"10");
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
