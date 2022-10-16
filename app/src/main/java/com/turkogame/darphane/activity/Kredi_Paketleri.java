@@ -121,8 +121,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
                 kayitci.putString("user_id", kullanici_id);
                 kayitci.commit();
 
-                Intent intent = new Intent(Kredi_Paketleri.this, Burclar.class);
-                startActivity(intent);
+
             }
         });
 

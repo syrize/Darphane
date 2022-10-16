@@ -76,12 +76,6 @@
             android:name="com.turkogame.darphane.activity.Ruya_Istek"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.turkogame.darphane.activity.Burclar"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.turkogame.darphane.activity.Burc_Detay"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.turkogame.darphane.activity.Kahve_Istek"
             android:screenOrientation="portrait" />
         <activity
@@ -148,6 +142,9 @@
 
         <activity
             android:name="com.turkogame.darphane.activity.Para_Cekme"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.turkogame.darphane.activity.OdemeTalepleri"
             android:screenOrientation="portrait" />
 
 

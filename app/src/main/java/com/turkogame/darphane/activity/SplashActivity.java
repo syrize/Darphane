@@ -15,7 +15,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
 
         Intent intent = new Intent(SplashActivity.this,Login.class);
         startActivity(intent);

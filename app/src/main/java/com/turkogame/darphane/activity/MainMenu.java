@@ -194,10 +194,15 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
         tiklama_kontrol();
-
-
-
         startTime();
+
+        Log.d("Token",token );
+
+        kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+        SharedPreferences.Editor kayitci = kayit_kontrol.edit();
+        kayitci.putString("user_id", kullanici_id);
+        kayitci.putString("token",token);
+        kayitci.commit();
 
 
     }
@@ -347,7 +352,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         LinearLayout menu_fallarim=findViewById(R.id.menu_fallarim);
         LinearLayout menu_kredisatinal=findViewById(R.id.menu_kredisatinal);
         LinearLayout menu_kredikazan=findViewById(R.id.menu_kredikazan);
-        LinearLayout menu_reklamkaldir=findViewById(R.id.menu_reklamkaldir);
+
         LinearLayout menu_bizeyazin=findViewById(R.id.menu_bizeyazin);
         LinearLayout menu_profile=findViewById(R.id.menu_profile);
         LinearLayout menu_ayarlar=findViewById(R.id.menu_ayarlar);
@@ -427,8 +432,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                 kayitci.putString("user_id", kullanici_id);
                 kayitci.commit();
 
-                Intent intent = new Intent(MainMenu.this, Burclar.class);
-                startActivity(intent);
+
             }
         });
 

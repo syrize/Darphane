@@ -135,8 +135,7 @@ public class Kredi_Kazan extends AppCompatActivity  implements RewardedVideoAdLi
 
                 //onBackPressed(); // önceki activity ye dönme kodu
 
-                Intent intent = new Intent(Kredi_Kazan.this, deneme.class);
-                startActivity(intent);
+
 
 
             }
@@ -170,8 +169,7 @@ public class Kredi_Kazan extends AppCompatActivity  implements RewardedVideoAdLi
                 kayitci.putString("user_id", kullanici_id);
                 kayitci.commit();
 
-                Intent intent = new Intent(Kredi_Kazan.this, Burclar.class);
-                startActivity(intent);
+
             }
         });
 

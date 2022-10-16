@@ -42,7 +42,7 @@ public class Para_Cekme extends AppCompatActivity {
     TextView kredi,bakiye;
     private ProgressBar progress;
     SharedPreferences sharedPreferences,kayit_kontrol;
-    String user_id;
+    String user_id,token;
     DecimalFormat df;
 
     @Override
@@ -53,8 +53,14 @@ public class Para_Cekme extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
         user_id = sharedPreferences.getString("user_id","0");
 
+        kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+        token = kayit_kontrol.getString("token","0");
+
+        Log.d("Token",token );
+
 
         btn_paracek = (Button) findViewById(R.id.btn_paracek);
+        btn_talepler = (Button) findViewById(R.id.btntalepler);
         kredi = (TextView) findViewById(R.id.kredi);
         bakiye = (TextView) findViewById(R.id.bakiye);
         progress = (ProgressBar) findViewById(R.id.progress);
@@ -90,6 +96,7 @@ public class Para_Cekme extends AppCompatActivity {
                         object.put("user_id", user_id);
                         object.put("tutar", tutar);
                         object.put("islem_turu", 1);
+                        object.put("token", token);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -156,6 +163,16 @@ public class Para_Cekme extends AppCompatActivity {
 
             }
         });
+
+        btn_talepler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Para_Cekme.this, OdemeTalepleri.class);
+                startActivity(intent);
+
+            }
+        });
+
 
 
     }
@@ -269,7 +286,7 @@ public class Para_Cekme extends AppCompatActivity {
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Bil Kazan");
+        getSupportActionBar().setTitle("Para Çekme");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Tools.setSystemBarColor(this, R.color.system_bar);
     }
