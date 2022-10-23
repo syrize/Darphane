@@ -32,12 +32,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.turkogame.darphane.R;
-import com.turkogame.darphane.activity.Kredi_Girisi;
-import com.turkogame.darphane.activity.app.AppConfig;
-import com.turkogame.darphane.activity.models.KrediPaketleriItem;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
+import com.turkogame.darphane.R;
+import com.turkogame.darphane.activity.Kredi_Girisi;
+import com.turkogame.darphane.activity.Magaza;
+import com.turkogame.darphane.activity.app.AppConfig;
+import com.turkogame.darphane.activity.models.MagazaItem;
 
 import org.json.JSONObject;
 
@@ -51,19 +52,19 @@ import static com.android.billingclient.api.BillingClient.BillingResponseCode.OK
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPaketleri.tanimla> implements PurchasesUpdatedListener {
+public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> implements PurchasesUpdatedListener {
     private BillingClient mBillingClient;
-    List<KrediPaketleriItem> list;
+    List<MagazaItem> list;
     Context context;
     SharedPreferences kayit_kontrol;
     Activity activity ;
-    String kullanici_id,paket_id,paket_tutari,kredi_miktari;
+    String kullanici_id,paket_id,paket_tutari,kredi_tutari,aciklama;
     int satinalma_kontrol=0;
     private BillingResult billingResult;
     private List<Purchase> purchases;
 
 
-    public AdapterKrediPaketleri(Context context, List<KrediPaketleriItem> list, Activity activity) {
+    public AdapterMagaza(Context context, List<MagazaItem> list, Activity activity) {
 
         this.list = list;
         this.context = context;
@@ -72,7 +73,7 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
 
     @Override
     public tanimla onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.model_kredi_paketleri,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.model_magaza,parent,false);
 
         ButterKnife.bind(activity);
         mBillingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(this).build();
@@ -88,23 +89,36 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
 
         holder.paket_adi.setText(list.get(position).getPAKET_ADI());
         holder.paket_id.setText(list.get(position).getPAKET_ID());
-        holder.kredi_miktari.setText(list.get(position).getMIKTAR());
         holder.adsense_id.setText(list.get(position).getADSENSE_ID());
         holder.tutar.setText(list.get(position).getTUTAR());
+        holder.kredi_tutari.setText(list.get(position).getKREDI_TUTAR());
         String foto = "https://www.turkogame.com/uygulamalar/bilgi_oyunu/img/product-list/"+list.get(position).getPAKET_RESMI();
         Picasso.get().load(foto).into(holder.paket_resmi);
         holder.kullanici_id.setText(kullanici_id);
-      //  holder.aciklama.setText(list.get(position).getACIKLAMA());
+        holder.aciklama.setText(list.get(position).getACIKLAMA());
 
-        holder.tiklanacak.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.krediyle_satinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("mesaj", "kredi ile satın alma");
+                Toast.makeText(context,"kredi ile satın alma", Toast.LENGTH_LONG).show();
 
-               // Toast.makeText(context,holder.adsense_id.getText().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        holder.parayla_satinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("mesaj", "Para ile satın alma");
+                Toast.makeText(context,holder.adsense_id.getText().toString(), Toast.LENGTH_LONG).show();
+
                 paket_id=holder.paket_id.getText().toString();
                 paket_tutari=holder.tutar.getText().toString();
-                kredi_miktari= holder.kredi_miktari.getText().toString();
+                kredi_tutari= holder.kredi_tutari.getText().toString();
                 kullanici_id=holder.kullanici_id.getText().toString();
+                aciklama=holder.aciklama.getText().toString();
                 satinalma_kontrol=1;
 
                 buySubscription(holder.adsense_id.getText().toString());
@@ -120,9 +134,9 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
 
     public  class tanimla extends RecyclerView.ViewHolder
     {
-        TextView paket_id,paket_adi,aciklama,kredi_miktari,tutar,adsense_id,kullanici_id;
+        TextView paket_id,paket_adi,aciklama,tutar,kredi_tutari,adsense_id,kullanici_id;
         CircularImageView paket_resmi;
-        LinearLayout tiklanacak;
+        LinearLayout krediyle_satinal,parayla_satinal;
 
 
 
@@ -130,13 +144,14 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
             super(itemView);
             paket_id = (TextView) itemView.findViewById(R.id.paket_id);
             paket_adi = (TextView) itemView.findViewById(R.id.paket_adi);
-            //aciklama = (TextView) itemView.findViewById(R.id.aciklama);
+            aciklama = (TextView) itemView.findViewById(R.id.aciklama);
             paket_resmi =  (CircularImageView) itemView.findViewById(R.id.kredi_resim);
-            kredi_miktari = (TextView) itemView.findViewById(R.id.kredi_miktari);
             tutar = (TextView) itemView.findViewById(R.id.ucret);
+            kredi_tutari = (TextView) itemView.findViewById(R.id.kredi_tutari);
             kullanici_id = (TextView) itemView.findViewById(R.id.kullanici_id);
             adsense_id = (TextView) itemView.findViewById(R.id.adsense_id);
-            tiklanacak = (LinearLayout) itemView.findViewById(R.id.lyt_parent);
+            krediyle_satinal = (LinearLayout) itemView.findViewById(R.id.krediyle_satinal);
+            parayla_satinal = (LinearLayout) itemView.findViewById(R.id.parayla_satinal);
 
         }
 
@@ -193,7 +208,6 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
     }
 
 
-
     @Override
     public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
 
@@ -207,7 +221,7 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
                 Log.e(TAG, "mesaj " + "Satınalma Başarılı");
 
                 if (satinalma_kontrol==1) {
-                    Kredi_Girisi.kredi_satinalma(kullanici_id, paket_id, "1", kredi_miktari, paket_tutari, "4");
+                   // Kredi_Girisi.kredi_satinalma(kullanici_id, paket_id, "1", kredi_miktari, paket_tutari, "4");
                     satinalma_kontrol=0;
                 }
 
@@ -253,13 +267,10 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
     }
 
 
-
     @Override
     public int getItemCount() {
         return list.size();
     }
-
-
 
 
     public void kredi_oku(String kullanici_id){

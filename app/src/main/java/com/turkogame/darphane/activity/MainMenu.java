@@ -333,12 +333,12 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         MaterialCardView bul_kazan = findViewById(R.id.bul_kazan);
         MaterialCardView sans_carki = findViewById(R.id.sans_carki);
 
-        MaterialCardView card_7 = findViewById(R.id.card_7);
-        MaterialCardView card_8 = findViewById(R.id.card_8);
+        MaterialCardView magaza = findViewById(R.id.magaza);
+        MaterialCardView hemen_kazan = findViewById(R.id.hemen_kazan);
         MaterialCardView card_9 = findViewById(R.id.card_9);
-        MaterialCardView card_10 = findViewById(R.id.card_10);
-        MaterialCardView card_11 = findViewById(R.id.card_11);
-        MaterialCardView card_12 = findViewById(R.id.card_12);
+        MaterialCardView destek_iste = findViewById(R.id.destek_iste);
+        MaterialCardView profil_bilgileri = findViewById(R.id.profil_bilgileri);
+        MaterialCardView ayarlar = findViewById(R.id.ayarlar);
 
         ImageButton menu_close = findViewById(R.id.menu_close);
         ImageView alt_menu_fallarim = findViewById(R.id.alt_menu_fallarim);
@@ -550,9 +550,9 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
 
-        card_7.setOnClickListener(new View.OnClickListener() {
+        magaza.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenu.this, Kredi_Paketleri.class);
+                Intent intent = new Intent(MainMenu.this, Magaza.class);
                 startActivity(intent);
 
             }
@@ -560,13 +560,13 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
         menu_kredisatinal.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenu.this, Kredi_Paketleri.class);
+                Intent intent = new Intent(MainMenu.this, Magaza.class);
                 startActivity(intent);
 
             }
         });
 
-        card_8.setOnClickListener(new View.OnClickListener() {
+        hemen_kazan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, Kredi_Kazan.class);
                 startActivity(intent);
@@ -593,7 +593,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        card_10.setOnClickListener(new View.OnClickListener() {
+        destek_iste.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, Bize_Yazin.class);
                 startActivity(intent);
@@ -609,7 +609,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        card_11.setOnClickListener(new View.OnClickListener() {
+        profil_bilgileri.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, Profile.class);
                 startActivity(intent);
@@ -625,7 +625,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        card_12.setOnClickListener(new View.OnClickListener() {
+        ayarlar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, Ayarlar.class);
                 startActivity(intent);

@@ -123,14 +123,7 @@ public class Kisisel_Bilgiler extends AppCompatActivity {
                     bilgiler.commit();
 
 
-                    if (fal_turu == 1) {
-                        Intent intent = new Intent(Kisisel_Bilgiler.this, Kahve_Istek.class);
-                        startActivity(intent);
-                    }
 
-                    if (fal_turu == 2) {
-
-                    }
                     if (fal_turu == 3) {
                         Intent intent = new Intent(Kisisel_Bilgiler.this, El_Istek.class);
                         startActivity(intent);
@@ -142,10 +135,7 @@ public class Kisisel_Bilgiler extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    if (fal_turu == 5) {
-                        Intent intent = new Intent(Kisisel_Bilgiler.this, Yuz_Istek.class);
-                        startActivity(intent);
-                    }
+
 
                 } else {
 

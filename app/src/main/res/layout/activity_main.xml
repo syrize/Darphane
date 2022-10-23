@@ -154,7 +154,7 @@
 
 
                             <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/card_8"
+                                android:id="@+id/hemen_kazan"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/spacing_medium"
@@ -427,7 +427,7 @@
 
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card_7"
+                            android:id="@+id/magaza"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_medium"
@@ -549,7 +549,7 @@
 
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card_10"
+                            android:id="@+id/destek_iste"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_medium"
@@ -582,7 +582,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="@dimen/spacing_medium"
-                                    android:text="Destek İste"
+                                    android:text="Sorun Bildir"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                     android:textColor="@color/indigo_600"
                                     android:textSize="18dp" />
@@ -625,7 +625,7 @@
                         android:visibility="visible">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card_11"
+                            android:id="@+id/profil_bilgileri"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_medium"
@@ -670,7 +670,7 @@
 
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card_12"
+                            android:id="@+id/ayarlar"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_medium"

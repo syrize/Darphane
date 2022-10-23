@@ -100,7 +100,7 @@ public class Ayarlar extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Ayarlar");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     @Override

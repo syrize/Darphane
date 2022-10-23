@@ -25,25 +25,24 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.turkogame.darphane.R;
-import com.turkogame.darphane.activity.adapters.AdapterKrediPaketleri;
-import com.turkogame.darphane.activity.app.AppConfig;
-import com.turkogame.darphane.activity.models.KrediPaketleriItem;
-import com.turkogame.darphane.adapter.AdapterListInbox;
-import com.turkogame.darphane.utils.Tools;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.turkogame.darphane.R;
+import com.turkogame.darphane.activity.adapters.AdapterMagaza;
+import com.turkogame.darphane.activity.app.AppConfig;
+import com.turkogame.darphane.activity.models.MagazaItem;
+import com.turkogame.darphane.adapter.AdapterListInbox;
+import com.turkogame.darphane.utils.Tools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kredi_Paketleri extends AppCompatActivity {
+public class Magaza extends AppCompatActivity {
     SharedPreferences sharedPreferences,kayit_kontrol;
     private View parent_view;
     private AdapterListInbox mAdapter;
@@ -53,8 +52,8 @@ public class Kredi_Paketleri extends AppCompatActivity {
     private RecyclerView listView;
     String kullanici_id,token;
     int fal_turu=0;
-    List<KrediPaketleriItem> list;
-    AdapterKrediPaketleri adapterKrediPaketleri;
+    List<MagazaItem> list;
+    AdapterMagaza adapterMagaza;
     public static String kontrolcu;
     int sayac=0;
     RecyclerView.LayoutManager layoutManager;
@@ -62,7 +61,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.kredi_paketleri);
+        setContentView(R.layout.magaza);
         token= FirebaseInstanceId.getInstance().getToken();
 
         listView = (RecyclerView) findViewById(R.id.liste_view);
@@ -109,7 +108,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Kredi_Paketleri.this, Fallarim.class);
+                Intent intent = new Intent(Magaza.this, Fallarim.class);
                 startActivity(intent);
             }
         });
@@ -130,7 +129,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
         alt_menu_duyurular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Kredi_Paketleri.this, Duyurular.class);
+                Intent intent = new Intent(Magaza.this, Duyurular.class);
                 startActivity(intent);
             }
         });
@@ -138,7 +137,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
         alt_menu_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Kredi_Paketleri.this, MainMenu.class));
+                startActivity(new Intent(Magaza.this, MainMenu.class));
                 finishAffinity();
             }
         });
@@ -219,7 +218,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
 
         kayitci.commit();
 
-        Intent intent = new Intent(Kredi_Paketleri.this, form);
+        Intent intent = new Intent(Magaza.this, form);
         startActivity(intent);
 
     }
@@ -235,7 +234,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
         String kontrol_key = md5.toUpperCase();
 
         try {
-            String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&paket_turu=1&kontrol_key="+kontrol_key+"&islem=1";
+            String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&paket_turu=0&kontrol_key="+kontrol_key+"&islem=1";
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     new com.android.volley.Response.Listener<JSONObject>() {
@@ -260,8 +259,8 @@ public class Kredi_Paketleri extends AppCompatActivity {
                                     Log.d("mesaj", list.toString());
 
 
-                                    adapterKrediPaketleri = new AdapterKrediPaketleri( Kredi_Paketleri.this, list, Kredi_Paketleri.this);
-                                    listView.setAdapter(adapterKrediPaketleri);
+                                    adapterMagaza = new AdapterMagaza( Magaza.this, list, Magaza.this);
+                                    listView.setAdapter(adapterMagaza);
 
 
                                 } else {
@@ -296,8 +295,8 @@ public class Kredi_Paketleri extends AppCompatActivity {
 
 
 
-    ArrayList<KrediPaketleriItem> okunanlariParseEt(String okunanJson) {
-        ArrayList<KrediPaketleriItem> kullaniciList = new ArrayList<>();
+    ArrayList<MagazaItem> okunanlariParseEt(String okunanJson) {
+        ArrayList<MagazaItem> kullaniciList = new ArrayList<>();
         try {
             JSONArray arrayKullanici = new JSONArray(okunanJson);
 
@@ -307,6 +306,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
                 String aciklama =arrayKullanici.getJSONObject(i).get("ACIKLAMA").toString();
                 String miktar =arrayKullanici.getJSONObject(i).get("MIKTAR").toString();
                 String tutar =arrayKullanici.getJSONObject(i).get("TUTAR").toString();
+                String kredi_tutar =arrayKullanici.getJSONObject(i).get("KREDI_TUTAR").toString();
                 String aktif =arrayKullanici.getJSONObject(i).get("AKTIF").toString();
                 String paket_turu =arrayKullanici.getJSONObject(i).get("PAKET_TURU").toString();
                 String paket_resmi =arrayKullanici.getJSONObject(i).get("PAKET_RESMI").toString();
@@ -316,7 +316,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
                 tutar=df.format(Float.parseFloat(tutar));
                 tutar=tutar.replace(".",",");
 
-                KrediPaketleriItem satir = new KrediPaketleriItem( paket_id,paket_adi,aciklama,miktar,tutar,aktif,paket_turu,paket_resmi,adsense_id );
+                MagazaItem satir = new MagazaItem( paket_id,paket_adi,aciklama,miktar,tutar,kredi_tutar,aktif,paket_turu,paket_resmi,adsense_id );
                 kullaniciList.add(satir);
             }
         } catch (JSONException e) {
@@ -335,7 +335,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
        // toolbar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Kredi Paketleri");
+        getSupportActionBar().setTitle("Mağaza");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Tools.setSystemBarColor(this, R.color.system_bar);
     }
@@ -367,7 +367,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
     private class ActionModeCallback implements ActionMode.Callback {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            Tools.setSystemBarColor(Kredi_Paketleri.this, R.color.blue_grey_700);
+            Tools.setSystemBarColor(Magaza.this, R.color.blue_grey_700);
             //mode.getMenuInflater().inflate(R.menu.menu_delete, menu);
             return true;
         }
@@ -392,7 +392,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
         public void onDestroyActionMode(ActionMode mode) {
             mAdapter.clearSelections();
             actionMode = null;
-            Tools.setSystemBarColor(Kredi_Paketleri.this, R.color.red_600);
+            Tools.setSystemBarColor(Magaza.this, R.color.red_600);
         }
     }
 
