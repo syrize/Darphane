@@ -114,6 +114,7 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
                 Log.d("mesaj", "Para ile satın alma");
                 Toast.makeText(context,holder.adsense_id.getText().toString(), Toast.LENGTH_LONG).show();
 
+
                 paket_id=holder.paket_id.getText().toString();
                 paket_tutari=holder.tutar.getText().toString();
                 kredi_tutari= holder.kredi_tutari.getText().toString();
