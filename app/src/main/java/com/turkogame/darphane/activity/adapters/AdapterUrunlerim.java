@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.turkogame.darphane.R;
 import com.turkogame.darphane.activity.Fal_Sonucu;
-import com.turkogame.darphane.activity.models.FallarimItem;
+import com.turkogame.darphane.activity.models.UrunlerimItem;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
@@ -22,16 +22,16 @@ import java.util.List;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class FallarimAdapter extends RecyclerView.Adapter<FallarimAdapter.tanimla> {
+public class AdapterUrunlerim extends RecyclerView.Adapter<AdapterUrunlerim.tanimla> {
 
-    List<FallarimItem> list;
+    List<UrunlerimItem> list;
     Context context;
     SharedPreferences aktarilacak;
     Activity activity ;
     String cevap_metni,fal_turu_id,fal_istek_tarihi,istenen_falci,kullanici_id;
 
 
-    public FallarimAdapter(Context context, List<FallarimItem> list, Activity activity) {
+    public AdapterUrunlerim(Context context, List<UrunlerimItem> list, Activity activity) {
 
         this.list = list;
         this.context = context;
@@ -40,7 +40,7 @@ public class FallarimAdapter extends RecyclerView.Adapter<FallarimAdapter.taniml
 
     @Override
     public tanimla onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.model_fallarim,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.model_urunlerim,parent,false);
         return new tanimla(view);
     }
 

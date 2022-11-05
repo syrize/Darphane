@@ -108,7 +108,7 @@ public class Magaza extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Magaza.this, Fallarim.class);
+                Intent intent = new Intent(Magaza.this, Urunlerim.class);
                 startActivity(intent);
             }
         });

@@ -19,7 +19,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#9a2762"
+                android:background="#34495e"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStartWithNavigation="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -29,7 +29,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorCerceve"
+        android:background="#ecf0f1"
         android:orientation="vertical"
         android:padding="@dimen/spacing_large">
 

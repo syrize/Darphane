@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,13 +91,12 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
         holder.paket_adi.setText(list.get(position).getPAKET_ADI());
         holder.paket_id.setText(list.get(position).getPAKET_ID());
         holder.adsense_id.setText(list.get(position).getADSENSE_ID());
-        holder.tutar.setText(list.get(position).getTUTAR());
-        holder.kredi_tutari.setText(list.get(position).getKREDI_TUTAR());
+        holder.parayla_satinal.setText(list.get(position).getTUTAR());
+        holder.krediyle_satinal.setText(list.get(position).getKREDI_TUTAR());
         String foto = "https://www.turkogame.com/uygulamalar/bilgi_oyunu/img/product-list/"+list.get(position).getPAKET_RESMI();
         Picasso.get().load(foto).into(holder.paket_resmi);
         holder.kullanici_id.setText(kullanici_id);
         holder.aciklama.setText(list.get(position).getACIKLAMA());
-
 
 
         holder.krediyle_satinal.setOnClickListener(new View.OnClickListener() {
@@ -114,15 +114,17 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
                 Log.d("mesaj", "Para ile satın alma");
                 Toast.makeText(context,holder.adsense_id.getText().toString(), Toast.LENGTH_LONG).show();
 
+                /*
+                        paket_id=holder.paket_id.getText().toString();
+                        paket_tutari=holder.tutar.getText().toString();
+                        kredi_tutari= holder.kredi_tutari.getText().toString();
+                        kullanici_id=holder.kullanici_id.getText().toString();
+                        aciklama=holder.aciklama.getText().toString();
+                        satinalma_kontrol=1;
 
-                paket_id=holder.paket_id.getText().toString();
-                paket_tutari=holder.tutar.getText().toString();
-                kredi_tutari= holder.kredi_tutari.getText().toString();
-                kullanici_id=holder.kullanici_id.getText().toString();
-                aciklama=holder.aciklama.getText().toString();
-                satinalma_kontrol=1;
+                        buySubscription(holder.adsense_id.getText().toString());
 
-                buySubscription(holder.adsense_id.getText().toString());
+                */
 
             }
         });
@@ -137,7 +139,7 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
     {
         TextView paket_id,paket_adi,aciklama,tutar,kredi_tutari,adsense_id,kullanici_id;
         CircularImageView paket_resmi;
-        LinearLayout krediyle_satinal,parayla_satinal;
+        Button krediyle_satinal,parayla_satinal;
 
 
 
@@ -148,11 +150,12 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
             aciklama = (TextView) itemView.findViewById(R.id.aciklama);
             paket_resmi =  (CircularImageView) itemView.findViewById(R.id.kredi_resim);
             tutar = (TextView) itemView.findViewById(R.id.ucret);
-            kredi_tutari = (TextView) itemView.findViewById(R.id.kredi_tutari);
+
             kullanici_id = (TextView) itemView.findViewById(R.id.kullanici_id);
             adsense_id = (TextView) itemView.findViewById(R.id.adsense_id);
-            krediyle_satinal = (LinearLayout) itemView.findViewById(R.id.krediyle_satinal);
-            parayla_satinal = (LinearLayout) itemView.findViewById(R.id.parayla_satinal);
+
+            parayla_satinal = (Button) itemView.findViewById(R.id.parayla_satinal);
+            krediyle_satinal = (Button) itemView.findViewById(R.id.krediyle_satinal);
 
         }
 

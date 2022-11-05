@@ -39,7 +39,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,7 +108,7 @@ public class Kredi_Paketleri extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Kredi_Paketleri.this, Fallarim.class);
+                Intent intent = new Intent(Kredi_Paketleri.this, Urunlerim.class);
                 startActivity(intent);
             }
         });

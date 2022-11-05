@@ -21,9 +21,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.turkogame.darphane.R;
-import com.turkogame.darphane.activity.adapters.FallarimAdapter;
+import com.turkogame.darphane.activity.adapters.AdapterUrunlerim;
 import com.turkogame.darphane.activity.app.AppConfig;
-import com.turkogame.darphane.activity.models.FallarimItem;
+import com.turkogame.darphane.activity.models.UrunlerimItem;
 import com.turkogame.darphane.adapter.AdapterListInbox;
 import com.turkogame.darphane.utils.Tools;
 
@@ -34,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fallarim extends AppCompatActivity {
+public class Urunlerim extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private View parent_view;
     private AdapterListInbox mAdapter;
@@ -43,8 +43,8 @@ public class Fallarim extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView listView;
     String kullanici_id;
-    List<FallarimItem> list;
-    FallarimAdapter adapterFallarim;
+    List<UrunlerimItem> list;
+    AdapterUrunlerim adapterUrunlerim;
     public static String kontrolcu;
     int sayac=0;
     RecyclerView.LayoutManager layoutManager;
@@ -52,7 +52,7 @@ public class Fallarim extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fallarim);
+        setContentView(R.layout.urunlerim);
 
 
         listView = (RecyclerView) findViewById(R.id.fallarim_view);
@@ -66,7 +66,7 @@ public class Fallarim extends AppCompatActivity {
         initComponent();
 
 
-        sharedPreferences = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
         kullanici_id = sharedPreferences.getString("user_id","0");
 
@@ -110,8 +110,8 @@ public class Fallarim extends AppCompatActivity {
                                     Log.d("mesaj", list.toString());
 
 
-                                    adapterFallarim = new FallarimAdapter( Fallarim.this, list , Fallarim.this);
-                                    listView.setAdapter(adapterFallarim);
+                                    adapterUrunlerim = new AdapterUrunlerim( Urunlerim.this, list , Urunlerim.this);
+                                    listView.setAdapter(adapterUrunlerim);
 
 
                                 } else {
@@ -149,8 +149,8 @@ public class Fallarim extends AppCompatActivity {
 
 
 
-    ArrayList<FallarimItem> okunanlariParseEt(String okunanJson) {
-        ArrayList<FallarimItem> fallarimList = new ArrayList<>();
+    ArrayList<UrunlerimItem> okunanlariParseEt(String okunanJson) {
+        ArrayList<UrunlerimItem> fallarimList = new ArrayList<>();
         try {
             JSONArray arrayKullanici = new JSONArray(okunanJson);
             for (int i = 0; i < arrayKullanici.length(); ++i) {
@@ -176,7 +176,7 @@ public class Fallarim extends AppCompatActivity {
                 String falci_adi =arrayKullanici.getJSONObject(i).get("FALCI_ADI").toString();
                 String falci_soyadi =arrayKullanici.getJSONObject(i).get("FALCI_SOYADI").toString();
 
-                FallarimItem satir = new FallarimItem( istek_id,kullanici_id,istek_turu,durum,giris,cevap_genel,cevap_ask,
+                UrunlerimItem satir = new UrunlerimItem( istek_id,kullanici_id,istek_turu,durum,giris,cevap_genel,cevap_ask,
                         cevap_kariyer,cevap_saglik,sonuc,istek_tarihi,istek_saati,cevap_tarihi,cevap_saati,cevap_kullanici_id,
                         fal_turu,ruya_metni,yorum,istenen_falci,falci_adi,falci_soyadi);
 
@@ -198,9 +198,9 @@ public class Fallarim extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
        // toolbar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Fallarım");
+        getSupportActionBar().setTitle("Urunlerim");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     private void initComponent() {
@@ -259,7 +259,7 @@ public class Fallarim extends AppCompatActivity {
     private class ActionModeCallback implements ActionMode.Callback {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            Tools.setSystemBarColor(Fallarim.this, R.color.blue_grey_700);
+            Tools.setSystemBarColor(Urunlerim.this, R.color.blue_grey_700);
             //mode.getMenuInflater().inflate(R.menu.menu_delete, menu);
             return true;
         }
@@ -284,7 +284,7 @@ public class Fallarim extends AppCompatActivity {
         public void onDestroyActionMode(ActionMode mode) {
             mAdapter.clearSelections();
             actionMode = null;
-            Tools.setSystemBarColor(Fallarim.this, R.color.red_600);
+            Tools.setSystemBarColor(Urunlerim.this, R.color.red_600);
         }
     }
 

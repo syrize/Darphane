@@ -65,10 +65,10 @@ public class Duyurular extends AppCompatActivity {
         initComponent();
 
 
-        sharedPreferences = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
         kullanici_id = sharedPreferences.getString("user_id","0");
-        fal_turu = sharedPreferences.getInt("fal_turu",0);
+
 
         duyuru_oku();
         //Toast.makeText(this, "Long press for multi selection", Toast.LENGTH_SHORT).show();
@@ -183,7 +183,7 @@ public class Duyurular extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Duyurular");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     private void initComponent() {

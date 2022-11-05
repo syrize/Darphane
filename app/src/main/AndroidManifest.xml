@@ -103,7 +103,7 @@
             android:name="com.turkogame.darphane.activity.Falci_Detay"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.turkogame.darphane.activity.Fallarim"
+            android:name="com.turkogame.darphane.activity.Urunlerim"
             android:screenOrientation="portrait" />
 
         <activity

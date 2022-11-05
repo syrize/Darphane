@@ -36,7 +36,7 @@ public class Bize_Yazin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bize_yazin);
 
-        sharedPreferences = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
+        sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
         kullanici_id = sharedPreferences.getString("user_id","0");
 
         btn_gonder = findViewById(R.id.btn_gonder);
@@ -122,7 +122,7 @@ public class Bize_Yazin extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Bize Yazın");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     @Override

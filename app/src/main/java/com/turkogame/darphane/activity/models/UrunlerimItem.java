@@ -1,6 +1,6 @@
 package com.turkogame.darphane.activity.models;
 
-public class FallarimItem {
+public class UrunlerimItem {
 	private String ISTEK_ID;
 	private String KULLANICI_ID;
 	private String ISTEK_TURU;
@@ -24,7 +24,7 @@ public class FallarimItem {
 	private String FALCI_SOYADI;
 
 
-	public FallarimItem(String ISTEK_ID, String KULLANICI_ID, String ISTEK_TURU, String DURUM,  String GIRIS
+	public UrunlerimItem(String ISTEK_ID, String KULLANICI_ID, String ISTEK_TURU, String DURUM, String GIRIS
 			, String CEVAP_GENEL, String CEVAP_ASK, String CEVAP_KARIYER, String CEVAP_SAGLIK, String SONUC
 			, String ISTEK_TARIHI, String ISTEK_SAATI, String CEVAP_TARIHI, String CEVAP_SAATI, String CEVAP_KULLANICI_ID
 			, String FAL_TURU, String RUYA_METNI, String YORUM, String ISTENEN_FALCI, String FALCI_ADI, String FALCI_SOYADI) {

@@ -49,11 +49,9 @@ import com.turkogame.darphane.R;
 import com.turkogame.darphane.activity.app.AppConfig;
 import com.turkogame.darphane.activity.models.KrediPaketleriItem;
 import com.turkogame.darphane.utils.Tools;
-import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
@@ -409,7 +407,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainMenu.this, Fallarim.class);
+                Intent intent = new Intent(MainMenu.this, Urunlerim.class);
                 startActivity(intent);
             }
         });
@@ -418,7 +416,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainMenu.this, Fallarim.class);
+                Intent intent = new Intent(MainMenu.this, Urunlerim.class);
                 startActivity(intent);
             }
         });

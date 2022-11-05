@@ -155,7 +155,7 @@ public class Kredi_Kazan extends AppCompatActivity  implements RewardedVideoAdLi
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Kredi_Kazan.this, Fallarim.class);
+                Intent intent = new Intent(Kredi_Kazan.this, Urunlerim.class);
                 startActivity(intent);
             }
         });

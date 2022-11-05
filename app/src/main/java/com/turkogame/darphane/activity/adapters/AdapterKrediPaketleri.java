@@ -100,6 +100,8 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
             @Override
             public void onClick(View v) {
 
+                Log.d("mesaj", "Kredi Satınalma Tıklandı");
+
                // Toast.makeText(context,holder.adsense_id.getText().toString(), Toast.LENGTH_LONG).show();
                 paket_id=holder.paket_id.getText().toString();
                 paket_tutari=holder.tutar.getText().toString();
