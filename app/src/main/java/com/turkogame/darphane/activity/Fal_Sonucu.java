@@ -75,11 +75,9 @@ public class Fal_Sonucu extends AppCompatActivity {
 
         }
 
-        if (fal_turu_id.equals("1")){fal_adi.setText("Kahve Falı  -  "+fal_istek_tarihi); fal_resmi.setImageResource(R.drawable.kahve_fali);}
-        if (fal_turu_id.equals("2")){fal_adi.setText("Tarot Falı  -  "+fal_istek_tarihi); fal_resmi.setImageResource(R.drawable.tarot_fali);}
-        if (fal_turu_id.equals("3")){fal_adi.setText("El Falı  -  "+fal_istek_tarihi); fal_resmi.setImageResource(R.drawable.el_fali);}
-        if (fal_turu_id.equals("4")){fal_adi.setText("Rüya Yorumu  -  "+fal_istek_tarihi); fal_resmi.setImageResource(R.drawable.ruya_tabirleri);}
-        if (fal_turu_id.equals("5")){fal_adi.setText("Yüz Falı  -  "+fal_istek_tarihi); fal_resmi.setImageResource(R.drawable.yuz_fali);}
+        if (fal_turu_id.equals("1")){fal_adi.setText("Kahve Falı  -  "+fal_istek_tarihi); fal_resmi.setImageResource(R.drawable.economy);}
+        if (fal_turu_id.equals("2")){fal_adi.setText("Tarot Falı  -  "+fal_istek_tarihi); fal_resmi.setImageResource(R.drawable.ic_el);}
+
 
 
         fal_cevabi.setText(cevap_metni);

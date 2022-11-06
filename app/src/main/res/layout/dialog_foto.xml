@@ -25,12 +25,7 @@
             android:layout_width="30dp"
             android:layout_height="1dp"
             />
-        <ImageView
-            android:id="@+id/kamera"
-            android:layout_width="100dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:src="@drawable/camera2" />
+
 
     </LinearLayout>
 

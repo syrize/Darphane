@@ -180,8 +180,7 @@
                                         android:layout_height="40dp"
                                         android:layout_centerHorizontal="true"
                                         android:background="@android:color/transparent"
-                                        android:tint="@color/indigo_600"
-                                        app:srcCompat="@drawable/ic_attach_money" />
+                                        app:srcCompat="@drawable/hemen_kazan" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -225,8 +224,7 @@
                                 android:layout_height="40dp"
                                 android:layout_centerHorizontal="true"
                                 android:background="@android:color/transparent"
-                                android:tint="@color/indigo_600"
-                                app:srcCompat="@drawable/ic_tarot" />
+                                app:srcCompat="@drawable/bil_kazan" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -285,8 +283,7 @@
                                 android:layout_height="40dp"
                                 android:layout_centerHorizontal="true"
                                 android:background="@android:color/transparent"
-                                android:tint="@color/indigo_600"
-                                app:srcCompat="@drawable/ic_el" />
+                                app:srcCompat="@drawable/bul_kazan" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -329,8 +326,7 @@
                                 android:layout_height="40dp"
                                 android:layout_centerHorizontal="true"
                                 android:background="@android:color/transparent"
-                                android:tint="@color/indigo_600"
-                                app:srcCompat="@drawable/ic_face" />
+                                app:srcCompat="@drawable/cevir_kazan" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -408,8 +404,7 @@
                                     android:layout_height="40dp"
                                     android:layout_centerHorizontal="true"
                                     android:background="@android:color/transparent"
-                                    android:tint="@color/indigo_600"
-                                    app:srcCompat="@drawable/ic_local_cafe" />
+                                    app:srcCompat="@drawable/para_cek" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -453,8 +448,7 @@
                                     android:layout_height="40dp"
                                     android:layout_centerHorizontal="true"
                                     android:background="@android:color/transparent"
-                                    android:tint="@color/indigo_600"
-                                    app:srcCompat="@drawable/ic_shopping_cart" />
+                                    app:srcCompat="@drawable/market" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -505,7 +499,7 @@
                         android:visibility="visible">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card_9"
+                            android:id="@+id/urunlerim"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_medium"
@@ -531,14 +525,13 @@
                                     android:layout_height="40dp"
                                     android:layout_centerHorizontal="true"
                                     android:background="@android:color/transparent"
-                                    android:tint="@color/indigo_600"
-                                    app:srcCompat="@drawable/ic_reklam_kaldir" />
+                                    app:srcCompat="@drawable/order_listesi" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="@dimen/spacing_small"
-                                    android:text="Kazanç Geçmişi"
+                                    android:text="Satın Aldıklarım"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                     android:textColor="@color/indigo_600"
                                     android:textSize="18dp" />
@@ -575,8 +568,7 @@
                                     android:layout_height="40dp"
                                     android:layout_centerHorizontal="true"
                                     android:background="@android:color/transparent"
-                                    android:tint="@color/indigo_600"
-                                    app:srcCompat="@drawable/ic_bize_yaz" />
+                                    app:srcCompat="@drawable/sorun_bildir" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -651,8 +643,7 @@
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:background="@android:color/transparent"
-                                    android:tint="@color/indigo_600"
-                                    app:srcCompat="@drawable/ic_account_circle" />
+                                    app:srcCompat="@drawable/profil" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -696,8 +687,7 @@
                                     android:layout_height="40dp"
                                     android:layout_centerHorizontal="true"
                                     android:background="@android:color/transparent"
-                                    android:tint="@color/indigo_600"
-                                    app:srcCompat="@drawable/ic_settings" />
+                                    app:srcCompat="@drawable/settings" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -778,7 +768,7 @@
                 android:layout_weight="2" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/alt_menu_fal_istek"
+                android:id="@+id/alt_menu_ana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -796,14 +786,14 @@
                 android:layout_weight="2" />
 
             <ImageView
-                android:id="@+id/alt_menu_burclar"
+                android:id="@+id/alt_menu_ayarlar"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:padding="15dp"
                 android:tint="@color/mdtp_white"
-                app:srcCompat="@drawable/ic_burc" />
+                app:srcCompat="@drawable/settings" />
 
             <View
                 android:layout_width="0dp"
@@ -915,7 +905,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
                 <LinearLayout
-                    android:id="@+id/menu_kredikazan"
+                    android:id="@+id/menu_kolaykazan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
@@ -931,8 +921,7 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_attach_money" />
+                        app:srcCompat="@drawable/hemen_kazan" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -943,7 +932,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/menu_tarotfali"
+                    android:id="@+id/menu_bilkazan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
@@ -959,47 +948,19 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_tarot" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Yarış Kazan" />
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/menu_Elfali"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="@dimen/spacing_middle"
-                        android:layout_height="0dp" />
-
-                    <ImageView
-                        android:layout_width="@dimen/spacing_mlarge"
-                        android:layout_height="@dimen/spacing_mlarge"
-                        android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_el" />
+                        app:srcCompat="@drawable/bil_kazan" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bil Kazan" />
 
+
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/menu_yuzfali"
+                    android:id="@+id/menu_bulkazan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
@@ -1015,8 +976,33 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_face" />
+                        app:srcCompat="@drawable/bul_kazan" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bul Kazan" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_cevirkazan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/spacing_middle"
+                        android:layout_height="0dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:layout_margin="@dimen/spacing_middle"
+                        app:srcCompat="@drawable/cevir_kazan" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1033,7 +1019,7 @@
                     android:background="@color/grey_5" />
 
                 <LinearLayout
-                    android:id="@+id/menu_fallarim"
+                    android:id="@+id/menu_order_listesi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
@@ -1049,13 +1035,12 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_fallarim" />
+                        app:srcCompat="@drawable/order_listesi" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kazanç Geçmişi" />
+                        android:text="Satın Aldıklarım" />
 
                 </LinearLayout>
 
@@ -1074,7 +1059,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
                 <LinearLayout
-                    android:id="@+id/menu_kahvefali"
+                    android:id="@+id/menu_paracekme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
@@ -1090,8 +1075,7 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_local_cafe" />
+                        app:srcCompat="@drawable/para_cek" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1101,7 +1085,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/menu_kredisatinal"
+                    android:id="@+id/menu_magaza"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
@@ -1117,8 +1101,7 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_credit_card" />
+                        app:srcCompat="@drawable/market" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1159,13 +1142,12 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_bize_yaz" />
+                        app:srcCompat="@drawable/sorun_bildir" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Destek İste" />
+                        android:text="Sorun Bildir" />
 
                 </LinearLayout>
 
@@ -1186,8 +1168,7 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_account_circle" />
+                        app:srcCompat="@drawable/profil" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1213,8 +1194,7 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_settings" />
+                        app:srcCompat="@drawable/settings" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1267,8 +1247,7 @@
                         android:layout_width="@dimen/spacing_mlarge"
                         android:layout_height="@dimen/spacing_mlarge"
                         android:layout_margin="@dimen/spacing_middle"
-                        android:tint="@color/deep_orange_300"
-                        app:srcCompat="@drawable/ic_touch_app" />
+                        app:srcCompat="@drawable/hakkinda" />
 
                     <TextView
                         android:layout_width="wrap_content"

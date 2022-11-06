@@ -58,15 +58,10 @@ public class AdapterUrunlerim extends RecyclerView.Adapter<AdapterUrunlerim.tani
         }
 
         if(list.get(position).getFAL_TURU().equals("1")){holder.fal_turu.setText("Kahve Falı");
-        holder.resim.setImageResource(R.drawable.kahve_fali); fal_turu_id="1"; }
+        holder.resim.setImageResource(R.drawable.economy); fal_turu_id="1"; }
         if(list.get(position).getFAL_TURU().equals("2")){holder.fal_turu.setText("Tarot Falı");
-            holder.resim.setImageResource(R.drawable.tarot_fali); fal_turu_id="2"; }
-        if(list.get(position).getFAL_TURU().equals("3")){holder.fal_turu.setText("El Falı");
-            holder.resim.setImageResource(R.drawable.el_fali); fal_turu_id="3"; }
-        if(list.get(position).getFAL_TURU().equals("4")){holder.fal_turu.setText("Rüya Yorumu");
-            holder.resim.setImageResource(R.drawable.ruya_tabirleri); fal_turu_id="4"; }
-        if(list.get(position).getFAL_TURU().equals("5")){holder.fal_turu.setText("Yüz Falı");
-            holder.resim.setImageResource(R.drawable.yuz_fali); fal_turu_id="5"; }
+            holder.resim.setImageResource(R.drawable.ic_el); fal_turu_id="2"; }
+
 
 
         if (list.get(position).getDURUM().equals("0")) { holder.durum.setText("Bekliyor");}

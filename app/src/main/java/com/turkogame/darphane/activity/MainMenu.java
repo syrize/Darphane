@@ -94,7 +94,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
     FirebaseUser user;
     SharedPreferences sharedPreferences,kayit_kontrol,reklam_kontrol,bakiye_kontrol;
     String kullanici_id,token,paket_id,paket_adi,tutar;
-    FloatingActionButton alt_menu_fal_istek;
+    FloatingActionButton alt_menu_ana;
     private BillingClient mBillingClient;
     List<KrediPaketleriItem> list;
     private Handler mHandler = new Handler();
@@ -139,7 +139,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         Log.d("mesaj","Firebase Token:"+token);
         FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
 
-        alt_menu_fal_istek = (FloatingActionButton) findViewById(R.id.alt_menu_fal_istek);
+        alt_menu_ana = (FloatingActionButton) findViewById(R.id.alt_menu_ana);
         profil_resmi = (ImageView) findViewById(R.id.logo_mobil);
         uygulama_adi=(TextView) findViewById(R.id.uygulama_adi);
         kredi=(TextView) findViewById(R.id.kredi);
@@ -333,7 +333,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
         MaterialCardView magaza = findViewById(R.id.magaza);
         MaterialCardView hemen_kazan = findViewById(R.id.hemen_kazan);
-        MaterialCardView card_9 = findViewById(R.id.card_9);
+        MaterialCardView urunlerim = findViewById(R.id.urunlerim);
         MaterialCardView destek_iste = findViewById(R.id.destek_iste);
         MaterialCardView profil_bilgileri = findViewById(R.id.profil_bilgileri);
         MaterialCardView ayarlar = findViewById(R.id.ayarlar);
@@ -341,15 +341,15 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         ImageButton menu_close = findViewById(R.id.menu_close);
         ImageView alt_menu_fallarim = findViewById(R.id.alt_menu_fallarim);
         ImageView alt_menu_duyurular = findViewById(R.id.alt_menu_duyurular);
-        ImageView alt_menu_burclar = findViewById(R.id.alt_menu_burclar);
+        ImageView alt_menu_ayarlar = findViewById(R.id.alt_menu_ayarlar);
 
-        LinearLayout menu_kahvefali=findViewById(R.id.menu_kahvefali);
-        LinearLayout menu_tarotfali=findViewById(R.id.menu_tarotfali);
-        LinearLayout menu_elfali=findViewById(R.id.menu_Elfali);
-        LinearLayout menu_yuzfali=findViewById(R.id.menu_yuzfali);
-        LinearLayout menu_fallarim=findViewById(R.id.menu_fallarim);
-        LinearLayout menu_kredisatinal=findViewById(R.id.menu_kredisatinal);
-        LinearLayout menu_kredikazan=findViewById(R.id.menu_kredikazan);
+        LinearLayout menu_paracekme=findViewById(R.id.menu_paracekme);
+        LinearLayout menu_bilkazan=findViewById(R.id.menu_bilkazan);
+        LinearLayout menu_bulkazan=findViewById(R.id.menu_bulkazan);
+        LinearLayout menu_cevirkazan=findViewById(R.id.menu_cevirkazan);
+        LinearLayout menu_order_listesi=findViewById(R.id.menu_order_listesi);
+        LinearLayout menu_magaza=findViewById(R.id.menu_magaza);
+        LinearLayout menu_kolaykazan=findViewById(R.id.menu_kolaykazan);
 
         LinearLayout menu_bizeyazin=findViewById(R.id.menu_bizeyazin);
         LinearLayout menu_profile=findViewById(R.id.menu_profile);
@@ -394,11 +394,11 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        alt_menu_fal_istek.setOnClickListener(new View.OnClickListener() {
+        alt_menu_ana.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                showFalDialog();
+                //showFalDialog();
             }
         });
 
@@ -412,7 +412,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        menu_fallarim.setOnClickListener(new View.OnClickListener() {
+        menu_order_listesi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -422,14 +422,12 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         });
 
 
-        alt_menu_burclar.setOnClickListener(new View.OnClickListener() {
+        alt_menu_ayarlar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kayit_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
-                SharedPreferences.Editor kayitci = kayit_kontrol.edit();
-                kayitci.putString("user_id", kullanici_id);
-                kayitci.commit();
 
+                Intent intent = new Intent(MainMenu.this, Ayarlar.class);
+                startActivity(intent);
 
             }
         });
@@ -484,10 +482,11 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        menu_kahvefali.setOnClickListener(new View.OnClickListener() {
+        menu_paracekme.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                fal_baslat( kullanici_id, token,1, Falcilar.class);
+                Intent intent = new Intent(MainMenu.this, Para_Cekme.class);
+                startActivity(intent);
 
             }
         });
@@ -503,10 +502,11 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        menu_tarotfali.setOnClickListener(new View.OnClickListener() {
+        menu_bilkazan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                fal_baslat( kullanici_id, token,2, Falcilar.class);
+                Intent intent = new Intent(MainMenu.this, Bilkazan_Start.class);
+                startActivity(intent);
 
             }
         });
@@ -520,10 +520,11 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        menu_elfali.setOnClickListener(new View.OnClickListener() {
+        menu_bulkazan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                fal_baslat( kullanici_id,token, 3, Falcilar.class);
+                Intent intent = new Intent(MainMenu.this, Bulkazan_Start.class);
+                startActivity(intent);
 
             }
         });
@@ -537,10 +538,11 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
         });
 
-        menu_yuzfali.setOnClickListener(new View.OnClickListener() {
+        menu_cevirkazan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                fal_baslat( kullanici_id, token,5, Falcilar.class);
+                Intent intent = new Intent(MainMenu.this, Hediye_Carki.class);
+                startActivity(intent);
 
             }
         });
@@ -556,7 +558,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        menu_kredisatinal.setOnClickListener(new View.OnClickListener() {
+        menu_magaza.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, Magaza.class);
                 startActivity(intent);
@@ -572,7 +574,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
-        menu_kredikazan.setOnClickListener(new View.OnClickListener() {
+        menu_kolaykazan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, Kredi_Kazan.class);
                 startActivity(intent);
@@ -582,11 +584,13 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
 
 
-        card_9.setOnClickListener(new View.OnClickListener() {
+        urunlerim.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                paketi_oku("3");
 
-                buySubscription("reklamlari_kaldir1");
+                Intent intent = new Intent(MainMenu.this, Urunlerim.class);
+                startActivity(intent);
+
+               // buySubscription("reklamlari_kaldir1");
 
             }
         });

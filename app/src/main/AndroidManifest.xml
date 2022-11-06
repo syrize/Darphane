@@ -76,9 +76,6 @@
             android:name="com.turkogame.darphane.activity.Ruya_Istek"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.turkogame.darphane.activity.El_Istek"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.turkogame.darphane.activity.Hakkinda"
             android:screenOrientation="portrait" />
         <activity

@@ -25,7 +25,7 @@ public class Hakkinda extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Hakkında");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.colorBanner);
+        Tools.setSystemBarColor(this, R.color.system_bar);
     }
 
     @Override

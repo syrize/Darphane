@@ -125,8 +125,7 @@ public class Kisisel_Bilgiler extends AppCompatActivity {
 
 
                     if (fal_turu == 3) {
-                        Intent intent = new Intent(Kisisel_Bilgiler.this, El_Istek.class);
-                        startActivity(intent);
+
                     }
 
 

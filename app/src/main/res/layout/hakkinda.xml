@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#9a2762"
+            android:background="#34495e"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentInsetStartWithNavigation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#b66083"
+
             android:padding="@dimen/spacing_middle">
 
             <androidx.cardview.widget.CardView
@@ -68,7 +68,7 @@
                             android:layout_width="@dimen/spacing_xxlarge"
                             android:layout_height="@dimen/spacing_xxlarge"
                             android:src="@drawable/logo_mobil"
-                            android:tint="@color/amber_600" />
+                            />
 
                         <View
                             android:layout_width="@dimen/spacing_large"
@@ -117,7 +117,7 @@
                             android:layout_width="@dimen/spacing_xmlarge"
                             android:layout_height="@dimen/spacing_xmlarge"
                             android:background="@android:color/transparent"
-                            android:tint="@color/grey_40"
+                            android:tint="@color/orange_900"
                             app:srcCompat="@drawable/ic_info" />
 
                         <View
@@ -168,7 +168,7 @@
                             android:layout_width="@dimen/spacing_xmlarge"
                             android:layout_height="@dimen/spacing_xmlarge"
                             android:background="@android:color/transparent"
-                            android:tint="@color/grey_40"
+                            android:tint="@color/blue_900"
                             app:srcCompat="@drawable/ic_book" />
 
                         <View
@@ -253,7 +253,7 @@
                             android:layout_width="@dimen/spacing_xmlarge"
                             android:layout_height="@dimen/spacing_xmlarge"
                             android:background="@android:color/transparent"
-                            android:tint="@color/grey_40"
+                            android:tint="@color/red_900"
                             app:srcCompat="@drawable/ic_person" />
 
                         <View
@@ -350,7 +350,7 @@
                             android:layout_width="@dimen/spacing_xmlarge"
                             android:layout_height="@dimen/spacing_xmlarge"
                             android:background="@android:color/transparent"
-                            android:tint="@color/grey_40"
+                            android:tint="@color/amber_900"
                             app:srcCompat="@drawable/ic_business" />
 
                         <View
@@ -401,7 +401,7 @@
                             android:layout_width="@dimen/spacing_xmlarge"
                             android:layout_height="@dimen/spacing_xmlarge"
                             android:background="@android:color/transparent"
-                            android:tint="@color/grey_40"
+                            android:tint="@color/purple_A100"
                             app:srcCompat="@drawable/ic_location" />
 
                         <View
