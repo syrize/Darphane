@@ -17,13 +17,13 @@ import com.turkogame.darphane.utils.Tools;
 public class Ayarlar extends AppCompatActivity {
     SwitchCompat acilis_muzigi,bildirim_sesleri,uygulama_sesleri;
     SharedPreferences sharedPreferences;
-    int acilis,bildirim,uygulama;
+    int acilis,bildirim,uygulama,deneme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ayarlar);
-
+        deneme=1;
         acilis_muzigi = (SwitchCompat) findViewById(R.id.acilis_muzigi);
         bildirim_sesleri = (SwitchCompat) findViewById(R.id.bildirim_sesleri);
         uygulama_sesleri = (SwitchCompat) findViewById(R.id.uygulama_sesleri);
