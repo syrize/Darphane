@@ -59,7 +59,7 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
     Context context;
     SharedPreferences kayit_kontrol;
     Activity activity ;
-    String kullanici_id,paket_id,paket_tutari,kredi_tutari,aciklama;
+    String kullanici_id,paket_id,paket_tutari,aciklama,kredi_tutari,kredi_miktari;
     int satinalma_kontrol=0;
     private BillingResult billingResult;
     private List<Purchase> purchases;
@@ -98,12 +98,25 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
         holder.kullanici_id.setText(kullanici_id);
         holder.aciklama.setText(list.get(position).getACIKLAMA());
 
+        kredi_oku(kullanici_id);
+
+
+
 
         holder.krediyle_satinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("mesaj", "kredi ile satın alma");
-                Toast.makeText(context,"kredi ile satın alma", Toast.LENGTH_LONG).show();
+
+             if(Integer.parseInt(kredi_miktari) >= Integer.parseInt(holder.krediyle_satinal.getText().toString())){
+
+                 Toast.makeText(context,holder.krediyle_satinal.getText(), Toast.LENGTH_LONG).show();
+
+
+             } else {
+
+                 Toast.makeText(context,"Kredi bakiyeniz yetersiz "+kredi_miktari, Toast.LENGTH_LONG).show();
+             }
 
             }
         });
@@ -137,7 +150,7 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
 
     public  class tanimla extends RecyclerView.ViewHolder
     {
-        TextView paket_id,paket_adi,aciklama,tutar,kredi_tutari,adsense_id,kullanici_id;
+        TextView paket_id,paket_adi,aciklama,tutar,adsense_id,kullanici_id;
         CircularImageView paket_resmi;
         Button krediyle_satinal,parayla_satinal;
 
@@ -153,6 +166,7 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
 
             kullanici_id = (TextView) itemView.findViewById(R.id.kullanici_id);
             adsense_id = (TextView) itemView.findViewById(R.id.adsense_id);
+
 
             parayla_satinal = (Button) itemView.findViewById(R.id.parayla_satinal);
             krediyle_satinal = (Button) itemView.findViewById(R.id.krediyle_satinal);
@@ -302,11 +316,8 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
                                 if (kontrol.getString("hata")=="false"){
 
 
-                                    kayit_kontrol = getApplicationContext().getSharedPreferences("fal_kontrol", 0);
-                                    SharedPreferences.Editor kayitci = kayit_kontrol.edit();
-                                    kayitci.putString("kredi",  kontrol.getString("kredi_miktari"));
-                                    kayitci.putInt("bakiye_sorgula",1);
-                                    kayitci.commit();
+
+                                    kredi_miktari= kontrol.getString("kredi_miktari");
 
 
                                      Log.d("mesaj", kontrol.getString("kredi_miktari") );
