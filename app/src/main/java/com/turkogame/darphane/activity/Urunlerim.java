@@ -55,7 +55,7 @@ public class Urunlerim extends AppCompatActivity {
         setContentView(R.layout.urunlerim);
 
 
-        listView = (RecyclerView) findViewById(R.id.fallarim_view);
+        listView = (RecyclerView) findViewById(R.id.urunlerim_view);
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setHasFixedSize(true);
 
@@ -70,21 +70,21 @@ public class Urunlerim extends AppCompatActivity {
 
         kullanici_id = sharedPreferences.getString("user_id","0");
 
-        falsonucu_oku();
+        urunlistesi_oku();
         //Toast.makeText(this, "Long press for multi selection", Toast.LENGTH_SHORT).show();
     }
 
 
 
-    private void falsonucu_oku(){
+    private void urunlistesi_oku(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        String md5= AppConfig.md5(kullanici_id+"fal_sonucuGET");
+        String md5= AppConfig.md5(kullanici_id+"urun_detaylarGET");
         String kontrol_key = md5.toUpperCase();
 
         try {
-            String url = AppConfig.URL + "/fal_sonucu.php?user_id="+kullanici_id+"&kontrol_key="+kontrol_key;
+            String url = AppConfig.URL + "/urun_detaylar.php?user_id="+kullanici_id+"&kontrol_key="+kontrol_key;
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     new com.android.volley.Response.Listener<JSONObject>() {
@@ -99,7 +99,7 @@ public class Urunlerim extends AppCompatActivity {
 
                                 if (kontrol.getString("hata")=="false"){
 
-                                    String gelenveri=kontrol.toString().replace("{\"hata\":false,\"fal-bilgileri\":","");
+                                    String gelenveri=kontrol.toString().replace("{\"hata\":false,\"urun_detaylar\":","");
                                     gelenveri = gelenveri.replace("]}","]");
 
                                     Log.d("mesaj", gelenveri);
@@ -154,31 +154,19 @@ public class Urunlerim extends AppCompatActivity {
         try {
             JSONArray arrayKullanici = new JSONArray(okunanJson);
             for (int i = 0; i < arrayKullanici.length(); ++i) {
-                String istek_id =arrayKullanici.getJSONObject(i).get("ISTEK_ID").toString();
-                String istek_turu =arrayKullanici.getJSONObject(i).get("ISTEK_TURU").toString();
+                String kayit_id =arrayKullanici.getJSONObject(i).get("KAYIT_ID").toString();
+                String paket_id =arrayKullanici.getJSONObject(i).get("PAKET_ID").toString();
                 String durum =arrayKullanici.getJSONObject(i).get("DURUM").toString();
-                String giris =arrayKullanici.getJSONObject(i).get("GIRIS").toString();
-                String cevap_genel =arrayKullanici.getJSONObject(i).get("CEVAP_GENEL").toString();
-                String cevap_ask =arrayKullanici.getJSONObject(i).get("CEVAP_ASK").toString();
-                String cevap_kariyer =arrayKullanici.getJSONObject(i).get("CEVAP_KARIYER").toString();
-                String cevap_saglik =arrayKullanici.getJSONObject(i).get("CEVAP_SAGLIK").toString();
-                String sonuc =arrayKullanici.getJSONObject(i).get("SONUC").toString();
-                String istek_tarihi =arrayKullanici.getJSONObject(i).get("ISTEK_TARIHI").toString();
-                String istek_saati =arrayKullanici.getJSONObject(i).get("ISTEK_SAATI").toString();
-                String cevap_tarihi =arrayKullanici.getJSONObject(i).get("CEVAP_TARIHI").toString();
-                String cevap_saati =arrayKullanici.getJSONObject(i).get("CEVAP_SAATI").toString();
-                String cevap_kullanici_id =arrayKullanici.getJSONObject(i).get("CEVAP_KULLANICI_ID").toString();
-                String fal_turu =arrayKullanici.getJSONObject(i).get("FAL_TURU").toString();
-                String ruya_metni =arrayKullanici.getJSONObject(i).get("RUYA_METNI").toString();
-                String yorum =arrayKullanici.getJSONObject(i).get("YORUM").toString();
-                String istenen_falci =arrayKullanici.getJSONObject(i).get("ISTENEN_FALCI").toString();
-                String kullanici_id =arrayKullanici.getJSONObject(i).get("KULLANICI_ID").toString();
-                String falci_adi =arrayKullanici.getJSONObject(i).get("FALCI_ADI").toString();
-                String falci_soyadi =arrayKullanici.getJSONObject(i).get("FALCI_SOYADI").toString();
+                String tekil_urun_kodu =arrayKullanici.getJSONObject(i).get("TEKIL_URUN_KODU").toString();
+                String satin_alan_kullanici =arrayKullanici.getJSONObject(i).get("SATIN_ALAN_KULLANICI").toString();
+                String islem_zamani =arrayKullanici.getJSONObject(i).get("ISLEM_ZAMANI").toString();
+                String aciklama =arrayKullanici.getJSONObject(i).get("ACIKLAMA").toString();
+                String paket_adi =arrayKullanici.getJSONObject(i).get("PAKET_ADI").toString();
+                String paket_resmi =arrayKullanici.getJSONObject(i).get("PAKET_RESMI").toString();
 
-                UrunlerimItem satir = new UrunlerimItem( istek_id,kullanici_id,istek_turu,durum,giris,cevap_genel,cevap_ask,
-                        cevap_kariyer,cevap_saglik,sonuc,istek_tarihi,istek_saati,cevap_tarihi,cevap_saati,cevap_kullanici_id,
-                        fal_turu,ruya_metni,yorum,istenen_falci,falci_adi,falci_soyadi);
+
+                UrunlerimItem satir = new UrunlerimItem( kayit_id,paket_id,tekil_urun_kodu,durum,
+                        satin_alan_kullanici,islem_zamani, aciklama, paket_adi,paket_resmi );
 
                 fallarimList.add(satir);
             }
