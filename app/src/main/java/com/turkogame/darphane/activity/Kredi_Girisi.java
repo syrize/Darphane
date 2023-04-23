@@ -1,5 +1,7 @@
 package com.turkogame.darphane.activity;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Gravity;
@@ -221,6 +223,74 @@ public class Kredi_Girisi {
             e.printStackTrace();
         }
     }
+
+
+    public static void urun_satinalma(String user_id,String paket_id){
+
+        String md5= AppConfig.md5(paket_id+"urun_detaylarPUT");
+        String kontrol_key = md5.toUpperCase();
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JSONObject object = new JSONObject();
+        try {
+
+            Log.w(TAG, "mesaj " + paket_id);
+
+
+            object.put("kontrol_key", kontrol_key);
+            object.put("paket_id", paket_id);
+            object.put("user_id", user_id);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String url = AppConfig.URL + "/urun_detaylar.php";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, object,
+                new com.android.volley.Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Veri", response.toString());
+
+                        try {
+                            JSONObject kontrol = new JSONObject(response.toString());
+
+                            if (kontrol.getString("hata")=="false"){
+
+                                //Kredi_Girisi.kredi_oku(user_id,"2" );
+                                 Log.d("mesaj", kontrol.getString("mesaj"));
+
+
+                            } else {
+
+                                Log.d("mesaj", kontrol.getString("hataMesaj"));
+
+                                /*Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+                                toast.show();*/
+
+                            }
+
+
+                        } catch (Exception e) {
+
+                        }
+
+
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("snow", error.toString());
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+
+
+
+    }
+
 
 
 

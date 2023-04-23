@@ -80,6 +80,8 @@ public class Urunlerim extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
+
+
         String md5= AppConfig.md5(kullanici_id+"urun_detaylarGET");
         String kontrol_key = md5.toUpperCase();
 
@@ -126,9 +128,6 @@ public class Urunlerim extends AppCompatActivity {
                             } catch (Exception e) {
 
                             }
-
-
-
 
 
                         }

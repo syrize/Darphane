@@ -234,7 +234,7 @@ public class Magaza extends AppCompatActivity {
         String kontrol_key = md5.toUpperCase();
 
         try {
-            String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&paket_turu=0&kontrol_key="+kontrol_key+"&islem=1";
+            String url = AppConfig.URL + "/kredi_islemleri.php?user_id="+kullanici_id+"&paket_turu=0&kontrol_key="+kontrol_key+"&islem=0";
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     new com.android.volley.Response.Listener<JSONObject>() {

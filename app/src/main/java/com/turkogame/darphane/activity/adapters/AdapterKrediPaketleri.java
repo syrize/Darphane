@@ -235,8 +235,6 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
 
     void handlePurchase(Purchase satinalma) throws InterruptedException {
 
-
-
             ConsumeParams consumeParams =
                     ConsumeParams.newBuilder()
                             .setPurchaseToken(satinalma.getPurchaseToken())
@@ -308,14 +306,9 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
 
                                 }
 
-
                             } catch (Exception e) {
 
                             }
-
-
-
-
 
                         }
                     }, new com.android.volley.Response.ErrorListener() {

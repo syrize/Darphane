@@ -1,13 +1,17 @@
 package com.turkogame.darphane.activity.adapters;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,19 +54,19 @@ public class AdapterUrunlerim extends RecyclerView.Adapter<AdapterUrunlerim.tani
         holder.kayit_id.setText(list.get(position).getKAYIT_ID());
         holder.paket_id.setText(list.get(position).getPAKET_ID());
         holder.tekil_urun_kodu.setText(list.get(position).getTEKIL_URUN_KODU());
-        holder.durum.setText(list.get(position).getDURUM());
-        holder.satin_alan_kullanici.setText(list.get(position).getSATIN_ALAN_KULLANICI());
+       // holder.durum.setText(list.get(position).getDURUM());
+       // holder.satin_alan_kullanici.setText(list.get(position).getSATIN_ALAN_KULLANICI());
         holder.islem_zamani.setText(list.get(position).getISLEM_ZAMANI());
         holder.aciklama.setText(list.get(position).getACIKLAMA());
         holder.paket_adi.setText(list.get(position).getPAKET_ADI());
         String foto = "https://www.turkogame.com/uygulamalar/bilgi_oyunu/img/product-list/"+list.get(position).getPAKET_RESMI();
         Picasso.get().load(foto).into(holder.paket_resmi);
-/*
+
         holder.tiklanacak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (list.get(position).getDURUM().equals("1")   ) {
 
+                    /*
                     aktarilacak = getApplicationContext().getSharedPreferences("urunlerim", 0);
                     SharedPreferences.Editor kayitlar = aktarilacak.edit();
                     kayitlar.putString("kayit_id", holder.kayit_id.getText().toString());
@@ -73,14 +77,19 @@ public class AdapterUrunlerim extends RecyclerView.Adapter<AdapterUrunlerim.tani
                     kayitlar.putString("islem_zamani", holder.islem_zamani.getText().toString());
                     kayitlar.putString("aciklama", holder.aciklama.getText().toString());
                     kayitlar.commit();
+                    */
+                ClipboardManager clipboard = (ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
 
-                    //Intent intent = new Intent(activity, Fal_Sonucu.class);
-                    //activity.startActivity(intent);
-                }
+
+                String text = holder.tekil_urun_kodu.getText().toString();
+                ClipData clip = ClipData.newPlainText("Metin", text);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getApplicationContext(), text+"\nRandom Key Kopyalandı!", Toast.LENGTH_SHORT).show();
+
 
             }
         });
-*/
+
     }
 
 
@@ -96,7 +105,7 @@ public class AdapterUrunlerim extends RecyclerView.Adapter<AdapterUrunlerim.tani
             kayit_id = (TextView) itemView.findViewById(R.id.kayit_id);
             paket_id = (TextView) itemView.findViewById(R.id.paket_id);
             tekil_urun_kodu = (TextView) itemView.findViewById(R.id.tekil_urun_kodu);
-            durum = (TextView) itemView.findViewById(R.id.durum);
+            //durum = (TextView) itemView.findViewById(R.id.durum);
 
             islem_zamani = (TextView) itemView.findViewById(R.id.islem_zamani);
             aciklama = (TextView) itemView.findViewById(R.id.aciklama);

@@ -52,7 +52,6 @@ import static android.content.ContentValues.TAG;
 import static com.android.billingclient.api.BillingClient.BillingResponseCode.OK;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-
 public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> implements PurchasesUpdatedListener {
     private BillingClient mBillingClient;
     List<MagazaItem> list;
@@ -82,7 +81,6 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
         return new tanimla(view);
     }
 
-
     @Override
     public void onBindViewHolder(tanimla holder, final int position) {
         kayit_kontrol = getApplicationContext().getSharedPreferences("giris", 0);
@@ -101,8 +99,6 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
         kredi_oku(kullanici_id);
 
 
-
-
         holder.krediyle_satinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +107,6 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
              if(Integer.parseInt(kredi_miktari) >= Integer.parseInt(holder.krediyle_satinal.getText().toString())){
 
                  Toast.makeText(context,holder.krediyle_satinal.getText(), Toast.LENGTH_LONG).show();
-
 
              } else {
 
@@ -124,27 +119,21 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
         holder.parayla_satinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("mesaj", "Para ile satın alma");
-                Toast.makeText(context,holder.adsense_id.getText().toString(), Toast.LENGTH_LONG).show();
+                //Log.d("mesaj", "Para ile satın alma");
+                //Toast.makeText(context,holder.adsense_id.getText().toString(), Toast.LENGTH_LONG).show();
 
-                /*
+
                         paket_id=holder.paket_id.getText().toString();
-                        paket_tutari=holder.tutar.getText().toString();
-                        kredi_tutari= holder.kredi_tutari.getText().toString();
+                        paket_tutari=holder.parayla_satinal.getText().toString();
                         kullanici_id=holder.kullanici_id.getText().toString();
                         aciklama=holder.aciklama.getText().toString();
                         satinalma_kontrol=1;
-
                         buySubscription(holder.adsense_id.getText().toString());
-
-                */
 
             }
         });
 
     }
-
-
 
 
 
@@ -223,6 +212,8 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
 
 
         });
+
+
     }
 
 
@@ -239,7 +230,7 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
                 Log.e(TAG, "mesaj " + "Satınalma Başarılı");
 
                 if (satinalma_kontrol==1) {
-                   // Kredi_Girisi.kredi_satinalma(kullanici_id, paket_id, "1", kredi_miktari, paket_tutari, "4");
+                    Kredi_Girisi.urun_satinalma(kullanici_id, paket_id);
                     satinalma_kontrol=0;
                 }
 
