@@ -1,9 +1,11 @@
 package com.turkogame.darphane.activity;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
@@ -25,6 +27,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -64,6 +68,8 @@ public class Profile_Edit extends AppCompatActivity {
     Spinner spinner_cinsiyet,spinner_odeme_yontemleri;
 
     private static final int CAMERA_REQUEST = 1888;
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 123;
+
 
 
     @Override
@@ -101,6 +107,17 @@ public class Profile_Edit extends AppCompatActivity {
 
         }
 
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Kamera erişimi izni istemek için kullanılan kod
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    MY_PERMISSIONS_REQUEST_CAMERA);
+        }
+
+
+
         kamera_buton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -123,6 +140,29 @@ public class Profile_Edit extends AppCompatActivity {
 
 
     }
+
+  /*
+
+  // Kullanıcı tarafından Kamera izni verildiğinde kameranın otomatik açılmasını sağlar
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_CAMERA) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Kamera erişimi izni verildi, kamera açılıyor
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            } else {
+                // Kullanıcı izin vermedi, işlemler iptal ediliyor
+                Toast.makeText(this, "Kamera erişimi izni verilmedi", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+   */
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
