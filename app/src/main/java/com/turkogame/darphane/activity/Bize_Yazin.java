@@ -49,7 +49,18 @@ public class Bize_Yazin extends AppCompatActivity {
         btn_gonder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-            mesaj_gonder();
+                if (konu.getText().toString().length()>2 && mesaj.getText().toString().length()>5){
+
+                    Log.d("mesaj", konu.getText().toString());
+
+                    mesaj_gonder();
+
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "Lütfen Konu ve Mesaj alanlarını doldurunuz", Toast.LENGTH_SHORT).show();
+
+                }
+
 
             }
         });
