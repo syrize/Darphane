@@ -114,6 +114,7 @@ public class Bulkazan_Start extends AppCompatActivity implements RewardedVideoAd
     }
 
     private void oynama_hakki_kazan() {
+        loadRewardedVideoAd();
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.cevirmehakkikazan);

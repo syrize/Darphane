@@ -50,8 +50,8 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
     private static final Random random = new Random();
     Button onayla;
     TextView puan,reklam_id,reklam_kredisi,kredi;
-    TextView cevap_1,cevap_2,cevap_3,cevap_4,cevap_5,cevap_6,cevap_7,cevap_8,cevap_9,cevap_10,cevap_11,cevap_12;
-    LinearLayout kutu1,kutu2,kutu3,kutu4,kutu5,kutu6,kutu7,kutu8,kutu9,kutu10,kutu11,kutu12;
+    TextView cevap_1,cevap_2,cevap_3,cevap_4,cevap_5,cevap_6,cevap_7,cevap_8,cevap_9,cevap_10,cevap_11,cevap_12,cevap_13,cevap_14,cevap_15;
+    LinearLayout kutu1,kutu2,kutu3,kutu4,kutu5,kutu6,kutu7,kutu8,kutu9,kutu10,kutu11,kutu12,kutu13,kutu14,kutu15;
     int sayac=0;
     int soru_puani=0;
     int seviye=1;
@@ -87,6 +87,9 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
         cevap_10 = (TextView) findViewById(R.id.cevap_10);
         cevap_11 = (TextView) findViewById(R.id.cevap_11);
         cevap_12 = (TextView) findViewById(R.id.cevap_12);
+        cevap_13 = (TextView) findViewById(R.id.cevap_13);
+        cevap_14 = (TextView) findViewById(R.id.cevap_14);
+        cevap_15 = (TextView) findViewById(R.id.cevap_15);
         puan = (TextView) findViewById(R.id.puan);
         kredi = (TextView) findViewById(R.id.kredi);
 
@@ -102,6 +105,9 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
         kutu10 = (LinearLayout) findViewById(R.id.kutu10);
         kutu11 = (LinearLayout) findViewById(R.id.kutu11);
         kutu12 = (LinearLayout) findViewById(R.id.kutu12);
+        kutu13 = (LinearLayout) findViewById(R.id.kutu13);
+        kutu14 = (LinearLayout) findViewById(R.id.kutu14);
+        kutu15 = (LinearLayout) findViewById(R.id.kutu15);
 
 
         reklam_id = findViewById(R.id.reklam_id);
@@ -231,6 +237,33 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
             public void onClick(View v) {
 
                 cevap_kontrol(12);
+
+            }
+        });
+
+        kutu13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cevap_kontrol(13);
+
+            }
+        });
+
+        kutu14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cevap_kontrol(14);
+
+            }
+        });
+
+        kutu15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cevap_kontrol(15);
 
             }
         });
@@ -515,7 +548,7 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
 
         sayac=0;
 
-        dogru_kutu = random.nextInt(12)+1;
+        dogru_kutu = random.nextInt(15)+1;
 
         Log.d("mesaj", "Doğru Cevap: "+Integer.toString(dogru_kutu) );
 
@@ -579,6 +612,18 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
                 if (kutuno == 12) {
                     cevap_12.setText("$");
                     cevap_12.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 13) {
+                    cevap_13.setText("$");
+                    cevap_13.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 14) {
+                    cevap_14.setText("$");
+                    cevap_14.setBackgroundColor(Color.GREEN);
+                }
+                if (kutuno == 15) {
+                    cevap_15.setText("$");
+                    cevap_15.setBackgroundColor(Color.GREEN);
                 }
 
                 sayac=4;
@@ -660,6 +705,18 @@ public class Bulkazan extends AppCompatActivity implements RewardedVideoAdListen
                 if (kutuno == 12) {
 
                     cevap_12.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 13) {
+
+                    cevap_13.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 14) {
+
+                    cevap_14.setBackgroundColor(Color.RED);
+                }
+                if (kutuno == 15) {
+
+                    cevap_15.setBackgroundColor(Color.RED);
                 }
 
                 if (sayac>=3){
