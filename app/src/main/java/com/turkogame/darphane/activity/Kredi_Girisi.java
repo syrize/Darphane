@@ -2,6 +2,7 @@ package com.turkogame.darphane.activity;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Gravity;
@@ -290,6 +291,69 @@ public class Kredi_Girisi {
 
 
     }
+
+    public static void kredi_urun_satinalma(String user_id,String oyun_id,String miktar ){
+
+        String md5= AppConfig.md5(user_id+"kredi_cikis_islemleriPOST");
+        String kontrol_key = md5.toUpperCase();
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JSONObject object = new JSONObject();
+        try {
+            object.put("kontrol_key", kontrol_key);
+            object.put("oyun_id", oyun_id);
+            object.put("user_id", user_id);
+            object.put("miktar", miktar);
+
+            Log.d("mesaj", oyun_id+"  -  "+user_id+"  -  "+miktar);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String url = AppConfig.URL + "/kredi_cikis_islemleri.php";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, object,
+                new com.android.volley.Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("mesaj", response.toString());
+
+                        try {
+                            JSONObject kontrol = new JSONObject(response.toString());
+
+                            if (kontrol.getString("hata")=="false"){
+
+                                Kredi_Girisi.urun_satinalma(user_id, oyun_id);
+
+                                Toast toast = Toast.makeText(getApplicationContext(), "Satınalma Tamamlandı", Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+                                toast.show();
+
+                               // Log.d("mesaj", kontrol.getString("mesaj"));
+
+                            } else {
+
+                                Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+                                toast.show();
+
+                            }
+
+                        } catch (Exception e) {
+
+                        }
+
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("snow", error.toString());
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
 
 
 

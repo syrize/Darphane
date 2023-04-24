@@ -1,7 +1,10 @@
 package com.turkogame.darphane.activity.adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,8 +39,11 @@ import com.android.volley.toolbox.Volley;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.turkogame.darphane.R;
+import com.turkogame.darphane.activity.Kisisel_Bilgiler;
 import com.turkogame.darphane.activity.Kredi_Girisi;
 import com.turkogame.darphane.activity.Magaza;
+import com.turkogame.darphane.activity.MainMenu;
+import com.turkogame.darphane.activity.Urunlerim;
 import com.turkogame.darphane.activity.app.AppConfig;
 import com.turkogame.darphane.activity.models.MagazaItem;
 
@@ -104,17 +110,54 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
             public void onClick(View v) {
                 Log.d("mesaj", "kredi ile satın alma");
 
-             if(Integer.parseInt(kredi_miktari) >= Integer.parseInt(holder.krediyle_satinal.getText().toString())){
+                if (Integer.parseInt(kredi_miktari) >= Integer.parseInt(holder.krediyle_satinal.getText().toString())) {
 
-                 Toast.makeText(context,holder.krediyle_satinal.getText(), Toast.LENGTH_LONG).show();
+                    paket_id = holder.paket_id.getText().toString();
 
-             } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Onay");
+                    builder.setMessage("Satın alma işlemine devam etmek istiyor musunuz?");
 
-                 Toast.makeText(context,"Kredi bakiyeniz yetersiz "+kredi_miktari, Toast.LENGTH_LONG).show();
-             }
+                    builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
+                            Kredi_Girisi.kredi_urun_satinalma(kullanici_id, paket_id, holder.krediyle_satinal.getText().toString());
+
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            kredi_oku(kullanici_id);
+
+                            Intent intent = new Intent(activity, Urunlerim.class);
+                            activity.startActivity(intent);
+
+
+
+                           // Toast.makeText(context, holder.krediyle_satinal.getText(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    builder.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                } else {
+
+                    Toast.makeText(context, "Kredi bakiyeniz yetersiz " + kredi_miktari, Toast.LENGTH_LONG).show();
+                }
             }
         });
+
 
         holder.parayla_satinal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,6 +275,9 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
                 if (satinalma_kontrol==1) {
                     Kredi_Girisi.urun_satinalma(kullanici_id, paket_id);
                     satinalma_kontrol=0;
+
+                    Intent intent = new Intent(activity, Urunlerim.class);
+                    activity.startActivity(intent);
                 }
 
                 try {
@@ -272,6 +318,9 @@ public class AdapterMagaza extends RecyclerView.Adapter<AdapterMagaza.tanimla> i
 
         Thread.sleep(1000);
         kredi_oku(kullanici_id);
+
+
+
 
     }
 
