@@ -101,10 +101,8 @@ public class Profile_Edit extends AppCompatActivity {
         //Log.d("mesaj", "aaaa :"+profil_foto);
 
 
-        if (kullanici_id != ""){
-
+        if (!kullanici_id.equals("")) {
             kullanici_oku();
-
         }
 
 
@@ -165,6 +163,7 @@ public class Profile_Edit extends AppCompatActivity {
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             photo = (Bitmap) data.getExtras().get("data");
             resim.setImageBitmap(photo);

@@ -344,10 +344,110 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:paddingLeft="@dimen/spacing_large"
+                    android:paddingRight="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_large"
+                    android:visibility="visible">
 
 
 
-            </LinearLayout>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tahminet_kazan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/transparent"
+                                app:srcCompat="@drawable/tahminet_kazan" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:text="Tahmin Et Kazan"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/indigo_600"
+                                android:textSize="18dp" />
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/kredi_satinal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_medium"
+                        android:layout_weight="1"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@android:color/transparent"
+                                app:srcCompat="@drawable/kredi_satinal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_medium"
+                                android:text="Kredi Satınal"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/indigo_600"
+                                android:textSize="18dp" />
+
+
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+
+
+
+                    </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 

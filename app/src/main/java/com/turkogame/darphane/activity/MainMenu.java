@@ -181,7 +181,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
         }
 
-
         initNavigationMenu();
         initComponent();
        // card_2.setChecked(true);
@@ -189,7 +188,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
 
         kullanici_id = sharedPreferences.getString("user_id","0");
-
 
         tiklama_kontrol();
         startTime();
@@ -201,7 +199,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         kayitci.putString("user_id", kullanici_id);
         kayitci.putString("token",token);
         kayitci.commit();
-
 
     }
 
@@ -230,9 +227,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             mHandler.postDelayed(this, 5000);
         }
     };
-
-
-
 
     private void showFalDialog() {
         final Dialog dialog = new Dialog(this);
@@ -294,11 +288,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         dialog.getWindow().setAttributes(lp);
     }
 
-
-
-
-
-
     private void GoogleSignOut() {
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
@@ -322,7 +311,6 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
                 });
     }
 
-
     private void tiklama_kontrol(){
 
         ImageButton btn_menu = findViewById(R.id.bt_menu);
@@ -330,6 +318,8 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         MaterialCardView bilkazan_buton = findViewById(R.id.bilkazan_buton);
         MaterialCardView bul_kazan = findViewById(R.id.bul_kazan);
         MaterialCardView sans_carki = findViewById(R.id.sans_carki);
+        MaterialCardView tahminet_kazan = findViewById(R.id.tahminet_kazan);
+        MaterialCardView kredi_satinal = findViewById(R.id.kredi_satinal);
 
         MaterialCardView magaza = findViewById(R.id.magaza);
         MaterialCardView hemen_kazan = findViewById(R.id.hemen_kazan);
@@ -350,6 +340,7 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
         LinearLayout menu_order_listesi=findViewById(R.id.menu_order_listesi);
         LinearLayout menu_magaza=findViewById(R.id.menu_magaza);
         LinearLayout menu_kolaykazan=findViewById(R.id.menu_kolaykazan);
+
 
         LinearLayout menu_bizeyazin=findViewById(R.id.menu_bizeyazin);
         LinearLayout menu_profile=findViewById(R.id.menu_profile);
@@ -520,6 +511,15 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
             }
         });
 
+        tahminet_kazan.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainMenu.this, Tahminetkazan_Start.class);
+                startActivity(intent);
+
+            }
+        });
+
         menu_bulkazan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -573,6 +573,16 @@ public class MainMenu extends AppCompatActivity implements PurchasesUpdatedListe
 
             }
         });
+
+        kredi_satinal.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, Kredi_Paketleri.class);
+                startActivity(intent);
+
+            }
+        });
+
+
 
         menu_kolaykazan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -160,6 +160,16 @@
 
         <activity
             android:exported="true"
+            android:name="com.turkogame.darphane.activity.Tahminetkazan_Start"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:exported="true"
+            android:name="com.turkogame.darphane.activity.Tahminetkazan"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:exported="true"
             android:name="com.turkogame.darphane.activity.Para_Cekme"
             android:screenOrientation="portrait" />
 
