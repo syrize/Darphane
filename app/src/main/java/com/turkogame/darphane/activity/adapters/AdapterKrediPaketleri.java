@@ -34,6 +34,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.turkogame.darphane.R;
 import com.turkogame.darphane.activity.Kredi_Girisi;
+import com.turkogame.darphane.activity.Kredi_Paketleri;
 import com.turkogame.darphane.activity.app.AppConfig;
 import com.turkogame.darphane.activity.models.KrediPaketleriItem;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -248,7 +249,10 @@ public class AdapterKrediPaketleri extends RecyclerView.Adapter<AdapterKrediPake
                     });
 
         Thread.sleep(1000);
+
         kredi_oku(kullanici_id);
+
+
 
     }
 

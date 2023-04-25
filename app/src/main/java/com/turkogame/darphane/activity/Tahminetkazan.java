@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -51,7 +52,7 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
 
     private static final Random random = new Random();
     Button onayla;
-    TextView puan,reklam_id,reklam_kredisi,kredi,belirlenen,tahmin_edilen;
+    TextView puan,reklam_id,reklam_kredisi,kredi,belirlenen,tahmin_edilen,tahmin_sayac;
     TextView bir,iki,uc,dort,bes,alti,yedi,sekiz,dokuz,sifir;
     LinearLayout kutu1,kutu2,kutu3,kutu4,kutu5,kutu6,kutu7,kutu8,kutu9,kutu10,kutu11,kutu12;
     int sayac=0;
@@ -80,6 +81,7 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
         setContentView(R.layout.tahminetkazan);
         belirlenen = (TextView) findViewById(R.id.belirlenen);
         tahmin_edilen = (TextView) findViewById(R.id.tahmin_edilen);
+        tahmin_sayac = (TextView) findViewById(R.id.tahmin_sayac);
         bir = (TextView) findViewById(R.id.bir);
         iki = (TextView) findViewById(R.id.iki);
         uc = (TextView) findViewById(R.id.uc);
@@ -107,16 +109,11 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
         kutu11 = (LinearLayout) findViewById(R.id.kutu11);
         kutu12 = (LinearLayout) findViewById(R.id.kutu12);
 
-
-
         reklam_id = findViewById(R.id.reklam_id);
         reklam_kredisi=(TextView)  findViewById(R.id.reklam_kredisi);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("giris", 0);
         kullanici_id = sharedPreferences.getString("user_id","0");
-
-
-
 
         paketleri_oku();
 
@@ -127,12 +124,9 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
         adRequest = new AdRequest.Builder().build();
         loadRewardedVideoAd();
 
-
         initToolbar();
         kredi_oku();
         yeni_soru();
-
-
 
         kutu1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -236,17 +230,11 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
         kutu12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 cevap_kontrol(parseInt(tahmin_edilen.getText().toString()));
-
             }
         });
 
-
-
-
     }
-
 
     private void kredi_cikisi(){
         Kredi_Girisi.kredi_cikisi(kullanici_id,"2" ,"10");
@@ -255,7 +243,6 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         kredi_oku();
     }
 
@@ -289,17 +276,13 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
     //Video Reklam yükle
     private void loadRewardedVideoAd() {
         if (!mRewardedVideoAd.isLoaded()) {
-
             mRewardedVideoAd.loadAd(AD_UNIT_ID, adRequest);
-
         }
     }
-
 
     @Override
     public void onRewardedVideoAdLoaded() {
         Log.d("mesaj", "Adsense Ödüllü Reklam Yüklendi");
-
     }
 
     @Override
@@ -523,7 +506,10 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
     private void yeni_soru(){
 
         sayac=0;
+
+        tahmin_sayac.setText("Kalan Hak: 10");
         dogru_sayi = random.nextInt(100)+1;
+
         kredi_cikisi();
 
     }
@@ -531,14 +517,16 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
     private void cevap_kontrol(int girilen){
 
         sayac=sayac+1;
+        int kalan_hak=10-sayac;
+        tahmin_sayac.setText("Kalan Hak: "+Integer.toString(kalan_hak));
 
         if (sayac<=10) {
 
             if (dogru_sayi == girilen) {
 
-                     tahmin_edilen.setText(dogru_sayi);
+                     belirlenen.setText(Integer.toString(dogru_sayi));
 
-                sayac=4;
+                sayac=11;
 
                 new CountDownTimer(500, 500){
                     @Override
@@ -549,7 +537,7 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
                     @Override
                     public void onFinish() {
 
-                            Kredi_Girisi.kredi_satinalma(kullanici_id,"10","7", "100","0","3");
+                            Kredi_Girisi.kredi_satinalma(kullanici_id,"10","7", "100","0","8");
 
                             try {
                                 Thread.sleep(200);
@@ -590,6 +578,16 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
                         }
                     }.start();
 
+
+                } else {
+                    belirlenen.setText("Hatalı tahmin!");
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            belirlenen.setText("***");
+                            tahmin_edilen.setText("");
+                        }
+                    }, 1000);
 
                 }
 
@@ -635,17 +633,14 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
         ((ImageView) dialog.findViewById(R.id.home)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
-
-
             }
         });
 
         ((Button) dialog.findViewById(R.id.yeni_oyun)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Tahminetkazan.this, Bulkazan_Start.class);
+                Intent intent = new Intent(Tahminetkazan.this, Tahminetkazan_Start.class);
                 startActivity(intent);
                 finish();
             }
@@ -657,9 +652,6 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
                 mRewardedVideoAd.show();
             }
         });
-
-
-
 
         dialog.setCancelable(false);
         dialog.show();
@@ -693,7 +685,5 @@ public class Tahminetkazan extends AppCompatActivity implements RewardedVideoAdL
 
         return kullaniciList;
     }
-
-
 
 }

@@ -23,8 +23,8 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class Kredi_Girisi {
 
 
-  // İşlem Türü:  1- SATINALMA  2- ÖDÜLLÜ REKLAM  3- ARKADAŞ DAVETİ  4- TAKİP ET  5- PAYLAŞ  6- HEDİYE KREDİ
-  // Ödeme Tipi:  1-Kredi kartı  2-Havele - EFT  3-Bedelsiz  4-Adsense
+  // İşlem Türü:  1- SATINALMA  2- ÖDÜLLÜ REKLAM  3- ARKADAŞ DAVETİ  4- TAKİP ET  5- PAYLAŞ  6- HEDİYE KREDİ  7- Oyun Ödülü
+  // Ödeme Tipi:  1-Kredi kartı  2-Havele - EFT  3-Bedelsiz  4-Adsense 5-bil kazan  6-Bul kazan  7-Şans Çarkı  8-Tahmin Et Kazan
 
     public static SharedPreferences kayit_kontrol;
 
@@ -72,14 +72,11 @@ public class Kredi_Girisi {
                                 /*Toast toast = Toast.makeText(getApplicationContext(), kontrol.getString("hataMesaj"), Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
                                 toast.show();*/
-
                             }
-
 
                         } catch (Exception e) {
 
                         }
-
 
                     }
                 }, new com.android.volley.Response.ErrorListener() {
@@ -89,8 +86,6 @@ public class Kredi_Girisi {
             }
         });
         requestQueue.add(jsonObjectRequest);
-
-
 
     }
 

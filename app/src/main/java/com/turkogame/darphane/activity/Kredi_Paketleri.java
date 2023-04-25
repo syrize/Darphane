@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kredi_Paketleri extends AppCompatActivity {
-    SharedPreferences sharedPreferences,kayit_kontrol;
+    SharedPreferences sharedPreferences,kayit_kontrol, bakiye_kontrol;
     private View parent_view;
     private AdapterListInbox mAdapter;
     private ActionModeCallback actionModeCallback;
@@ -57,17 +58,20 @@ public class Kredi_Paketleri extends AppCompatActivity {
     public static String kontrolcu;
     int sayac=0;
     RecyclerView.LayoutManager layoutManager;
+    TextView kredi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kredi_paketleri);
         token= FirebaseInstanceId.getInstance().getToken();
+        kredi = (TextView) findViewById(R.id.kredi);
 
-        listView = (RecyclerView) findViewById(R.id.liste_view);
+       listView = (RecyclerView) findViewById(R.id.liste_view);
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setHasFixedSize(true);
 
+        bakiye_oku();
 
         // parent_view = findViewById(R.id.lyt_parent);
 
@@ -85,6 +89,10 @@ public class Kredi_Paketleri extends AppCompatActivity {
         tiklama_kontrol();
     }
 
+    public void bakiye_oku(){
+        bakiye_kontrol = getApplicationContext().getSharedPreferences("darphane_kontrol", 0);
+        kredi.setText(bakiye_kontrol.getString("kredi","0"));
+    }
 
     private void tiklama_kontrol(){
 
@@ -224,8 +232,6 @@ public class Kredi_Paketleri extends AppCompatActivity {
     }
 
 
-
-
     private void paketleri_oku(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -294,7 +300,6 @@ public class Kredi_Paketleri extends AppCompatActivity {
     }
 
 
-
     ArrayList<KrediPaketleriItem> okunanlariParseEt(String okunanJson) {
         ArrayList<KrediPaketleriItem> kullaniciList = new ArrayList<>();
         try {
@@ -326,8 +331,6 @@ public class Kredi_Paketleri extends AppCompatActivity {
 
         return kullaniciList;
     }
-
-
 
 
     private void initToolbar() {
